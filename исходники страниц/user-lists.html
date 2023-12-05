@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="english">
+
+<head>
+    <title>Личные списки</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="utf-8"/>
+
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap"
+          data-tag="font"/>
+    <link rel="stylesheet" href="../styles.css"/>
+    <link href="css/user-lists.css" rel="stylesheet"/>
+</head>
+
+<body>
+<section class="nav-men">
+    <link href="css/nav-right.css" rel="stylesheet">
+    <input type="checkbox" id="nav-toggle" hidden>
+    <div class="mask-content"></div>
+    <nav class="nav">
+        <ul id="nav"></ul>
+    </nav>
+</section>
+<div id="header">
+    <script src="../js/navigation/header.html.js" type="module"></script>
+</div>
+
+<div class="block">
+    <div id="menu-include" active-element="4">
+        <script src="../js/navigation/menu.html.js"></script>
+    </div>
+    <div class="content-main">
+        <div class="content-header">Пользовательские списки</div>
+        <ul class="tabs">
+            <li class="tabbase-active">
+                <a href="#" class="text">Фильмы</a>
+            </li>
+            <li class="tabbase">
+                <a href="#" class="text">Книги</a>
+            </li>
+            <li class="tabbase">
+                <a href="#" class="text">Игры</a>
+            </li>
+        </ul>
+        <div class="tabs-panel active" data-index="0">
+            <span class="tab-header">Запланированное:</span>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th class="cell-header">#</th>
+                    <th class="cell-header header-name">Название</th>
+                    <th class="cell-header">Режиссер</th>
+                    <th class="cell-header">Жанр</th>
+                    <th class="cell-header">Рейтинг</th>
+                    <th class="cell-header">Оценка</th>
+                    <th class="cell-header">Действия</th>
+                </tr>
+                </thead>
+                <tbody id="films-0">
+                </tbody>
+            </table>
+            <div></div>
+            <span class="tab-header">Смотрю:</span>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th class="cell-header">#</th>
+                    <th class="cell-header header-name">Название</th>
+                    <th class="cell-header">Режиссер</th>
+                    <th class="cell-header">Жанр</th>
+                    <th class="cell-header">Рейтинг</th>
+                    <th class="cell-header">Оценка</th>
+                    <th class="cell-header">Действия</th>
+                </tr>
+                </thead>
+                <tbody id="films-1">
+                </tbody>
+            </table>
+            <span class="tab-header">Просмотренное:</span>
+            <table class="table">'
+                <thead>
+                <tr>
+                    <th class="cell-header">#</th>
+                    <th class="cell-header header-name">Название</th>
+                    <th class="cell-header">Режиссер</th>
+                    <th class="cell-header">Жанр</th>
+                    <th class="cell-header">Рейтинг</th>
+                    <th class="cell-header">Оценка</th>
+                    <th class="cell-header">Действия</th>
+                </tr>
+                </thead>
+                <tbody id="films-2">
+                </tbody>
+            </table>
+        </div>
+        <div class="tabs-panel" data-index="1">
+            <span class="tab-header">Запланированное:</span>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th class="cell-header">#</th>
+                    <th class="cell-header header-name">Название</th>
+                    <th class="cell-header">Автор</th>
+                    <th class="cell-header">Жанр</th>
+                    <th class="cell-header">Рейтинг</th>
+                    <th class="cell-header">Оценка</th>
+                    <th class="cell-header">Действия</th>
+                </tr>
+                </thead>
+                <tbody id="books-0">
+                </tbody>
+            </table>
+            <span class="tab-header">Читаю:</span>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th class="cell-header">#</th>
+                    <th class="cell-header header-name">Название</th>
+                    <th class="cell-header">Автор</th>
+                    <th class="cell-header">Жанр</th>
+                    <th class="cell-header">Рейтинг</th>
+                    <th class="cell-header">Оценка</th>
+                    <th class="cell-header">Действия</th>
+                </tr>
+                </thead>
+                <tbody id="books-1">
+                </tbody>
+            </table>
+            <span class="tab-header">Прочитанное:</span>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th class="cell-header">#</th>
+                    <th class="cell-header header-name">Название</th>
+                    <th class="cell-header">Автор</th>
+                    <th class="cell-header">Жанр</th>
+                    <th class="cell-header">Рейтинг</th>
+                    <th class="cell-header">Оценка</th>
+                    <th class="cell-header">Действия</th>
+                </tr>
+                </thead>
+                <tbody id="books-2">
+                </tbody>
+            </table>
+        </div>
+        <div class="tabs-panel" data-index="2">
+            <span class="tab-header">Запланированное:</span>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th class="cell-header">#</th>
+                    <th class="cell-header header-name">Название</th>
+                    <th class="cell-header">Студия</th>
+                    <th class="cell-header">Жанр</th>
+                    <th class="cell-header">Рейтинг</th>
+                    <th class="cell-header">Оценка</th>
+                    <th class="cell-header">Действия</th>
+                </tr>
+                </thead>
+                <tbody id="games-0">
+                </tbody>
+            </table>
+            <span class="tab-header">Играю:</span>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th class="cell-header">#</th>
+                    <th class="cell-header header-name">Название</th>
+                    <th class="cell-header">Студия</th>
+                    <th class="cell-header">Жанр</th>
+                    <th class="cell-header">Рейтинг</th>
+                    <th class="cell-header">Оценка</th>
+                    <th class="cell-header">Действия</th>
+                </tr>
+                </thead>
+                <tbody id="games-1">
+                </tbody>
+            </table>
+            <span class="tab-header">Пройденное:</span>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th class="cell-header">#</th>
+                    <th class="cell-header header-name">Название</th>
+                    <th class="cell-header">Студия</th>
+                    <th class="cell-header">Жанр</th>
+                    <th class="cell-header">Рейтинг</th>
+                    <th class="cell-header">Оценка</th>
+                    <th class="cell-header">Действия</th>
+                </tr>
+                </thead>
+                <tbody id="games-2">
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script src="../js/navigation/tabs-panel.js"></script>
+<script src="../js/user-lists/load-user-list.js" type="module"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="english">
+<head>
+    <title>Рекомендации</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="utf-8"/>
+
+    <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap"
+            data-tag="font"
+    />
+    <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
+            data-tag="font"
+    />
+    <link rel="stylesheet" href="../styles.css"/>
+    <link href="css/recomendations.css" rel="stylesheet"/>
+    <link href="css/cards.css" rel="stylesheet"/>
+    <script>let enable_auto_content = false;</script>
+</head>
+<body>
+<section class="nav-men">
+    <link href="css/nav-right.css" rel="stylesheet">
+    <input type="checkbox" id="nav-toggle" hidden>
+    <div class="mask-content"></div>
+    <nav class="nav">
+        <ul id="nav"></ul>
+    </nav>
+</section>
+<div id="header">
+    <script src="../js/navigation/header.html.js" type="module"></script>
+</div>
+<div class="block">
+    <div id="menu-include" active-element="3">
+        <script src="../js/navigation/menu.html.js"></script>
+    </div>
+    <div class="content-main">
+        <div class="rec-settings">
+            <div class="header-settings">
+                <div class="header-settings-text">
+                        <span class="rec-header PublicSansDisplayxsBold">
+                      <h2>Настройки рекомендаций</h2>
+                    </span>
+                </div>
+            </div>
+            <div class="settings-section">
+                <div class="settings-menuitem">
+                    <span>Учитываемые списки </span>
+                    <div class="block-row">
+                        <div class="check-content-item">
+                            <input id="films-checkbox" type="checkbox"/>
+                            <label for="films-checkbox">
+                                Фильмы
+                            </label>
+                        </div>
+                        <div class="check-content-item">
+                            <input id="books-checkbox" type="checkbox"/>
+                            <label for="books-checkbox">
+                                Книги
+                            </label>
+                        </div>
+                        <div class="check-content-item">
+                            <input id="games-checkbox" type="checkbox"/>
+                            <label for="games-checkbox">
+                                Игры
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="settings-menuitem">
+                    <span>Рекомендуемый контент </span>
+                    <div class="search-content-select">
+                        <select>
+                            <option selected>Фильмы</option>
+                            <option>Книги</option>
+                            <option>Игры</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="settings-input">
+                <div class="tag-area">
+                    <label for="tag-input" class="label">Добавить жанры</label>
+                    <ul>
+                        <input type="text" class="tag-input" id="tag-input"/>
+                    </ul>
+                </div>
+            </div>
+            <div class="year-settings">
+                <div class="header-year-filter">
+                    <span>Года</span>
+                </div>
+                <div class="year-filters">
+                    <div class="max-year-filter">
+                        <div class="settings-year-input">
+                            <input
+                                    type="text"
+                                    placeholder="Min."
+                                    class="year-filter-input"
+                            />
+                        </div>
+                    </div>
+                    <div class="max-year-filter">
+                        <div class="settings-year-input">
+                            <input
+                                    type="text"
+                                    placeholder="Max."
+                                    class="year-filter-input"
+                            />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="rec-buttons">
+                <button class="create-recs" onclick="asyncMultipleContents(getBooks, itemsCount)">
+                    <span>Сформировать рекомендации</span>
+                </button>
+            </div>
+        </div>
+        <details open class="recommendations-help">
+            <summary>Как настроить систему рекомендаций?</summary>
+            <span class="help-description">
+                  <span>
+                    1. Выберите списки, на основе которых будут формироваться
+                    рекомендации (пункт "Учитываемые списки")
+                  </span>
+                  <br/>
+                  <span>
+                    2. Выберите тип контента для рекомендаций.
+                  </span>
+                  <br/>
+                  <span>
+                    3. Добавьте фильтрацию по жанрам и годам выпуска
+                  </span>
+                  <br/>
+                  <span>Нажмите кнопку “Сформировать рекомендации”</span>
+                </span>
+        </details>
+        <div id="loader"></div>
+        <div class="content-cards" id="books-cards-container"></div>
+    </div>
+</div>
+<script src="../js/tags.js"></script>
+<div class="content-header" id="page-number">1 страница</div>
+<script src="../js/content-lists/books-examples.js" type="module"></script>
+</body>
+</html>

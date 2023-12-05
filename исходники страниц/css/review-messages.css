@@ -1,0 +1,51 @@
+.review-text {
+    height: auto;
+    flex-grow: 1;
+    font-size: 15px;
+    text-align: left;
+    font-weight: 200;
+    line-height: 20px;
+    font-stretch: normal;
+    text-decoration: none
+}
+
+.review-container {
+    gap: 8px;
+    margin-bottom: 10px;
+    width: 90%;
+    height: auto;
+    display: flex;
+    padding: 8px 12px;
+    border-radius: 14px;
+    flex-direction: column;
+    background-color: rgba(31,1,84,0.24);
+    color: #dedcf5;
+}
+
+.user-info {
+    gap: 8px;
+    display: flex;
+    align-self: stretch;
+    align-items: start;
+    margin: 5px;
+}
+
+.user-img {
+    width: 80px;
+}
+
+.user-name-rate {
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.user-rate {
+    margin-top: 10px;
+}
+
+#messages-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+}

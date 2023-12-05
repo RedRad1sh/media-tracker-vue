@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="english">
+<head>
+    <title>Залечь на дно в Брюгге</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="utf-8"/>
+
+    <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap"
+            data-tag="font"
+    />
+    <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
+            data-tag="font"
+    />
+    <link rel="stylesheet" href="../styles.css"/>
+    <link href="css/film-page.css" rel="stylesheet"/>
+    <link href="css/review-messages.css" rel="stylesheet"/>
+    <script src="../js/review.js" type="module"></script>
+</head>
+<body>
+<section class="nav-men">
+    <link href="css/nav-right.css" rel="stylesheet">
+    <input type="checkbox" id="nav-toggle" hidden>
+    <div class="mask-content"></div>
+    <nav class="nav">
+        <ul id="nav"></ul>
+    </nav>
+</section>
+<div id="header">
+    <script src="../js/navigation/header.html.js" type="module"></script>
+</div>
+<div class="block">
+    <div id="menu-include" active-element="0">
+        <script src="../js/navigation/menu.html.js"></script>
+    </div>
+    <div class="content-main">
+        <div class="block-row" style="justify-content: center">
+            <div class="content-header">Залечь на дно в Брюгге</div>
+        </div>
+        <div class="film-description-element">
+            <img
+                    src="../assets/general_assets/image2415-6yy-400w.png"
+                    alt="IMAGE2415"
+                    class="film-image"
+            />
+            <div class="film-img-bottom">
+                <div class="film-actions">
+                    <span class="text-format">
+                      <span>Оценка:</span>
+                    </span>
+                    <select id="rate">
+                        <option></option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                        <option>7</option>
+                        <option>8</option>
+                        <option>9</option>
+                        <option>10</option>
+                    </select>
+                </div>
+                <div class="film-actions">
+                      <span class="text-format">
+                        <span>Списки:</span>
+                      </span>
+                    <select>
+                        <option></option>
+                        <option>Запланировано</option>
+                        <option>Просмотрено</option>
+                        <option>Смотрю</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="film-description-element">
+            <div class="info-header">Описание</div>
+            <div class="text-block">
+                Lorem ipsum dolor sit amet consectetur. Enim felis commodo
+                quis mi. Amet faucibus est venenatis laoreet dolor sed.
+                Purus orci mi massa suspendisse. Augue porttitor nunc
+                tincidunt morbi volutpat purus sed libero. Amet lacinia
+                lorem nibh in donec enim. Pretium nunc sed sagittis mauris
+                eget amet nulla. Placerat tortor eu donec posuere quis nam
+                diam sit. Cursus at orci cras aliquam. Pulvinar tortor augue
+                gravida at nam libero consequat morbi sed.
+            </div>
+        </div>
+        <div class="film-description-element">
+            <div class="info-header">Информация</div>
+            <div class="text-block">
+                <span>Тип: Фильм</span>
+                <br/>
+                <br/>
+                <span>Страны:</span>
+                <span class="text-block ">Великобритания, США</span>
+                <br/>
+                <br/>
+                <span class="text-block">Оригинальное название: In Bruges</span>
+                <br/>
+                <br/>Длительность: 107 мин
+                <br/>
+                <br/>Статус: Вышел
+                <br/>
+                <br/>Дата выхода: 2008
+                <br/>
+                <br/>Оценка Кинопоиск: 8.1
+                <br/>Оценка MediaTracker: 8.0
+                <br/>
+                <br/>Жанры: комедия, преступление, триллер, драма
+            </div>
+        </div>
+        <div class="create-review">
+            <div class="create-review-container">
+                <label class="text-block" for="review-field">Оставьте отзыв к фильму:</label>
+                <br>
+                <textarea id="review-field" class="frame3-frame-inputlabels"></textarea>
+            </div>
+            <button id="review-button" class="button-create-review" onclick="createMessageElement()">Опубликовать
+            </button>
+        </div>
+        <div id="messages-container">
+            <div class="review-container">
+                <div class="user-info">
+                    <img class="user-img" src="https://avtozaryad.ru/local/templates/main/assets/images/user.png">
+                    <div class="user-name-rate">
+                        <div class="user-name">@username</div>
+                        <div class="user-rate">Оценка: 7/10</div>
+                    </div>
+                </div>
+                <span class="review-text">
+                    Lorem ipsum dolor sit amet consectetur. Magna etiam nulla
+                    natoque risus donec laoreet massa. Enim massa auctor urna
+                    cras aliquet eget mauris justo. Morbi tristique nascetur
+                    sagittis rhoncus massa imperdiet in auctor netus. Libero
+                    ipsum proin vitae quis. Tempor aliquet mi tristique ornare
+                    facilisis neque justo iaculis. Magna sapien tristique
+                    ultricies vel arcu. Dictum ut integer rhoncus tristique enim
+                    mattis in sed. Dictum vel nunc velit massa nisl duis nunc
+                    netus. Tortor justo elit faucibus sed in risus quam aliquam
+                    bibendum.
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,112 @@
+.film-image {
+  width: 200px
+}
+
+.film-img-bottom {
+  width: auto;
+  display: flex;
+  align-items: flex-start;
+  flex-shrink: 0
+}
+
+.film-actions {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 14px;
+  margin-right: 10px
+}
+
+.text-format {
+  color: #e4e6f5;
+  height: auto;
+  align-self: stretch;
+  text-align: left;
+  line-height: 24px
+}
+
+.create-review {
+  padding: 20px;
+  display: flex;
+  align-items: flex-start;
+  flex-shrink: 0;
+  flex-direction: column;
+  width: 100%
+}
+
+.header-text {
+  color: white;
+  margin-bottom: 40px;
+  font-size: 30px;
+  font-weight: 500
+}
+
+.text-block {
+  color: #e4e5f4;
+  width: auto;
+  font-size: 16px;
+  padding: 5px
+}
+
+.create-review-container {
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+  padding: 8px 40px;
+}
+
+.button-create-review {
+  margin: 10px auto;
+  height: 40px;
+  padding: 4px 8px;
+}
+
+.film-description-header {
+  display: flex;
+  flex-direction: row
+}
+
+.film-description-element {
+  font-size: 15px;
+  max-width: 30%;
+  margin-top: 20px
+}
+
+.content-main {
+  padding: 10px 5px;
+  align-items: flex-start;
+  justify-content: space-around;
+  height: auto
+}
+
+select {
+  width: auto;
+  max-width: 120px;
+  min-width: 60px;
+  margin-right: 5px
+}
+
+@media screen and (max-width:1200px) {
+  .text-block {
+    font-size: 14px
+  }
+}
+
+textarea {
+  padding: 10px;
+  font-size: 16px;
+  color: #000;
+  background-color: rgba(255,255,255,.5);
+  resize: none;
+  height: 100px
+}
+
+.info-header {
+  background-color: #31004a63;
+  border-radius: 4px;
+  padding: 5px;
+  margin-bottom: 10px;
+  color: #f5f5f5
+}

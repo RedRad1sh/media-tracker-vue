@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="english">
+<head>
+    <title>Профиль</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="utf-8"/>
+
+    <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap"
+            data-tag="font"
+    />
+    <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
+            data-tag="font"
+    />
+
+    <link rel="stylesheet" href="../styles.css"/>
+    <link rel="stylesheet" href="css/profile.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.3.0/chart.min.js"
+            integrity="sha512-mlz/Fs1VtBou2TrUkGzX4VoGvybkD9nkeXWJm3rle0DPHssYYx4j+8kIS15T78ttGfmOjH0lLaBXGcShaVkdkg=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.3.0/chart.umd.min.js"
+            integrity="sha512-TJ7U6JRJx5IpyvvO9atNnBzwJIoZDaQnQhb0Wmw32Rj5BQHAmJG16WzaJbDns2Wk5VG6gMt4MytZApZG47rCdg=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.3.0/helpers.min.js"
+            integrity="sha512-JG3S/EICkp8Lx9YhtIpzAVJ55WGnxT3T6bfiXYbjPRUoN9yu+ZM+wVLDsI/L2BWRiKjw/67d+/APw/CDn+Lm0Q=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="../js/decoration/pie-charts.js"></script>
+</head>
+<body>
+<section class="nav-men">
+    <link href="css/nav-right.css" rel="stylesheet">
+    <input type="checkbox" id="nav-toggle" hidden>
+    <div class="mask-content"></div>
+    <nav class="nav">
+        <ul id="nav"></ul>
+    </nav>
+</section>
+<div id="header">
+    <script src="../js/navigation/header.html.js" type="module"></script>
+</div>
+<div class="block">
+    <div id="menu-include" active-element="-1">
+        <script src="../js/navigation/menu.html.js"></script>
+    </div>
+    <div class="content-main">
+        <div class="profile-info container-row">
+            <div class="image-frame">
+                <img
+                        src="../assets/general_assets/image31416-6yvs-400w.png"
+                        alt="image31416"
+                        class="image"
+                />
+                <span class="image-text">
+                  <span>Добро пожаловать, Radish!</span>
+                </span>
+            </div>
+            <div class="pie-frame">
+                <canvas id="contentChart">
+                </canvas>
+            </div>
+            <div class="navigation">
+                <a href="user-lists.html" class="text">
+                    📋 Списки контента
+                </a>
+                <a href="user-reviews.html" class="text">
+                    📒 Оставленные рецензии
+                </a>
+            </div>
+        </div>
+        <div class="container-row">
+            <div class="pie-frame">
+                <canvas id="kinoChart">
+                </canvas>
+            </div>
+            <div class="pie-frame">
+                <canvas id="booksChart">
+                </canvas>
+            </div>
+            <div class="pie-frame">
+                <canvas id="gameChart">
+                </canvas>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
