@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="english">
+<head>
+    <title>exported project</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="utf-8"/>
+    <meta property="twitter:card" content="summary_large_image"/>
+
+    <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap"
+            data-tag="font"
+    />
+    <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
+            data-tag="font"
+    />
+    <link rel="stylesheet" href="../style.css"/>
+    <link href="recomendations.css" rel="stylesheet"/>
+</head>
+<body>
+<section class="nav-men">
+    <link href="nav-right.css" rel="stylesheet">
+    <input type="checkbox" id="nav-toggle" hidden>
+    <div class="mask-content"></div>
+    <nav class="nav">
+        <ul>
+            <li><a href="../index.html">Главная</a>
+            <li><a href="profile.html">Профиль</a>
+            <li><a href="content-list.html">Списки</a>
+            <li><a href="../index.html">Выйти</a>
+        </ul>
+    </nav>
+</section>
+<div id="header">
+    <script src="../helpers/header.html.js"></script>
+</div>
+<div class="block">
+    <div id="menu-include" active-element="5">
+        <script src="../helpers/menu.html.js"></script>
+    </div>
+    <div class="content-main">
+        <div class="rec-settings">
+            <div class="header-settings">
+                <div class="header-settings-text">
+                        <span class="frame5-text PublicSansDisplayxsBold">
+                      <span>Настройки рекомендаций</span>
+                    </span>
+                </div>
+            </div>
+            <div class="frame5-section">
+                <div class="frame5-menuitem">
+                    <span class="frame5-text003 PublicSansTextmdSemibold">
+                      <span>Списки для рекомендаций: </span>
+                    </span>
+                    <div class="block-row">
+                        <div class="frame5-menuitem1">
+                            <label><input type="checkbox" class="frame5-text005 PublicSansTextmdRegular"/>
+                                Фильмы
+                            </label>
+                        </div>
+                        <div class="frame5-menuitem2">
+                            <label><input type="checkbox" class="frame5-text005 PublicSansTextmdRegular"/>
+                                Книги
+                            </label>
+                        </div>
+                        <div class="frame5-menuitem3">
+                            <label><input type="checkbox" class="frame5-text005 PublicSansTextmdRegular"/>
+                                Игры
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="frame5-menuitem">
+                <span>Контент для рекомендаций: </span>
+                <div class="search-content-select">
+                    <select>
+                        <option selected>Фильмы</option>
+                        <option>Книги</option>
+                        <option>Игры</option>
+                    </select>
+                </div>
+            </div>
+            <div class="frame5-inputfield">
+                <div class="tag-area">
+                    <label for="tag-input" class="label">Добавить жанры</label>
+                    <ul>
+                        <input type="text" class="tag-input" id="tag-input"/>
+                    </ul>
+                </div>
+            </div>
+            <div class="frame5-section1">
+                <div class="frame5-menuitem5">
+                    <span class="frame5-text015 PublicSansTextmdSemibold">
+                      <span>Год</span>
+                    </span>
+                    <img
+                            src="../public/playground_assets/righticoni115-q8ho.svg"
+                            alt="RightIconI115"
+                            class="frame5-right-icon2"
+                    />
+                </div>
+                <div class="frame5-inputs">
+                    <div class="frame5-inputfield1">
+                        <div class="frame5-frame-input-field-base1">
+                            <input
+                                    type="text"
+                                    placeholder="Min."
+                                    class="frame5-frame-inputlabels1"
+                            />
+                        </div>
+                    </div>
+                    <div class="frame5-inputfield2">
+                        <div class="frame5-frame-input-field-base2">
+                            <input
+                                    type="text"
+                                    placeholder="Max."
+                                    class="frame5-frame-inputlabels2"
+                            />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="rec-buttons">
+                <button class="surprise-button">
+                    <span>Удиви меня</span>
+                </button>
+
+                <button class="create-recs">
+                    <span>Сформировать рекомендации</span>
+                </button>
+            </div>
+        </div>
+        <details class="recommendations-help">
+            <summary>Как настроить систему рекомендаций?</summary>
+            <span class="help-description">
+                  <span>
+                    Выберите списки, на основе которых будут формироваться
+                    рекомендации (фильмы, игр или книги). Для этого в настройках
+                    выберите нужные списки, которые хотите использовать для
+                    рекомендаций.
+                  </span>
+                  <br/>
+                  <span>
+                    Выберите тип контента, который вы хотите, чтобы система
+                    рекомендовала: фильмы, игры, книги. Для этого просто
+                    выберите нужный тип в настройках.
+                  </span>
+                  <br/>
+                  <span>
+                    Отфильтруйте рекомендации по жанрам и году выпуска.
+                  </span>
+                  <br/>
+                  <span>Нажмите кнопку “Сформировать рекомендации”</span>
+                  <br/>
+                  <span>
+                    Либо нажмите кнопку “Удиви меня”, чтобы получить случайную рекомендацию
+                      фильма, книги или игры по вашим предпочтениям.
+                  </span>
+                </span>
+        </details>
+        <div class="content-cards">
+            <div class="card-container">
+                <a href="film-page.html" style="width: 100%">
+                    <div class="card-top">
+                        <img
+                                src="../public/playground_assets/thumbnail2410-jxwk-200h.png"
+                                alt="thumbnail2410"
+                                class="frame2-thumbnail"
+                        />
+                        <div class="card-tag">
+                            <span class="card-genre Caption"><span>Комедия</span></span>
+                        </div>
+                    </div>
+                </a>
+
+                <div class="card-bottom">
+                    <div class="card-bottom-header">
+                  <span class="card-name">
+                    <span>Залечь на дно в Брюге</span>
+                  </span>
+                        <span class="card-description">
+                    <span>
+                      Amet minim mollit non deserunt ullamco est sit aliqua
+                      dolor do amet sint.
+                    </span>
+                  </span>
+                        <span class="card-extra-property">
+                    <span>2 hours 40 minutes</span>
+                  </span>
+                    </div>
+                    <div class="card-bottom-actions">
+                        <label>Оценить
+                            <select>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option selected>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                            </select>
+                        </label>
+                        <label>Добавить в список
+                            <select>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option selected>Запланировано</option>
+                                <option>9</option>
+                                <option>10</option>
+                            </select>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="card-container">
+                <a href="film-page.html" style="width: 100%">
+                    <div class="card-top">
+                        <img
+                                src="../public/playground_assets/thumbnail2410-jxwk-200h.png"
+                                alt="thumbnail2410"
+                                class="frame2-thumbnail"
+                        />
+                        <div class="card-tag">
+                            <span class="card-genre Caption"><span>Комедия</span></span>
+                        </div>
+                    </div>
+                </a>
+
+                <div class="card-bottom">
+                    <div class="card-bottom-header">
+                  <span class="card-name">
+                    <span>Залечь на дно в Брюге</span>
+                  </span>
+                        <span class="card-description">
+                    <span>
+                      Amet minim mollit non deserunt ullamco est sit aliqua
+                      dolor do amet sint.
+                    </span>
+                  </span>
+                        <span class="card-extra-property">
+                    <span>2 hours 40 minutes</span>
+                  </span>
+                    </div>
+                    <div class="card-bottom-actions">
+                        <label>Оценить
+                            <select>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option selected>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                            </select>
+                        </label>
+                        <label>Добавить в список
+                            <select>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option selected>Запланировано</option>
+                                <option>9</option>
+                                <option>10</option>
+                            </select>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="card-container">
+                <a href="film-page.html" style="width: 100%">
+                    <div class="card-top">
+                        <img
+                                src="../public/playground_assets/thumbnail2410-jxwk-200h.png"
+                                alt="thumbnail2410"
+                                class="frame2-thumbnail"
+                        />
+                        <div class="card-tag">
+                            <span class="card-genre Caption"><span>Комедия</span></span>
+                        </div>
+                    </div>
+                </a>
+
+                <div class="card-bottom">
+                    <div class="card-bottom-header">
+                  <span class="card-name">
+                    <span>Залечь на дно в Брюге</span>
+                  </span>
+                        <span class="card-description">
+                    <span>
+                      Amet minim mollit non deserunt ullamco est sit aliqua
+                      dolor do amet sint.
+                    </span>
+                  </span>
+                        <span class="card-extra-property">
+                    <span>2 hours 40 minutes</span>
+                  </span>
+                    </div>
+                    <div class="card-bottom-actions">
+                        <label>Оценить
+                            <select>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option selected>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                            </select>
+                        </label>
+                        <label>Добавить в список
+                            <select>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option selected>Запланировано</option>
+                                <option>9</option>
+                                <option>10</option>
+                            </select>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="card-container">
+                <a href="film-page.html" style="width: 100%">
+                    <div class="card-top">
+                        <img
+                                src="../public/playground_assets/thumbnail2410-jxwk-200h.png"
+                                alt="thumbnail2410"
+                                class="frame2-thumbnail"
+                        />
+                        <div class="card-tag">
+                            <span class="card-genre Caption"><span>Комедия</span></span>
+                        </div>
+                    </div>
+                </a>
+
+                <div class="card-bottom">
+                    <div class="card-bottom-header">
+                  <span class="card-name">
+                    <span>Залечь на дно в Брюге</span>
+                  </span>
+                        <span class="card-description">
+                    <span>
+                      Amet minim mollit non deserunt ullamco est sit aliqua
+                      dolor do amet sint.
+                    </span>
+                  </span>
+                        <span class="card-extra-property">
+                    <span>2 hours 40 minutes</span>
+                  </span>
+                    </div>
+                    <div class="card-bottom-actions">
+                        <label>Оценить
+                            <select>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option selected>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                            </select>
+                        </label>
+                        <label>Добавить в список
+                            <select>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option selected>Запланировано</option>
+                                <option>9</option>
+                                <option>10</option>
+                            </select>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../helpers/tags.js"></script>
+</body>
+</html>

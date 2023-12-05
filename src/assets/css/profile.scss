@@ -1,0 +1,93 @@
+.image-frame {
+    width: 300px;
+    height: 300px;
+    display: flex;
+    overflow: hidden;
+    align-items: center;
+    flex-shrink: 0;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.image {
+    height: 50%;
+    border-color: rgb(129, 156, 255);
+    border-style: solid;
+    border-radius: 270px;
+}
+
+.image-text {
+    color: rgba(255, 255, 255, 1);
+    height: auto;
+    font-size: 16px;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.navigation {
+    display: flex;
+    overflow: hidden;
+    align-self: stretch;
+    align-items: center;
+    flex-shrink: 0;
+    flex-direction: row;
+    justify-content: space-around;
+    font-size: 200px;
+    height: 40px;
+    margin: 10px 0 0 0;
+    background-color: rgba(0, 0, 0, 0.1);
+    min-width: 100%;
+}
+
+.text {
+    color: rgba(255, 255, 255, 1);
+    height: auto;
+    font-size: 20px;
+    text-align: left;
+    align-self: auto;
+}
+
+
+.pie-frame {
+    display: flex;
+    overflow: hidden;
+    align-self: stretch;
+    align-items: flex-end;
+    flex-shrink: 0;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin: auto 0;
+}
+
+.container-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    flex-wrap: wrap;
+    margin-bottom: 50px;
+}
+
+.content-main {
+    flex-direction: column;
+    padding: 0;
+    border-radius: 20px;
+    min-height: 10vh;
+}
+
+.content-header {
+    width: 90%;
+}
+
+.profile-info {
+    background: radial-gradient(ellipse farthest-corner at 0 -521%, #00000063 59%, #00030da1 69%, #000a1f4a 95%);
+    border-radius: 20px;
+    border-width: 50px;
+    border-bottom-style: ridge;
+    border-top-style: ridge;
+    border-color: #0b1f4b24;
+}
+
+#contentChart {
+    height: 250px;
+}

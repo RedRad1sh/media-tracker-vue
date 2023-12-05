@@ -1,0 +1,262 @@
+.content-main {
+    width: 90%;
+    padding: 0
+}
+
+.img-container {
+    height: 505px
+}
+
+.img-container>img {
+    width: 307px;
+    height: 100%;
+    object-fit: cover;
+    overflow: hidden;
+    transform: translateX(-14px);
+    opacity: .8
+}
+
+.block {
+    margin: 90px 20px 20px
+}
+
+h1,h2,p {
+    margin-top: 10px;
+    padding: 10px;
+    color: #fff;
+    text-align: center;
+    font-weight: 300
+}
+
+p {
+    font-size: 16px
+}
+
+.description,.login-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center
+}
+
+.description {
+    height: 100%;
+    align-items: center;
+    margin: auto;
+    padding: 0;
+    flex-shrink: 0;
+    border-radius: 3px;
+    width: 100%
+}
+
+.login-form {
+    color: #fff;
+    text-align: center;
+    font-size: 14px
+}
+
+input[type=submit] {
+    background-color: rgba(200,147,209,.12);
+    color: #fff;
+    border: 0;
+    width: 200px;
+    height: 40px;
+    font-size: 14px
+}
+
+input[type=submit]:hover {
+    background-color: rgba(145,79,157,.28)
+}
+
+.box,.feature {
+    height: auto;
+    text-align: center
+}
+
+.feature {
+    flex: 1 1 0
+}
+
+.feature img {
+    width: 60px;
+    height: 60px;
+    filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
+    margin-left: auto
+}
+
+.feature h3,.feature p {
+    color: #fff;
+    margin-bottom: 0
+}
+
+.feature h3 {
+    margin-top: 10px;
+    font-size: 26px
+}
+
+.feature h3:after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 1px;
+    background-color: #7393ca;
+    margin-top: 20px
+}
+
+.feature p {
+    font-size: 18px
+}
+
+.box {
+    border-radius: 100px;
+    box-shadow: 20px 15px 20px -15px rgba(139,139,200,.5);
+    padding: 30px;
+    margin: 20px;
+    min-height: 250px;
+    justify-content: space-around;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--dl-half-transparent-1)
+}
+
+@media screen and (max-width:900px) {
+    .img-container {
+        height: 200px;
+        width: 100%
+    }
+
+    .img-container>img {
+        width: 450px;
+        height: 100%;
+        object-fit: cover;
+        overflow: hidden;
+        transform: translateX(-12px);
+        opacity: .8;
+        object-position: 0-115px
+    }
+}
+
+.information {
+    width: 40%
+}
+
+.search {
+    visibility: hidden
+}
+
+.swiper-container {
+    width: 40%;
+    height: auto;
+    overflow: hidden;
+    align-items: center;
+    display: flex
+}
+
+.swiper-wrapper {
+    width: 100%
+}
+
+.swiper-button-next,.swiper-button-prev {
+    position: absolute;
+    top: auto;
+    left: auto;
+    margin-left: -2%;
+    color: rgba(150,150,255,.6);
+    border: rgba(173,120,255,.35) solid 2px;
+    visibility: hidden;
+    background-color: var(--dl-half-transparent-5);
+    border-radius: 10px;
+    padding: 5px;
+    width: 30px;
+    height: 50px
+}
+
+.swiper-button-next {
+    right: auto;
+    margin-left: 35%
+}
+
+.contents {
+    width: 100%;
+    height: 500px;
+    display: flex;
+    flex-direction: column
+}
+
+.img-movie {
+    transition: all .5s ease;
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    box-shadow: 0 0 20px 20px #000 inset;
+    border-radius: 5px
+}
+
+.block-row,.buttons {
+    width: 100%;
+    align-items: center;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    margin-left: 1.5%;
+    height: 0;
+    background-color: var(--dl-half-transparent-5);
+    position: absolute;
+}
+
+.buttons>.swiper-button-next {
+    margin-left: auto;
+    margin-right: 20px
+}
+
+.buttons>.swiper-button-prev {
+    margin-right: auto;
+    margin-left: 10px
+}
+
+.buttons>.swiper-button-next,.buttons>.swiper-button-prev {
+    position: relative;
+    margin-top: 450px;
+    visibility: visible;
+    z-index: 2
+}
+
+.swiper-slide>form,.swiper-slide>h1,.swiper-slide>p {
+    margin: 0;
+    text-align: left;
+    padding-left: 100px;
+    z-index: 10;
+    position: absolute
+}
+
+.swiper-slide>h1 {
+    padding-top: 50px;
+    height: 350px;
+    min-width: 100%;
+    background-color: var(--dl-half-transparent-5);
+    font-size: 30px;
+    border-radius: 5px;
+}
+
+.swiper-slide>form,.swiper-slide>p {
+    font-size: 16px;
+    padding-top: 100px;
+    min-width: 500px;
+    max-width: 400px
+}
+
+.swiper-slide>form {
+    padding-top: 300px;
+    min-width: 400px
+}
+
+.block-row {
+    margin: 0;
+    justify-content: center
+}
+
+.features-container {
+    margin-left: 100px
+}

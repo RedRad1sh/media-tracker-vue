@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="english">
+<head>
+    <title>exported project</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="utf-8"/>
+    <meta property="twitter:card" content="summary_large_image"/>
+
+    <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap"
+            data-tag="font"
+    />
+    <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
+            data-tag="font"
+    />
+
+    <link rel="stylesheet" href="../style.css"/>
+    <link rel="stylesheet" href="profile.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.3.0/chart.min.js"
+            integrity="sha512-mlz/Fs1VtBou2TrUkGzX4VoGvybkD9nkeXWJm3rle0DPHssYYx4j+8kIS15T78ttGfmOjH0lLaBXGcShaVkdkg=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.3.0/chart.umd.min.js"
+            integrity="sha512-TJ7U6JRJx5IpyvvO9atNnBzwJIoZDaQnQhb0Wmw32Rj5BQHAmJG16WzaJbDns2Wk5VG6gMt4MytZApZG47rCdg=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.3.0/helpers.min.js"
+            integrity="sha512-JG3S/EICkp8Lx9YhtIpzAVJ55WGnxT3T6bfiXYbjPRUoN9yu+ZM+wVLDsI/L2BWRiKjw/67d+/APw/CDn+Lm0Q=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="../helpers/pie-charts.js"></script>
+    <script>
+        window.addEventListener('load', function () {
+            createPieChart('contentChart', 'Просмотренный контент',
+                ['Фильмы', 'Книги', 'Игры'],
+                [19, 12, 3])
+        })
+
+        window.addEventListener('load', function () {
+            createPieChart('kinoChart', 'Фильмы',
+                ['Комедия', 'Боевик', 'Фантастика'],
+                [7, 10, 23])
+        })
+
+        window.addEventListener('load', function () {
+            createPieChart('booksChart', 'Книги',
+                ['Детектив', 'Фентези', 'Ужасы'],
+                [19, 12, 3])
+        })
+
+        window.addEventListener('load', function () {
+            createPieChart('gameChart', 'Игры',
+                ['Шутер', 'Симулятор', 'Стратегия', 'Rogue-like'],
+                [19, 12, 3, 2]);
+        })
+    </script>
+</head>
+<body>
+<section class="nav-men">
+    <link href="nav-right.css" rel="stylesheet">
+    <input type="checkbox" id="nav-toggle" hidden>
+    <div class="mask-content"></div>
+    <nav class="nav">
+        <ul>
+            <li><a href="../index.html">Главная</a>
+            <li><a href="profile.html">Профиль</a>
+            <li><a href="content-list.html">Списки</a>
+            <li><a href="../index.html">Выйти</a>
+        </ul>
+    </nav>
+</section>
+<div id="header">
+    <script src="../helpers/header.html.js"></script>
+</div>
+<div class="block">
+    <div id="menu-include" active-element="0">
+        <script src="../helpers/menu.html.js"></script>
+    </div>
+    <div class="content-main">
+        <h2 style="color: white">Ваш профиль</h2>
+        <div class="container-row">
+            <div class="image-frame">
+                <img
+                        src="../public/playground_assets/image31416-6yvs-400w.png"
+                        alt="image31416"
+                        class="image"
+                />
+                <span class="image-text">
+                  <span>Добро пожаловать, Radish!</span>
+                </span>
+            </div>
+                <div class="frame6-frame04">
+                <span class="text">
+                  <span class="frame6-text03">📋</span>
+                  <span>Списки контента</span>
+                </span>
+                    <span class="text">
+                  <span class="frame6-text06">🎬</span>
+                  <span>Фильмы</span>
+                </span>
+                    <span class="text">
+                  <span class="frame6-text09">📚</span>
+                  <span>Книги</span>
+                </span>
+                    <span class="text">
+                  <span class="frame6-text12">🎮</span>
+                  <span>Игры</span>
+                </span>
+                    <span class="text">
+                  <span class="frame6-text15">✍🏽</span>
+                  <span class="frame6-text16">Оставленные рецензии</span>
+                </span>
+                </div>
+                <div class="pie-frame">
+                    <canvas id="contentChart">
+                    </canvas>
+                </div>
+        </div>
+        <h2 style="color: white">Статистика</h2>
+        <div class="container-row">
+            <div class="pie-frame">
+                <canvas id="kinoChart">
+                </canvas>
+            </div>
+            <div class="pie-frame">
+                <canvas id="booksChart">
+                </canvas>
+            </div>
+            <div class="pie-frame">
+                <canvas id="gameChart">
+                </canvas>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
