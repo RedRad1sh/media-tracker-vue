@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="english">
+<head>
+    <title>Список книг</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="utf-8"/>
+
+    <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap"
+            data-tag="font"
+    />
+    <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
+            data-tag="font"
+    />
+    <link rel="stylesheet" href="../styles.css"/>
+    <link href="css/content-list.css" rel="stylesheet"/>
+    <link href="css/cards.css" rel="stylesheet"/>
+    <script>
+        let enable_auto_content = true;
+    </script>
+</head>
+<body>
+<section class="nav-men">
+    <link href="css/nav-right.css" rel="stylesheet">
+    <input type="checkbox" id="nav-toggle" hidden>
+    <div class="mask-content"></div>
+    <nav class="nav">
+        <ul id="nav"></ul>
+    </nav>
+</section>
+<div id="header">
+    <script src="../js/navigation/header.html.js" type="module"></script>
+</div>
+<div class="block">
+    <div id="menu-include" active-element="1">
+        <script src="../js/navigation/menu.html.js"></script>
+    </div>
+    <div class="content-main">
+        <div class="block-row" style="justify-content: center">
+            <div class="content-header">Книги</div>
+            <div class="content-header" id="page-number">1 страница</div>
+        </div>
+        <div id="content-container">
+            <div id="loader"></div>
+            <div class="content-cards" id="books-cards-container"></div>
+        </div>
+        <div class="pagination">
+            <a href="#">&laquo;</a>
+            <a href="?page=1">1</a>
+            <a href="?page=2">2</a>
+            <a href="?page=3">3</a>
+            <a href="?page=4">4</a>
+            <a href="?page=5">5</a>
+            <a href="?page=6">6</a>
+            <a href="#">&raquo;</a>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    genres = [
+        'Роман',
+        'Детектив',
+        'Фантастика',
+        'Классика',
+        'Приключения',
+        'Научная литература',
+        'Фэнтези',
+        'Биография',
+        'Драма',
+        'Мистика',
+        'Исторический',
+        'Хоррор',
+        'Поэзия',
+        'Комедия',
+        'Саморазвитие'
+    ];
+</script>
+<script src="../js/search-filter.html.js"></script>
+<script src="../js/content-lists/books-examples.js" type="module"></script>
+</html>
