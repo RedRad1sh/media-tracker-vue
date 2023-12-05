@@ -1,4 +1,5 @@
 /* eslint no-unused-vars: 0 */
+/* TODO: доделать запрос к беку, вынести во Vue компонент */
 import { page, asyncMultipleContents, createCardExample, ContentData } from './content-element-create.js';
 import { presaved, proxyUrl } from "../env.js"
 import { presaved_json } from "./pre-saved-jsons/books_presaved.js"

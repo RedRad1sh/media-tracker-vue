@@ -18,5 +18,6 @@ function createMessageElement() {
                     ${message}
                 </span>
     `
+/* TODO: перенести в компонент */
     messagesContainer.appendChild(d);
 }

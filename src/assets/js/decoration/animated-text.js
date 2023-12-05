@@ -1,3 +1,4 @@
+/* TODO: фигня для страницы авторизации */
 async function init () {
     const node = document.querySelector("#type-text")
 

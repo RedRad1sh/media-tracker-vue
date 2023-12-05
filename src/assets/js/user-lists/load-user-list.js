@@ -89,3 +89,5 @@ window.addEventListener("load", function () {
     loadContent(books);
     loadContent(games);
 })
+
+/* TODO: перенести в компонент страницы "Списки пользователей" */

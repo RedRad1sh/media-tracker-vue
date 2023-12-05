@@ -1,5 +1,6 @@
 export let page = 0;
 
+/* TODO: допилить запрос с пагинацией */
 export async function asyncMultipleContents(getContents, itemsCount) {
     getPageIfExist()
     if (page != null) {
@@ -15,6 +16,7 @@ export async function asyncMultipleContents(getContents, itemsCount) {
     document.querySelector("#loader").style.display = "none";
 }
 
+/* TODO: создать компонент карточки контента */
 export function createCardExample(contentData) {
     var d = document.createElement("div");
     d.setAttribute("class", "card-container")

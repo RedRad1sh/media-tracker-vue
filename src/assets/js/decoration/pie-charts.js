@@ -1,4 +1,5 @@
 /* eslint no-undef: 0 */
+/* TODO: как-нибудь потом подключить Chart.js в компоненте Vue как плагин и сделать нормально */
 export function init(Chart) {
     function createPieChart(elementName, header, keys, values) {
         const ctx = document.getElementById(elementName);

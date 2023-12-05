@@ -81,3 +81,5 @@ export function init() {
         ul.appendChild(li);
     }
 }
+
+/* TODO: допилить для страницы рекомендаций */

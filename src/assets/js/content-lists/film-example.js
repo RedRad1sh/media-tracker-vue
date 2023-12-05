@@ -1,6 +1,7 @@
 import { page, asyncMultipleContents, createCardExample, ContentData } from './content-element-create.js';
 import { proxyUrl, FILMS_API_KEY } from "../env.js"
 import { presaved_json } from "./pre-saved-jsons/film_presaved.js"
+/* TODO: доделать запрос к беку, вынести во Vue компонент */
 
 export function init() {
 

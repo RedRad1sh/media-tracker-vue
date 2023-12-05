@@ -74,5 +74,6 @@ window.addEventListener("load", function () {
                     </div>
                 </div>
     `
+    /* TODO: перенести в компонент (как-нибудь потом) */
     contentContainer.insertBefore(aside, contentContainer.firstChild);
 })
