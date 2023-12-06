@@ -19,11 +19,12 @@
 <script>
 export default {
   name: 'HeaderComponent',
+  props: ["activeElement"],
   mounted() {
     window.addEventListener("load", function () {
-    var menu_include = document.getElementById("menu-include")
-    var act_element = parseInt(menu_include.getAttribute("active-element"))
-    var tabs = menu_include.getElementsByClassName("menu-tabbase")
+    let menu_include = document.getElementById("menu-include")
+    let tabs = menu_include.getElementsByClassName("menu-tabbase")
+    let act_element = parseInt(menu_include.getAttribute("active-element"))
     let active_element = tabs.item(act_element);
     if (active_element != null) {
         active_element.setAttribute("class", "menu-tabbase-active")
