@@ -46,32 +46,7 @@ export default {
 }
 
 /* TODO: отрефакторить */
-function setNavigationLinks() {
-    let siteNav = document.getElementById("nav");
-    if (document.cookie.includes('authorized=true')) {
-        siteNav.innerHTML = `
-            <li><a href="${rootPathWeb}/index.html">Главная</a>
-            <li><a href="${rootPathWeb}/pages/profile.html">Профиль</a>
-            <li><a href="${rootPathWeb}/pages/user-lists.html">Списки</a>
-            <li><a id="exit" href="${rootPathWeb}/index.html">Выйти</a>
-        `
-    } else {
-        siteNav.innerHTML = `
-            <li><a href="${rootPathWeb}/index.html">Главная</a>
-            <li><a href="${rootPathWeb}/pages/login.html">Вход</a>
-        `
-    }
-}
-setNavigationLinks()
-function setExitFunc() {
-    let exitButton = document.getElementById("exit")
-    if (exitButton !== null) {
-        let path = "/site-content";
-        exitButton.onclick = function () {
-            document.cookie = `authorized=false;path=${path};`
-        }
-    }
-}
+
 /* TODO: отрефакторить */
 
 function setScale() {
