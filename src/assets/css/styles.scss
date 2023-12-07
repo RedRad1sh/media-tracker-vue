@@ -49,7 +49,6 @@ body {
     width: 100%;
     justify-content: space-around;
     flex-direction: row;
-    background-color: var(--dl-half-transparent-1);
     border-radius: 10px
 }
 
@@ -191,14 +190,14 @@ header {
 }
 
 .content-main {
-    margin-left: 10px;
     height: auto;
     flex-wrap: wrap;
-    padding: 20px 5px;
     align-items: center;
     flex-shrink: 0;
     border-radius: 3px;
-    background-color: rgba(72,64,121,.5)
+    background-color: rgba(72,64,121,.5);
+    width: 95%;
+    min-height: 100vh;
 }
 
 @media screen and (max-width:1300px) {

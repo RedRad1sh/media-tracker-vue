@@ -6,125 +6,139 @@
             <ul id="nav"></ul>
         </nav>
     </section>
-    <HeaderComponent/>
+    <HeaderComponent />
     <div class="block">
-        <MenuComponent id="menu-include" active-element="3"/>
+        <MenuComponent id="menu-include" active-element="3" />
         <div class="content-main">
             <div class="rec-settings">
+                <button type="button" @click="showModal" class="openHelp help-button">?</button>
+                <HelpComponentModal ref="modal" />
                 <div class="header-settings">
                     <div class="header-settings-text">
                         <span class="rec-header PublicSansDisplayxsBold">
-                            <h2>Настройки рекомендаций</h2>
+                            <h2>Рекомендации</h2>
                         </span>
                     </div>
                 </div>
-                <div class="settings-section">
-                    <div class="settings-menuitem">
-                        <span>Учитываемые списки </span>
-                        <div class="block-row">
-                            <div class="check-content-item">
-                                <input id="films-checkbox" type="checkbox" />
-                                <label for="films-checkbox">
-                                    Фильмы
-                                </label>
-                            </div>
-                            <div class="check-content-item">
-                                <input id="books-checkbox" type="checkbox" />
-                                <label for="books-checkbox">
-                                    Книги
-                                </label>
-                            </div>
-                            <div class="check-content-item">
-                                <input id="games-checkbox" type="checkbox" />
-                                <label for="games-checkbox">
-                                    Игры
-                                </label>
-                            </div>
+                <div class="settings-menuitem">
+                    <span>Учитываемые списки </span>
+                    <div class="rec-checboxes">
+                        <div class="check-content-item">
+                            <input :value="filterDict.checkedMoviesContent" id="films-checkbox" type="checkbox" />
+
+                            <label for="films-checkbox">
+                                Фильмы
+                            </label>
                         </div>
-                    </div>
-                    <div class="settings-menuitem">
-                        <span>Рекомендуемый контент </span>
-                        <div class="search-content-select">
-                            <select>
-                                <option selected>Фильмы</option>
-                                <option>Книги</option>
-                                <option>Игры</option>
-                            </select>
+                        <div class="check-content-item">
+                            <input :value="filterDict.checkedBooksContent" id="books-checkbox" type="checkbox" />
+
+                            <label for="books-checkbox">
+                                Книги
+                            </label>
+                        </div>
+                        <div class="check-content-item">
+                            <input :value="filterDict.checkedGamesContent" id="games-checkbox" type="checkbox" />
+
+                            <label for="games-checkbox">
+                                Игры
+                            </label>
                         </div>
                     </div>
                 </div>
-                <div class="settings-input">
-                    <div class="tag-area">
-                        <label for="tag-input" class="label">Добавить жанры</label>
-                        <ul>
-                            <input type="text" class="tag-input" id="tag-input" />
-                        </ul>
+                <div class="settings-menuitem">
+                    <span>Рекомендуемый контент </span>
+                    <div class="search-content-select">
+                        <select :value="filterDict.selectedContentType">
+                            <option selected>Фильмы</option>
+                            <option>Книги</option>
+                            <option>Игры</option>
+                        </select>
                     </div>
                 </div>
-                <div class="year-settings">
+                <div class="settings-menuitem">
                     <div class="header-year-filter">
                         <span>Года</span>
                     </div>
                     <div class="year-filters">
                         <div class="max-year-filter">
-                            <div class="settings-year-input">
-                                <input type="text" placeholder="Min." class="year-filter-input" />
-                            </div>
+                            <select :value="filterDict.minYear" class="settings-year-input">
+                                <option value="0" disabled selected> Min. Year</option>
+                                <option v-for="year in years" class="year-filter-input" :key="year.id">{{ year }} </option>
+                            </select>
                         </div>
                         <div class="max-year-filter">
-                            <div class="settings-year-input">
-                                <input type="text" placeholder="Max." class="year-filter-input" />
-                            </div>
+                            <select :value="filterDict.maxYear" class="settings-year-input">
+                                <option value="0" disabled selected> Max. Year</option>
+                                <option :value="year" v-for="year in years" class="year-filter-input" :key="year.id">{{ year }} </option>
+                            </select>
                         </div>
                     </div>
                 </div>
                 <div class="rec-buttons">
-                    <button class="create-recs" onclick="asyncMultipleContents(getBooks, itemsCount)">
+                    <button class="create-recs" @click="createRecomendations">
                         <span>Сформировать рекомендации</span>
                     </button>
                 </div>
             </div>
-            <details open class="recommendations-help">
-                <summary>Как настроить систему рекомендаций?</summary>
-                <span class="help-description">
-                    <span>
-                        1. Выберите списки, на основе которых будут формироваться
-                        рекомендации (пункт "Учитываемые списки")
-                    </span>
-                    <br />
-                    <span>
-                        2. Выберите тип контента для рекомендаций.
-                    </span>
-                    <br />
-                    <span>
-                        3. Добавьте фильтрацию по жанрам и годам выпуска
-                    </span>
-                    <br />
-                    <span>Нажмите кнопку “Сформировать рекомендации”</span>
-                </span>
-            </details>
             <div id="loader"></div>
-            <div class="content-cards" id="books-cards-container"></div>
+            <div class="content-cards">
+                <CardComponent v-for="item in contentData" :key="item.id" :contentData="createGameCard(item)">
+                </CardComponent>
+            </div>
         </div>
     </div>
-    <div class="content-header" id="page-number">1 страница</div>
 </template>
 
 <script>
-import HeaderComponent from './HeaderComponent.vue';
-import MenuComponent from './navigation/MenuComponent.vue';
-/* eslint no-unused-vars: 0 */
-import Books from '../assets/js/content-lists/books-examples.js'
+import HeaderComponent from '@/components/HeaderComponent.vue';
+import MenuComponent from '@/components/navigation/MenuComponent.vue';
+import { presaved_json } from "@/assets/js/content-lists/pre-saved-jsons/games_presaved.js"
+import { createGameCard } from "@/components/content-pages/GamesPage.vue"
+import CardComponent from '@/components/internal/CardComponent.vue';
+import HelpComponentModal from '@/components/internal/HelpComponentModal.vue';
 
 export default {
     name: 'RecommendationsPage',
-    props: {
-        msg: String
-    },
     components: {
-        HeaderComponent, MenuComponent
+        HeaderComponent, MenuComponent, CardComponent, HelpComponentModal
+    },
+    data() {
+        return {
+            isModalVisible: false,
+            contentData: [],
+            filterDict: {
+                selectedContentType: '',
+                genresList: '',
+                minYear: '',
+                maxYear: '',
+                checkedMoviesContent: false,
+                checkedBooksContent: false,
+                checkedGamesContent: false
+            }
+        }
+    },
+    methods: {
+        createGameCard: createGameCard,
+        createRecomendations() {
+            this.contentData = presaved_json
+        },
+        showModal() {
+            this.$refs.modal.show = true
+        }
+    },
+    computed: {
+        years() {
+            let yearsArr = []
+            for (let i = new Date().getFullYear(); i > 1900; i--) {
+                yearsArr.push(i)
+            }
+            console.log(yearsArr)
+            return yearsArr
+        }
     }
 }
+
 
 </script>
 

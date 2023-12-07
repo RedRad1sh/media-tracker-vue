@@ -40,13 +40,12 @@ export default {
     z-index: 0;
     height: 60px;
     justify-content: center;
-    width: 80%;
+    width: 95%;
 }
 
 .menu-tabs {
     display: flex !important;
     justify-content: space-around !important;
-    padding: 4px;
     align-items: center;
     flex-shrink: 0;
     border-radius: 3px;

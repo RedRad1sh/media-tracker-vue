@@ -1,87 +1,116 @@
-@keyframes spin {
-    0% {
-        transform: rotate(0deg)
-    }
-
-    to {
-        transform: rotate(360deg)
-    }
+/* Основной блок */
+.content-main {
+    flex-direction: row;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+    min-height: 800px;
+    padding: 0 !important;
 }
 
+/* Кнопка-справка */
+.help-button {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-left: 5px;
+    margin-top: 5px;
+    background-color: #00082440;
+    color: rgb(255, 255, 255);
+    height: 30px;
+    width: 30px;
+    padding: 1px;
+    border: none;
+    font-size: 18px;
+}
+
+/* Лоадер */
+#loader {
+    display: none;
+    align-self: flex-start;
+    align-content: flex-start;
+    border: 16px solid #f3f3f3;
+    border-top: 16px solid #3498db;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin .5s linear infinite;
+    margin: auto;
+}
+
+/* Рекомендации */
 .header-settings, .rec-settings {
     display: flex;
     align-items: center;
-    flex-shrink: 0
+    flex-shrink: 0;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.header-year-filter {
+    margin: auto;
 }
 
 .rec-settings {
-    flex-direction: column;
-    justify-content: center;
-    width: 60%;
+    gap: 40;
+    position: relative;
+    justify-content: space-around;
+    width: 100%;
     min-width: 400px;
-    margin: 15px 10px 10px 15px;
-    padding: 12px;
+    padding: 12px 0 12px 0;
     background-color: var(--dl-half-transparent-5);
     border-color: #e2e8f0;
-    color: #fff
+    color: #fff;
+    padding: 20px;
+    box-sizing: border-box;
+    align-items: flex-start;
 }
 
 .header-settings {
-    justify-content: space-between
+    justify-content: space-between;
 }
 
 .header-settings-text {
     gap: 4px;
     display: flex;
-    align-items: center
+    align-items: center;
 }
 
 .rec-header {
     height: auto;
     text-align: left;
-    line-height: 32px
+    line-height: 32px;
 }
 
-.settings-menuitem, .settings-section {
+/* Настройки */
+.settings-menuitem {
     display: flex;
     align-items: center;
-    justify-content: center
+    justify-content: center;
+    flex-direction: column;
 }
 
 .settings-section {
     gap: 20px;
-    flex-direction: column;
-    overflow: hidden;
-    border-radius: 4px;
-    width: 95%;
-    margin-bottom: 10px
-}
-
-
-.year-settings {
     display: flex;
-    gap: 20px;
-    justify-content: center;
     flex-direction: row;
     overflow: hidden;
     border-radius: 4px;
     width: 95%;
-    margin-bottom: 10px
+    margin-bottom: 10px;
+    justify-content: space-around;
 }
 
 .settings-menuitem {
     gap: 20px;
-    flex-direction: row;
-    padding: 8px;
-    width: 100%;
     height: auto;
-    text-align: center
+    text-align: center;
+    width: fit-content;
 }
 
 .check-content-item {
     display: flex;
     align-items: center;
-    flex-shrink: 0
+    flex-shrink: 0;
 }
 
 .settings-input {
@@ -93,25 +122,12 @@
     height: auto;
 }
 
-.max-year-filter, .year-filters {
-    display: flex;
-    align-items: flex-start;
-    flex-shrink: 0
-}
-
 .year-filters {
     gap: 20px;
     align-self: stretch;
-}
-
-.header-year-filter {
-
-}
-
-.max-year-filter {
-    gap: 4px;
-    flex-grow: 1;
-    flex-direction: column
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
 }
 
 .settings-year-input {
@@ -146,74 +162,30 @@
     justify-content: center;
     background-color: rgba(100, 100, 255, .3);
     border-radius: 5px;
-    color: #fff
+    color: #fff;
 }
 
-.recommendations-help {
-    color: #e4e5f4;
-    height: auto;
-    font-size: 22px;
-    max-width: 30%;
-    text-align: center;
-    margin: 15px 0 10px 10px
+.rec-checboxes{
+    flex-direction: row;
+    display: flex;
+    flex-wrap: wrap;
 }
-
-.help-description {
-    font-weight: 200;
-    font-size: 16px;
-    display: grid;
-    text-align: left;
-    margin-left: 10px;
-    margin-top: 10px
-}
-
+/* Кнопки рекомендаций */
 .rec-buttons {
     flex-direction: row;
-    justify-content: space-between
+    justify-content: space-between;
 }
 
 .rec-buttons button {
     height: 50px;
-    margin-left: 20px
 }
 
-@media (max-width: 1100px) {
-    .help-description {
-        font-size: 16px
-    }
+.rec-buttons, .tag-area, .tag-area ul {
+    display: flex;
+    align-items: center;
 }
 
-@media (max-width: 700px) {
-    .help-description {
-        font-size: 16px
-    }
-
-    .settings-menuitem {
-        flex-direction: row
-    }
-}
-
-.content-main {
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: flex-start;
-    min-height: 800px;
-    padding: 0 !important
-}
-
-#loader {
-    display: none;
-    align-self: flex-start;
-    align-content: flex-start;
-    border: 16px solid #f3f3f3;
-    border-top: 16px solid #3498db;
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    animation: spin .5s linear infinite;
-    margin: auto
-}
-
+/* Чекбоксы */
 input[type=checkbox] {
     -ms-transform: scale(1.5);
     -moz-transform: scale(1.5);
@@ -225,10 +197,7 @@ input[type=checkbox] {
     margin: 0px 10px;
 }
 
-
 /* Теги */
-
-
 .tag-area {
     outline: 0;
     width: 100%;
@@ -247,7 +216,7 @@ input[type=checkbox] {
     color: #adadad;
     top: 12px;
     left: 10px;
-    transition: all .1s
+    transition: all .1s;
 }
 
 .tag-area ul {
@@ -293,6 +262,7 @@ li {
     justify-content: space-between;
     margin: 0.5rem;
 }
+
 .cross {
     cursor: pointer;
     display: flex;
@@ -325,15 +295,32 @@ li {
     background: rgb(255, 255, 255);
 }
 
+
+/* Медиа-запросы */
+@media (max-width: 1100px) {
+    .help-description {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 700px) {
+    .help-description {
+        font-size: 16px;
+    }
+}
+
 @media (max-width: 650px) {
     .tag-area {
         width: 300px;
     }
 }
 
-
-.rec-buttons, .tag-area, .tag-area ul {
-    display: flex;
-    align-items: center
+/* Анимации */
+@keyframes spin {
+    0% {
+        transform: rotate(0deg)
+    }
+    to {
+        transform: rotate(360deg)
+    }
 }
-
