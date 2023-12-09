@@ -1,20 +1,26 @@
 <template>
-  <HeaderComponent/>
-  <MainPage/>
+  <div class="app">
+    <HeaderComponent/>
+    <router-view></router-view>
+  </div>
 </template>
 
 <script>
-import MainPage from './components/MainPage.vue'
+
 import HeaderComponent from './components/HeaderComponent.vue'
 
 export default {
-  name: 'App',
   components: {
-    MainPage, HeaderComponent
+    HeaderComponent
   },
+  watch: {
+    '$route'(to) {
+      document.title = to.meta.title || 'MediaTracker';
+    },
+  }
 }
 </script>
 
 <style>
-@import "assets/css/styles.scss";
+  @import "assets/css/styles.scss";
 </style>
