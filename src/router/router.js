@@ -1,18 +1,18 @@
 import { createRouter, createWebHistory } from "vue-router"
 
-import App from '@/App.vue'
+import MainPage from '@/components/MainPage.vue'
 import FilmsPage from '@/components/content-pages/FilmsPage.vue'
 import BooksPage from '@/components/content-pages/BooksPage.vue'
 import GamesPage from '@/components/content-pages/GamesPage.vue'
 import RecommendationsPage from '@/components/RecommendationsPage.vue'
 import ProfilePage from '@/components/ProfilePage.vue'
-import CurrentContent from '@/components/content-pages/CurrentContent.vue'
+import CurrenеFIlm from '@/components/content-pages/CurrenеFIlm.vue'
 
 const routes = [
     {
         path: '/',
         meta: { title: 'Главная страница', showHeader: true },
-        component: App
+        component: MainPage
     },
     {
         path: '/ProfilePage',
@@ -40,9 +40,9 @@ const routes = [
         component: RecommendationsPage
     },
     {
-        path: '/CurrentContent',
-        meta: { title: 'Контент', showHeader: true },
-        component: CurrentContent
+        path: '/CurrenеFIlm',
+        meta: { title: 'Фильм', showHeader: true },
+        component: CurrenеFIlm
     },
 ]
 
