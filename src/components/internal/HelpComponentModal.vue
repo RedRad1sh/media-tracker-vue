@@ -83,21 +83,6 @@ export default {
     transform: translate(-50%, -50%);
     z-index: 200;
 
-    &-close {
-        border-radius: 50%;
-        color: #fff;
-        background: #2a4cc7;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: absolute;
-        top: 7px;
-        right: 7px;
-        width: 30px;
-        height: 30px;
-        cursor: pointer;
-    }
-
     &-title {
         margin-top: 10px;
         color: #ffdace;

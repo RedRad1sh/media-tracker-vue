@@ -1,4 +1,5 @@
 <template>
+    <!-- TODO: перенести в Header -->
     <section class="nav-men">
         <input type="checkbox" id="nav-toggle" hidden>
         <div class="mask-content"></div>
@@ -24,21 +25,21 @@
                     <span>Учитываемые списки </span>
                     <div class="rec-checboxes">
                         <div class="check-content-item">
-                            <input :value="filterDict.checkedMoviesContent" id="films-checkbox" type="checkbox" />
+                            <input :checked="filterDict.checkedMoviesContent" id="films-checkbox" type="checkbox" />
 
                             <label for="films-checkbox">
                                 Фильмы
                             </label>
                         </div>
                         <div class="check-content-item">
-                            <input :value="filterDict.checkedBooksContent" id="books-checkbox" type="checkbox" />
+                            <input :checked="filterDict.checkedBooksContent" id="books-checkbox" type="checkbox" />
 
                             <label for="books-checkbox">
                                 Книги
                             </label>
                         </div>
                         <div class="check-content-item">
-                            <input :value="filterDict.checkedGamesContent" id="games-checkbox" type="checkbox" />
+                            <input :checked="filterDict.checkedGamesContent" id="games-checkbox" type="checkbox" />
 
                             <label for="games-checkbox">
                                 Игры
@@ -49,10 +50,11 @@
                 <div class="settings-menuitem">
                     <span>Рекомендуемый контент </span>
                     <div class="search-content-select">
-                        <select :value="filterDict.selectedContentType">
-                            <option selected>Фильмы</option>
-                            <option>Книги</option>
-                            <option>Игры</option>
+                        <select aria-label="content-select" v-model="defaultSelectContent"
+                            :value="filterDict.selectedContentType">
+                            <option value="movies">Фильмы</option>
+                            <option value="books">Книги</option>
+                            <option value="games">Игры</option>
                         </select>
                     </div>
                 </div>
@@ -70,7 +72,8 @@
                         <div class="max-year-filter">
                             <select :value="filterDict.maxYear" class="settings-year-input">
                                 <option value="0" disabled selected> Max. Year</option>
-                                <option :value="year" v-for="year in years" class="year-filter-input" :key="year.id">{{ year }} </option>
+                                <option :value="year" v-for="year in years" class="year-filter-input" :key="year.id">{{ year
+                                }} </option>
                             </select>
                         </div>
                     </div>
@@ -105,6 +108,7 @@ export default {
     },
     data() {
         return {
+            defaultSelectContent: 'movies',
             isModalVisible: false,
             contentData: [],
             filterDict: {
@@ -112,7 +116,7 @@ export default {
                 genresList: '',
                 minYear: '',
                 maxYear: '',
-                checkedMoviesContent: false,
+                checkedMoviesContent: true,
                 checkedBooksContent: false,
                 checkedGamesContent: false
             }
