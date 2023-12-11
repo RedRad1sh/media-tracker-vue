@@ -344,8 +344,8 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="scss">
+<style lang="scss" scoped>
 @import "~@/assets/css/main-page.scss";
 @import "~@/assets/css/nav-right.scss";
-@import "https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+@import "https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css";
 </style>

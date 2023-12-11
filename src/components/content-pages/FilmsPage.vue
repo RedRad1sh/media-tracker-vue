@@ -36,7 +36,7 @@
 import HeaderComponent from '../HeaderComponent.vue';
 import MenuComponent from '../navigation/MenuComponent.vue';
 /* eslint no-unused-vars: 0 */
-import {init} from '../../assets/js/content-lists/film-example.js'
+import {init} from '@/assets/js/content-lists/film-example'
 
 export default {
     name: 'FilmsPage',
@@ -47,7 +47,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "~@/assets/css/nav-right.scss";
 @import "~@/assets/css/cards.scss";
 @import "~@/assets/css/content-list.scss";
