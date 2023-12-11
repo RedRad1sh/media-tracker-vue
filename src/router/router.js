@@ -6,7 +6,6 @@ import BooksPage from '@/components/content-pages/BooksPage.vue'
 import GamesPage from '@/components/content-pages/GamesPage.vue'
 import RecommendationsPage from '@/components/RecommendationsPage.vue'
 import ProfilePage from '@/components/ProfilePage.vue'
-import CurrenеFIlm from '@/components/content-pages/CurrenеFIlm.vue'
 
 const routes = [
     {
@@ -38,11 +37,6 @@ const routes = [
         path: '/RecommendationsPage',
         meta: { title: 'Рекомендации', showHeader: true },
         component: RecommendationsPage
-    },
-    {
-        path: '/CurrenеFIlm',
-        meta: { title: 'Фильм', showHeader: true },
-        component: CurrenеFIlm
     },
 ]
 

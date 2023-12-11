@@ -35,7 +35,7 @@
 <script>
 import HeaderComponent from '../HeaderComponent.vue';
 import MenuComponent from '../navigation/MenuComponent.vue';
-import { init } from '../../assets/js/content-lists/books-examples.js'
+import { init } from '@/assets/js/content-lists/books-examples'
 export default {
     name: 'BooksPage',
     components: { HeaderComponent, MenuComponent },
@@ -45,7 +45,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "~@/assets/css/nav-right.scss";
 @import "~@/assets/css/cards.scss";
 @import "~@/assets/css/content-list.scss";
