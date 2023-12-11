@@ -1,16 +1,16 @@
 <template>
     <div class="menu-tabs">
         <div class="menu-tabbase">
-            <a class="menu-button" href="films">Фильмы</a>
+            <a class="menu-button" href="FilmsPage">Фильмы</a>
         </div>
         <div class="menu-tabbase">
-            <a class="menu-button" href="books">Книги</a>
+            <a class="menu-button" href="BooksPage">Книги</a>
         </div>
         <div class="menu-tabbase">
-            <a class="menu-button" href="games">Игры</a>
+            <a class="menu-button" href="GamesPage">Игры</a>
         </div>
         <div class="menu-tabbase">
-            <a class="menu-button" href="recomendations">Рекомендации</a>
+            <a class="menu-button" href="RecommendationsPage">Рекомендации</a>
         </div>
     </div>
 </template>
@@ -40,13 +40,12 @@ export default {
     z-index: 0;
     height: 60px;
     justify-content: center;
-    width: 80%;
+    width: 95%;
 }
 
 .menu-tabs {
     display: flex !important;
     justify-content: space-around !important;
-    padding: 4px;
     align-items: center;
     flex-shrink: 0;
     border-radius: 3px;
