@@ -10,7 +10,7 @@
     <HeaderComponent />
     <div class="block">
         <MenuComponent id="menu-include" active-element="3" />
-        <div class="content-main">
+        <div class="content-main recomendations-content">
             <div class="rec-settings">
                 <button type="button" @click="showModal" class="openHelp help-button">?</button>
                 <HelpComponentModal ref="modal" />
@@ -86,6 +86,7 @@
             </div>
             <div id="loader"></div>
             <div class="content-cards">
+                <h1 v-if="contentData.length == 0">Здесь будут отображены ваши рекомендации</h1>
                 <CardComponent v-for="item in contentData" :key="item.id" :contentData="createGameCard(item)">
                 </CardComponent>
             </div>
@@ -149,5 +150,4 @@ export default {
 <style lang="scss" scoped>
 @import "~@/assets/css/cards.scss";
 @import "~@/assets/css/recomendations.scss";
-@import "~@/assets/css/styles.scss";
 </style>
