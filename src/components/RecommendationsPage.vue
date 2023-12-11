@@ -7,7 +7,6 @@
             <ul id="nav"></ul>
         </nav>
     </section>
-    <HeaderComponent />
     <div class="block">
         <MenuComponent id="menu-include" active-element="3" />
         <div class="content-main recomendations-content">
@@ -86,7 +85,7 @@
             </div>
             <div id="loader"></div>
             <div class="content-cards">
-                <h1 v-if="contentData.length == 0">Здесь будут отображены ваши рекомендации</h1>
+                <h1 class="recomendations-info" v-if="contentData.length == 0">Здесь будут отображены ваши рекомендации</h1>
                 <CardComponent v-for="item in contentData" :key="item.id" :contentData="createGameCard(item)">
                 </CardComponent>
             </div>
@@ -95,7 +94,6 @@
 </template>
 
 <script>
-import HeaderComponent from '@/components/HeaderComponent.vue';
 import MenuComponent from '@/components/navigation/MenuComponent.vue';
 import { presaved_json } from "@/assets/js/content-lists/pre-saved-jsons/games_presaved.js"
 import { createGameCard } from "@/components/content-pages/GamesPage.vue"
@@ -105,7 +103,7 @@ import HelpComponentModal from '@/components/internal/HelpComponentModal.vue';
 export default {
     name: 'RecommendationsPage',
     components: {
-        HeaderComponent, MenuComponent, CardComponent, HelpComponentModal
+         MenuComponent, CardComponent, HelpComponentModal
     },
     data() {
         return {

@@ -1,16 +1,16 @@
 <template>
     <div class="menu-tabs">
         <div class="menu-tabbase">
-            <a class="menu-button" href="films">Фильмы</a>
+            <a class="menu-button" href="FilmsPage">Фильмы</a>
         </div>
         <div class="menu-tabbase">
-            <a class="menu-button" href="books">Книги</a>
+            <a class="menu-button" href="BooksPage">Книги</a>
         </div>
         <div class="menu-tabbase">
-            <a class="menu-button" href="games">Игры</a>
+            <a class="menu-button" href="GamesPage">Игры</a>
         </div>
         <div class="menu-tabbase">
-            <a class="menu-button" href="recomendations">Рекомендации</a>
+            <a class="menu-button" href="RecommendationsPage">Рекомендации</a>
         </div>
     </div>
 </template>

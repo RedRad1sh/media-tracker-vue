@@ -15,7 +15,6 @@
                 <div class="content-header" id="page-number">1 страница</div>
             </div>
             <div id="content-container">
-                <div id="loader"></div>
                 <div class="content-cards" id="film-cards-container" >
                     <CardComponent v-for="item in filmsData" :key="item.id" :contentData="createFilmCard(item)"></CardComponent>
                 </div>
@@ -63,7 +62,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 @import "~@/assets/css/nav-right.scss";
 @import "~@/assets/css/cards.scss";
 @import "~@/assets/css/content-list.scss";

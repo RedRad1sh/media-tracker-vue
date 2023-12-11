@@ -15,7 +15,6 @@
                 <div class="content-header" id="page-number">1 страница</div>
             </div>
             <div id="content-container">
-                <div id="loader"></div>
                 <div class="content-cards" id="books-cards-container">
                     <CardComponent v-for="item in booksData" :key="item.id" :contentData="createBookCard(item)">
                     </CardComponent>
