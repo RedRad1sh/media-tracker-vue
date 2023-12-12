@@ -15,9 +15,9 @@
                 <div class="content-header" id="page-number">1 страница</div>
             </div>
             <div id="content-container">
+                <ContentFilters :lists="lists" :genres="genres"/>
                 <div class="content-cards" id="books-cards-container">
-                    <CardComponent v-for="item in booksData" :key="item.id" :contentData="createBookCard(item)">
-                    </CardComponent>
+                    <CardComponent v-for="item in booksData" :key="item.id" :contentData="createBookCard(item)"/>
                 </div>
             </div>
             <div class="pagination">
@@ -39,7 +39,27 @@ import HeaderComponent from '@/components/HeaderComponent.vue';
 import MenuComponent from '@/components/navigation/MenuComponent.vue';
 import { ContentData } from '@/components/internal/CardComponent.vue';
 import CardComponent from '@/components/internal/CardComponent.vue';
-import { presaved_json } from "@/assets/js/content-lists/pre-saved-jsons/books_presaved.js"
+import { presaved_json } from "@/assets/js/content-lists/pre-saved-jsons/books_presaved.js";
+import ContentFilters from '@/components/UI/ContentFilters.vue';
+
+const lists = ["Запланировано", "Читаю", "Прочитано"];
+const genres = [
+  'Драма',
+  'Комедия',
+  'Фантастика',
+  'Боевик',
+  'Триллер',
+  'Ужасы',
+  'Приключения',
+  'Мультфильм',
+  'Романтика',
+  'Фэнтези',
+  'Детектив',
+  'Исторический',
+  'Вестерн',
+  'Мелодрама',
+  'Научная фантастика'
+];
 
 export function createBookCard(bookResponse) {
     const image_src = bookResponse.volumeInfo.imageLinks.large
@@ -55,13 +75,15 @@ export function createBookCard(bookResponse) {
 
 export default {
     name: 'BooksPage',
-    components: { HeaderComponent, MenuComponent, CardComponent },
+    components: { HeaderComponent, MenuComponent, CardComponent, ContentFilters },
     methods: {
         createBookCard: createBookCard
     },
     data() {
         return {
-            booksData: presaved_json.items
+            booksData: presaved_json.items,
+            genres: genres,
+            lists: lists
         }
     }
 }

@@ -15,6 +15,7 @@
                 <div class="content-header" id="page-number">1 страница</div>
             </div>
             <div id="content-container">
+                <ContentFilters :lists="lists" :genres="genres"/>
                 <div class="content-cards" id="film-cards-container" >
                     <CardComponent v-for="item in filmsData" :key="item.id" :contentData="createFilmCard(item)"></CardComponent>
                 </div>
@@ -37,15 +38,34 @@
 import HeaderComponent from '@/components/HeaderComponent.vue';
 import MenuComponent from '@/components/navigation/MenuComponent.vue';
 import CardComponent from '@/components/internal/CardComponent.vue';
+import ContentFilters from '@/components/UI/ContentFilters.vue';
 import {ContentData} from '@/components/internal/CardComponent.vue';
-import { presaved_json } from "@/assets/js/content-lists/pre-saved-jsons/film_presaved.js"
+import { presaved_json } from "@/assets/js/content-lists/pre-saved-jsons/film_presaved.js";
+
+const lists = ["Запланировано", "Смотрю", "Просмотрено"];
+const genres = [
+  'Драма',
+  'Комедия',
+  'Фантастика',
+  'Боевик',
+  'Триллер',
+  'Ужасы',
+  'Приключения',
+  'Мультфильм',
+  'Романтика',
+  'Фэнтези',
+  'Детектив',
+  'Исторический',
+  'Вестерн',
+  'Мелодрама',
+  'Научная фантастика'
+];
 
 export default {
     name: 'FilmsPage',
-    components: { HeaderComponent, MenuComponent, CardComponent },
+    components: { HeaderComponent, MenuComponent, CardComponent, ContentFilters },
     methods: {
         createFilmCard(filmResponse) {
-            console.log(filmResponse)
             const image_src = filmResponse.poster.previewUrl;
             const category = filmResponse.genres[0].name;
             const title = filmResponse.name;
@@ -56,7 +76,9 @@ export default {
     },
     data() {
         return {
-            filmsData: presaved_json.docs
+            filmsData: presaved_json.docs,
+            genres: genres,
+            lists: lists
         }
     }
 }
