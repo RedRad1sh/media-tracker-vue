@@ -41,12 +41,16 @@ const routes = [
         component: RecommendationsPage
     },
     {
-        path: '/CurrenеFIlm',
+        path: '/CurrentFilm',
         meta: { title: 'Фильм', showHeader: true },
-        component: CurrenеFIlm
+        component: CurrentFilm
+    },
+    {
+        path: '/UserLists',
+        meta: { title: 'Личные списки', showHeader: true },
+        component: UserLists
     },
 ]
-
 
 const router = createRouter ({
     routes,

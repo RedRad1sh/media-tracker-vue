@@ -15,9 +15,9 @@
                 <div class="content-header" id="page-number">1 страница</div>
             </div>
             <div id="content-container">
+                <ContentFilters :lists="lists" :genres="genres"/>
                 <div class="content-cards" id="film-cards-container">
-                    <CardComponent v-for="item in gamesData" :key="item.id" :contentData="createGameCard(item)">
-                    </CardComponent>
+                    <CardComponent v-for="item in gamesData" :key="item.id" :contentData="createGameCard(item)"/>
                 </div>
             </div>
             <div class="pagination">
@@ -39,7 +39,27 @@ import HeaderComponent from '@/components/HeaderComponent.vue';
 import MenuComponent from '@/components/navigation/MenuComponent.vue';
 import CardComponent from '@/components/internal/CardComponent.vue';
 import { ContentData } from '@/components/internal/CardComponent.vue';
-import { presaved_json } from "@/assets/js/content-lists/pre-saved-jsons/games_presaved.js"
+import { presaved_json } from "@/assets/js/content-lists/pre-saved-jsons/games_presaved.js";
+import ContentFilters from '@/components/UI/ContentFilters.vue';
+
+const lists = ["Запланировано", "Играю", "Пройдено"];
+const genres = [
+  'Драма',
+  'Комедия',
+  'Фантастика',
+  'Боевик',
+  'Триллер',
+  'Ужасы',
+  'Приключения',
+  'Мультфильм',
+  'Романтика',
+  'Фэнтези',
+  'Детектив',
+  'Исторический',
+  'Вестерн',
+  'Мелодрама',
+  'Научная фантастика'
+];
 
 export function createGameCard(gameResponse) {
     const image_src = `https://cdn.cloudflare.steamstatic.com/steam/apps/${gameResponse.steam_appid}/hero_capsule.jpg`;
@@ -53,12 +73,14 @@ export function createGameCard(gameResponse) {
 
 export default {
     name: 'GamesPage',
-    components: { HeaderComponent, MenuComponent, CardComponent },
+    components: { HeaderComponent, MenuComponent, CardComponent, ContentFilters },
     methods: {
         createGameCard: createGameCard
     }, data() {
         return {
-            gamesData: presaved_json
+            gamesData: presaved_json,
+            genres: genres,
+            lists: lists
         }
     }
 }
