@@ -141,21 +141,6 @@ export default {
     },
   },
 
-  methods: {
-    getRatingStyle(rate) {
-      if (rate < 4) {
-        return "color-inf-bad";
-      } else if (rate >= 4 && rate <= 7) {
-        return "color-inf-good";
-      } else if (rate > 7) {
-        return "color-inf-exelent";
-      } else {
-        return "color-inf-na";
-      }
-    },
-
-    
-  },
 };
 </script>
 
