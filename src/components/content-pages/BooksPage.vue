@@ -15,8 +15,10 @@
                 <div class="content-header" id="page-number">1 страница</div>
             </div>
             <div id="content-container">
-                <div id="loader"></div>
-                <div class="content-cards" id="books-cards-container"></div>
+                <ContentFilters :lists="lists" :genres="genres"/>
+                <div class="content-cards" id="books-cards-container">
+                    <CardComponent v-for="item in booksData" :key="item.id" :contentData="createBookCard(item)"/>
+                </div>
             </div>
             <div class="pagination">
                 <a href="#">&laquo;</a>
@@ -33,19 +35,61 @@
 </template>
 
 <script>
-import HeaderComponent from '../HeaderComponent.vue';
-import MenuComponent from '../navigation/MenuComponent.vue';
-import { init } from '../../assets/js/content-lists/books-examples.js'
+import HeaderComponent from '@/components/HeaderComponent.vue';
+import MenuComponent from '@/components/navigation/MenuComponent.vue';
+import { ContentData } from '@/components/internal/CardComponent.vue';
+import CardComponent from '@/components/internal/CardComponent.vue';
+import { presaved_json } from "@/assets/js/content-lists/pre-saved-jsons/books_presaved.js";
+import ContentFilters from '@/components/UI/ContentFilters.vue';
+
+const lists = ["Запланировано", "Читаю", "Прочитано"];
+const genres = [
+  'Драма',
+  'Комедия',
+  'Фантастика',
+  'Боевик',
+  'Триллер',
+  'Ужасы',
+  'Приключения',
+  'Мультфильм',
+  'Романтика',
+  'Фэнтези',
+  'Детектив',
+  'Исторический',
+  'Вестерн',
+  'Мелодрама',
+  'Научная фантастика'
+];
+
+export function createBookCard(bookResponse) {
+    const image_src = bookResponse.volumeInfo.imageLinks.large
+        || bookResponse.volumeInfo.imageLinks.medium
+        || bookResponse.volumeInfo.imageLinks.small ||
+        bookResponse.volumeInfo.imageLinks.thumbnail;
+    const category = bookResponse.volumeInfo.categories[0];
+    const title = bookResponse.volumeInfo.title;
+    const description = bookResponse.volumeInfo.description;
+    const extra_prop = bookResponse.volumeInfo.authors[0];
+    return new ContentData(image_src, "", category, title, description, extra_prop)
+}
+
 export default {
     name: 'BooksPage',
-    components: { HeaderComponent, MenuComponent },
-    beforeMount() {
-        init()
+    components: { HeaderComponent, MenuComponent, CardComponent, ContentFilters },
+    methods: {
+        createBookCard: createBookCard
+    },
+    data() {
+        return {
+            booksData: presaved_json.items,
+            genres: genres,
+            lists: lists
+        }
     }
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "~@/assets/css/nav-right.scss";
 @import "~@/assets/css/cards.scss";
 @import "~@/assets/css/content-list.scss";

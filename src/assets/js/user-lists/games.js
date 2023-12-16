@@ -1,5 +1,6 @@
 export let games = [
     {
+        id:1,
         name: "The Witcher 3: Wild Hunt",
         author: "CD Projekt Red",
         genre: "Ролевая",
@@ -9,6 +10,7 @@ export let games = [
         statusType: 0
     },
     {
+        id:2,
         name: "Grand Theft Auto V",
         author: "Rockstar Games",
         genre: "Экшн",
@@ -18,6 +20,7 @@ export let games = [
         statusType: 1
     },
     {
+        id:3,
         name: "The Last of Us Part II",
         author: "Naughty Dog",
         genre: "Экшн-приключение",
@@ -27,6 +30,7 @@ export let games = [
         statusType: 2
     },
     {
+        id:4,
         name: "Red Dead Redemption 2",
         author: "Rockstar Games",
         genre: "Открытый мир",
@@ -36,6 +40,7 @@ export let games = [
         statusType: 0
     },
     {
+        id:5,
         name: "God of War",
         author: "Santa Monica Studio",
         genre: "Экшн",
@@ -45,6 +50,7 @@ export let games = [
         statusType: 1
     },
     {
+        id:6,
         name: "Minecraft",
         author: "Mojang Studios",
         genre: "Песочница",
@@ -54,6 +60,7 @@ export let games = [
         statusType: 2
     },
     {
+        id:7,
         name: "Dark Souls III",
         author: "FromSoftware",
         genre: "Экшн",
@@ -63,6 +70,7 @@ export let games = [
         statusType: 0
     },
     {
+        id:8,
         name: "Uncharted 4: A Thief's End",
         author: "Naughty Dog",
         genre: "Экшн-приключение",
@@ -72,6 +80,7 @@ export let games = [
         statusType: 1
     },
     {
+        id:9,
         name: "The Legend of Zelda: Breath of the Wild",
         author: "Nintendo",
         genre: "Приключение",
@@ -81,6 +90,7 @@ export let games = [
         statusType: 2
     },
     {
+        id:10,
         name: "Bloodborne",
         author: "FromSoftware",
         genre: "Экшн",

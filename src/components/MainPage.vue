@@ -54,7 +54,7 @@
 
         <div class="block-row" style="justify-content: center">
           <div class="content-header">Популярные фильмы</div>
-          <a class="move-content-link" href="/films"><span>Открыть фильмы</span></a>
+          <a class="move-content-link" href="/FilmsPage"><span>Открыть фильмы</span></a>
         </div>
 
         <div class="swiper-container contents">
@@ -132,7 +132,7 @@
 
         <div class="block-row" style="justify-content: center">
           <div class="content-header">Популярные игры</div>
-          <a class="move-content-link" href="/games"><span>Открыть игры</span></a>
+          <a class="move-content-link" href="/GamesPage"><span>Открыть игры</span></a>
         </div>
 
         <div class="swiper-container contents">
@@ -208,7 +208,7 @@
 
         <div class="block-row" style="justify-content: center">
           <div class="content-header">Бестстеллеры литературы</div>
-          <a class="move-content-link" href="/books"><span>Открыть книги</span></a>
+          <a class="move-content-link" href="/BooksPage"><span>Открыть книги</span></a>
         </div>
 
         <div class="swiper-container contents">
@@ -344,8 +344,8 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="scss">
+<style lang="scss" scoped>
 @import "~@/assets/css/main-page.scss";
 @import "~@/assets/css/nav-right.scss";
-@import "https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+@import "https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css";
 </style>

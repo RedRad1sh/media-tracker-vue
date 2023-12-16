@@ -7,6 +7,7 @@ import GamesPage from '@/components/content-pages/GamesPage.vue'
 import RecommendationsPage from '@/components/RecommendationsPage.vue'
 import ProfilePage from '@/components/ProfilePage.vue'
 import CurrentFilm from '@/components/content-pages/CurrentFilm.vue'
+import UserLists from "@/components/UserLists"
 
 const routes = [
     {
@@ -44,8 +45,12 @@ const routes = [
         meta: { title: 'Фильм', showHeader: true },
         component: CurrentFilm
     },
+    {
+        path: '/UserLists',
+        meta: { title: 'Личные списки', showHeader: true },
+        component: UserLists
+    },
 ]
-
 
 const router = createRouter ({
     routes,
