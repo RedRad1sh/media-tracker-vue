@@ -1,0 +1,162 @@
+.film-image {
+  width: 100%;
+  max-width: 300px;
+}
+
+.content-header { 
+  font-size: 38px;
+}
+
+
+.film-img-bottom {
+  width: auto;
+  display: flex;
+  align-items: flex-start;
+  flex-shrink: 0;
+  justify-content: center; 
+}
+
+.film-actions {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  justify-content: flex-start;
+  gap: 10px;
+  font-size: 14px;
+  margin-top: 10px;
+  padding-left: 5px;
+}
+
+.text-format {
+  color: #e4e6f5;
+  align-self: center;
+}
+
+.create-review {
+  padding: 20px;
+  display: flex;
+  align-items: flex-start;
+  flex-shrink: 0;
+  flex-direction: column;
+  width: 100%;
+  box-sizing:border-box;
+}
+
+.header-text {
+  color: white;
+  margin-bottom: 40px;
+  font-size: 30px;
+  font-weight: 500
+}
+
+.text-block {
+  color: #e4e5f4;
+  width: auto;
+  font-size: 20px;
+  padding-left: 5px;
+}
+
+.create-review-container {
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+  padding: 8px 40px;
+
+}
+
+.button-create-review {
+  margin: 10px auto;
+  height: 40px;
+  padding: 4px 8px;
+}
+
+.film-description-header {
+  display: flex;
+  flex-direction: row
+}
+
+.film-description-element {
+  width: 100%;
+ /* margin-top: 20px */
+}
+
+.content-main {
+  padding: 10px 5px;
+  align-items: flex-start;
+  justify-content: space-around;
+  height: auto
+}
+
+select {
+  width: auto;
+  /*max-width: 125px; */
+  min-width: 60px;
+  margin-right: 5px
+}
+
+@media screen and (max-width:1200px) {
+  .text-block {
+    font-size: 14px
+  }
+}
+
+textarea {
+  padding: 10px;
+  font-size: 20px;
+  color: #000;
+  background-color: rgba(255,255,255,.5);
+  resize: none;
+  height: 100px
+}
+
+.film-first-row{
+  width: 100%;
+  display: flex;
+  padding: 20px 60px;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 50px;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+}
+
+.film-img-element{
+  max-width: 300px;
+  width: 100%;
+}
+
+.film-info-element{
+  max-width: 650px;
+  width: 100%;
+}
+
+.film-rating-element{
+  max-width: 300px;
+  width: 100%;
+}
+
+.info-header {
+  background-color: #31004a63;
+  border-radius: 4px;
+  padding: 5px;
+  margin-bottom: 10px;
+  color: #f5f5f5;
+  font-size: 26px;
+}
+
+.text-block-otz{
+  font-size: 26px;
+}
+
+.obj-info {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-left: 5px;
+  gap: 10px;
+}
+
+.text-format {
+  font-weight: 700;
+  font-size: 20px;
+}
