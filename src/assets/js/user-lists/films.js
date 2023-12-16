@@ -1,5 +1,6 @@
 export let films = [
     {
+        id:1,
         name: "Волк с Уолл-стрит",
         author: "Мартин Скорсезе",
         genre: "Комедия",
@@ -9,6 +10,7 @@ export let films = [
         statusType: 0
     },
     {
+        id:2,
         name: "Аватар",
         author: "Джеймс Кэмерон",
         genre: "Фантастика",
@@ -18,6 +20,7 @@ export let films = [
         statusType: 1
     },
     {
+        id:3,
         name: "Начало",
         author: "Кристофер Нолан",
         genre: "Фантастика",
@@ -27,6 +30,7 @@ export let films = [
         statusType: 2
     },
     {
+        id:4,
         name: "Властелин колец: Возвращение короля",
         author: "Питер Джексон",
         genre: "Фэнтези",
@@ -36,6 +40,7 @@ export let films = [
         statusType: 0
     },
     {
+        id:5,
         name: "Побег из Шоушенка",
         author: "Фрэнк Дарабонт",
         genre: "Драма",
@@ -45,6 +50,7 @@ export let films = [
         statusType: 1
     },
     {
+        id:6,
         name: "Начало",
         author: "Кристофер Нолан",
         genre: "Научная фантастика",
@@ -54,6 +60,7 @@ export let films = [
         statusType: 2
     },
     {
+        id:7,
         name: "Зеленая миля",
         author: "Фрэнк Дарабонт",
         genre: "Драма",
@@ -63,6 +70,7 @@ export let films = [
         statusType: 0
     },
     {
+        id:7,
         name: "Бойцовский клуб",
         author: "Дэвид Финчер",
         genre: "Драма",
@@ -72,6 +80,7 @@ export let films = [
         statusType: 1
     },
     {
+        id:9,
         name: "Крестный отец",
         author: "Фрэнсис Форд Коппола",
         genre: "Драма",

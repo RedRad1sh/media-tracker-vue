@@ -8,15 +8,16 @@
         </nav>
     </section>
     <div class="block">
-        <MenuComponent id="menu-include" active-element="0"/>
+        <MenuComponent id="menu-include" active-element="0" />
         <div class="content-main">
             <div class="block-row" style="justify-content: center">
                 <div class="content-header">Фильмы</div>
                 <div class="content-header" id="page-number">1 страница</div>
             </div>
             <div id="content-container">
-                <div id="loader"></div>
-                <div class="content-cards" id="film-cards-container"></div>
+                <div class="content-cards" id="film-cards-container" >
+                    <CardComponent v-for="item in filmsData" :key="item.id" :contentData="createFilmCard(item)"></CardComponent>
+                </div>
             </div>
             <div class="pagination">
                 <a href="#">&laquo;</a>
@@ -33,21 +34,35 @@
 </template>
 
 <script>
-import HeaderComponent from '../HeaderComponent.vue';
-import MenuComponent from '../navigation/MenuComponent.vue';
-/* eslint no-unused-vars: 0 */
-import {init} from '../../assets/js/content-lists/film-example.js'
+import HeaderComponent from '@/components/HeaderComponent.vue';
+import MenuComponent from '@/components/navigation/MenuComponent.vue';
+import CardComponent from '@/components/internal/CardComponent.vue';
+import {ContentData} from '@/components/internal/CardComponent.vue';
+import { presaved_json } from "@/assets/js/content-lists/pre-saved-jsons/film_presaved.js"
 
 export default {
     name: 'FilmsPage',
-    components: {HeaderComponent, MenuComponent},
-    beforeMount() {
-        init()
+    components: { HeaderComponent, MenuComponent, CardComponent },
+    methods: {
+        createFilmCard(filmResponse) {
+            console.log(filmResponse)
+            const image_src = filmResponse.poster.previewUrl;
+            const category = filmResponse.genres[0].name;
+            const title = filmResponse.name;
+            const description = filmResponse.description;
+            const extra_prop = filmResponse.year;
+            return new ContentData(image_src, "", category, title, description, extra_prop)
+        }
+    },
+    data() {
+        return {
+            filmsData: presaved_json.docs
+        }
     }
 }
 </script>
 
-<style lang="scss">
+<style scoped>
 @import "~@/assets/css/nav-right.scss";
 @import "~@/assets/css/cards.scss";
 @import "~@/assets/css/content-list.scss";

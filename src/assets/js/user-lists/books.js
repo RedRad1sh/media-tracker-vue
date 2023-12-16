@@ -1,5 +1,6 @@
 export let books = [
     {
+        id:1,
         name: "Пикник на обочине",
         author: "Стругацкие",
         genre: "Фантастика",
@@ -9,6 +10,7 @@ export let books = [
         statusType: 2
     },
     {
+        id:2,
         name: "Мастер и Маргарита",
         author: "Булгаков",
         genre: "Фантастика",
@@ -18,6 +20,7 @@ export let books = [
         statusType: 0
     },
     {
+        id:3,
         name: "Чистовик",
         author: "Лукьяненко",
         genre: "Фантастика",
@@ -27,6 +30,7 @@ export let books = [
         statusType: 2
     },
     {
+        id:3,
         name: "Эдем",
         author: "Лем",
         genre: "Фантастика",
@@ -36,6 +40,7 @@ export let books = [
         statusType: 2
     },
     {
+        id:4,
         name: "1984",
         author: "Джордж Оруэлл",
         genre: "Фантастика",
@@ -45,6 +50,7 @@ export let books = [
         statusType: 0
     },
     {
+        id:5,
         name: "Убийство в Восточном экспрессе",
         author: "Агата Кристи",
         genre: "Детектив",
@@ -54,6 +60,7 @@ export let books = [
         statusType: 1
     },
     {
+        id:6,
         name: "Гарри Поттер и философский камень",
         author: "Джоан Роулинг",
         genre: "Фэнтези",
@@ -63,6 +70,7 @@ export let books = [
         statusType: 2
     },
     {
+        id:7,
         name: "Тень ветра",
         author: "Карлос Руис Сафон",
         genre: "Мистика",
@@ -72,6 +80,7 @@ export let books = [
         statusType: 0
     },
     {
+        id:8,
         name: "Великий Гэтсби",
         author: "Фрэнсис Скотт Фицджеральд",
         genre: "Классика",
@@ -81,6 +90,7 @@ export let books = [
         statusType: 1
     },
     {
+        id:9,
         name: "Преступление и наказание",
         author: "Фёдор Достоевский",
         genre: "Классика",
@@ -90,6 +100,7 @@ export let books = [
         statusType: 0
     },
     {
+        id:10,
         name: "Алиса в Стране чудес",
         author: "Льюис Кэрролл",
         genre: "Фантастика",
@@ -99,6 +110,7 @@ export let books = [
         statusType: 1
     },
     {
+        id:11,
         name: "Гарри Поттер и Тайная комната",
         author: "Джоан Роулинг",
         genre: "Фэнтези",
@@ -108,6 +120,7 @@ export let books = [
         statusType: 2
     },
     {
+        id:12,
         name: "Маленький принц",
         author: "Антуан де Сент-Экзюпери",
         genre: "Философия",
