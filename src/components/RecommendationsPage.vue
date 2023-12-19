@@ -1,12 +1,4 @@
 <template>
-    <!-- TODO: перенести в Header -->
-    <section class="nav-men">
-        <input type="checkbox" id="nav-toggle" hidden>
-        <div class="mask-content"></div>
-        <nav class="nav">
-            <ul id="nav"></ul>
-        </nav>
-    </section>
     <div class="block">
         <MenuComponent id="menu-include" active-element="3" />
         <div class="content-main recomendations-content">

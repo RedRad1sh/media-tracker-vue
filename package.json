@@ -8,10 +8,12 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@bramus/pagination-sequence": "^1.2.1",
     "chart.js": "^4.4.0",
     "core-js": "^3.8.3",
     "swiper": "^11.0.5",
     "vue": "^3.2.13",
+    "vue-cookies": "^1.8.3",
     "vue-plugin-load-script": "^2.1.1",
     "vue-router": "^4.2.5"
   },

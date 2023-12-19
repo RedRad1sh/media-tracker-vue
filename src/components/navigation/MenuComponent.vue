@@ -17,7 +17,7 @@
 
 <script>
 export default {
-  name: 'HeaderComponent',
+  name: 'MenuComponent',
   props: ["activeElement"]
 }
 
@@ -28,7 +28,7 @@ export default {
   z-index: 0;
   height: 60px;
   justify-content: center;
-  width: 95%;
+  width: 1400px;
 }
 
 .menu-tabs {
@@ -89,7 +89,7 @@ export default {
   color: black;
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1400px) {
   .menu-button {
     font-size: 16px !important;
   }

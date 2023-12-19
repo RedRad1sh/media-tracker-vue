@@ -1,5 +1,4 @@
 <template>
-  <HeaderComponent/>
   <div class="block">
     <MenuComponent id="menu-include" :active-element="1"/>
     <div class="content-main">
@@ -29,7 +28,6 @@
 </template>
 
 <script>
-import HeaderComponent from './HeaderComponent.vue'
 import MenuComponent from '../components/navigation/MenuComponent.vue';
 import ContentTableList from "@/components/UI/ContentTableList.vue";
 import {films} from "@/assets/js/user-lists/films";
@@ -44,7 +42,6 @@ export default {
   name: "UserLists",
   components: {
     MenuComponent,
-    HeaderComponent,
     ContentTableList
   },
   data() {

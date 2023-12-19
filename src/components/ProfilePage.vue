@@ -1,12 +1,4 @@
 <template>
-    <section class="nav-men">
-        <input type="checkbox" id="nav-toggle" hidden>
-        <div class="mask-content"></div>
-        <nav class="nav">
-            <ul id="nav"></ul>
-        </nav>
-    </section>
-    <HeaderComponent />
     <div class="block">
         <MenuComponent id="menu-include" active-element="-1" />
         <div class="content-main">
@@ -49,7 +41,6 @@
 </template>
 
 <script>
-import HeaderComponent from './HeaderComponent.vue';
 import MenuComponent from './navigation/MenuComponent.vue';
 /* eslint no-unused-vars: 0 */
 import { Chart, registerables } from 'chart.js'
@@ -102,7 +93,7 @@ export default {
         msg: String
     },
     components: {
-        HeaderComponent, MenuComponent
+        MenuComponent
     },
     mounted() {
         createPieChart('contentChart', 'Просмотренный контент',
