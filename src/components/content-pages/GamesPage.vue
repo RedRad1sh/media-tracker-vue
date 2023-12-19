@@ -1,12 +1,4 @@
 <template>
-    <HeaderComponent />
-    <section class="nav-men">
-        <input type="checkbox" id="nav-toggle" hidden>
-        <div class="mask-content"></div>
-        <nav class="nav">
-            <ul id="nav"></ul>
-        </nav>
-    </section>
     <div class="block">
         <MenuComponent id="menu-include" active-element="2" />
         <div class="content-main">
@@ -17,30 +9,21 @@
             <div id="content-container">
                 <ContentFilters :lists="lists" :genres="genres"/>
                 <div class="content-cards" id="film-cards-container">
-                    <CardComponent v-for="item in gamesData" :key="item.id" :contentData="createGameCard(item)"/>
+                    <CardComponent :ObjectType="type" v-for="item in gamesData" :key="item.id" :contentData="createGameCard(item)"/>
                 </div>
             </div>
-            <div class="pagination">
-                <a href="#">&laquo;</a>
-                <a href="?">1</a>
-                <a href="?page=2">2</a>
-                <a href="?page=3">3</a>
-                <a href="?page=4">4</a>
-                <a href="?page=5">5</a>
-                <a href="?page=6">6</a>
-                <a href="#">&raquo;</a>
-            </div>
+            <PaginationElement :totalPages="5" :currentPage="67"/>
         </div>
     </div>
 </template>
 
 <script>
-import HeaderComponent from '@/components/HeaderComponent.vue';
 import MenuComponent from '@/components/navigation/MenuComponent.vue';
 import CardComponent from '@/components/internal/CardComponent.vue';
 import { ContentData } from '@/components/internal/CardComponent.vue';
 import { presaved_json } from "@/assets/js/content-lists/pre-saved-jsons/games_presaved.js";
 import ContentFilters from '@/components/UI/ContentFilters.vue';
+import PaginationElement from '@/components/UI/PaginationElement.vue';
 
 const lists = ["Запланировано", "Играю", "Пройдено"];
 const genres = [
@@ -73,11 +56,12 @@ export function createGameCard(gameResponse) {
 
 export default {
     name: 'GamesPage',
-    components: { HeaderComponent, MenuComponent, CardComponent, ContentFilters },
+    components: { MenuComponent, CardComponent, ContentFilters, PaginationElement },
     methods: {
         createGameCard: createGameCard
     }, data() {
         return {
+            type: "GAME",
             gamesData: presaved_json,
             genres: genres,
             lists: lists

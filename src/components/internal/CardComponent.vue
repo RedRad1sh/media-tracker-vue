@@ -1,6 +1,6 @@
 <template lang="">
     <div class="card-container">
-        <a href="film-page.html" style="width: 100%">
+        <a href="film-page.html" style="width: 100%" @click="this.$router.push({ path: '/FilmPage' })">
                     <div class="card-top">
                         <img
                                 :src="contentData.img_src"
@@ -31,33 +31,19 @@
                     </div>
                     <div class="card-bottom-actions">
                         <label class="label-select">Оценить
-                            <select class="card-select rate-set">
-                                <option selected>-</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                                <option>8</option>
-                                <option>9</option>
-                                <option>10</option>
-                            </select>
+                            <SelectionMark class="card-select rate-set"/>
                         </label>
                         <label class="label-select">Списки
-                            <select class="card-select list-add">
-                                <option selected>-</option>
-                                <option>Запланировано</option>
-                                <option>Просмотрено</option>
-                                <option>Брошено</option>
-                            </select>
+                            <SelectionContent :ObjectType="ObjectType" class="card-select list-add"/>
                         </label>
                     </div>
                 </div>
     </div>
 </template>
 <script>
+import SelectionMark from "@/components/UI/SelectionMark.vue";
+import SelectionContent from "@/components/UI/SelectionContent.vue";
+
 export class ContentData {
     constructor(img_src, alt_image, category, title, description, extra_prop) {
         this.img_src = img_src;
@@ -71,7 +57,12 @@ export class ContentData {
 
 export default {
     name: 'CardComponent',
+    components: {SelectionContent, SelectionMark},
     props: {
+        ObjectType: {
+            type: String,
+            required: true,
+        },
         contentData: {
             type: Object,
             required: true

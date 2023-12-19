@@ -1,12 +1,4 @@
 <template>
-    <HeaderComponent />
-    <section class="nav-men">
-        <input type="checkbox" id="nav-toggle" hidden>
-        <div class="mask-content"></div>
-        <nav class="nav">
-            <ul id="nav"></ul>
-        </nav>
-    </section>
     <div class="block">
         <MenuComponent id="menu-include" active-element="1" />
         <div class="content-main">
@@ -15,50 +7,42 @@
                 <div class="content-header" id="page-number">1 страница</div>
             </div>
             <div id="content-container">
-                <ContentFilters :lists="lists" :genres="genres"/>
+                <ContentFilters :lists="lists" :genres="genres" />
                 <div class="content-cards" id="books-cards-container">
-                    <CardComponent v-for="item in booksData" :key="item.id" :contentData="createBookCard(item)"/>
+                    <CardComponent :ObjectType="type" v-for="item in booksData" :key="item.id"
+                        :contentData="createBookCard(item)" />
                 </div>
             </div>
-            <div class="pagination">
-                <a href="#">&laquo;</a>
-                <a href="?">1</a>
-                <a href="?page=2">2</a>
-                <a href="?page=3">3</a>
-                <a href="?page=4">4</a>
-                <a href="?page=5">5</a>
-                <a href="?page=6">6</a>
-                <a href="#">&raquo;</a>
-            </div>
+            <PaginationElement :totalPages="23" :currentPage="1" />
         </div>
     </div>
 </template>
 
 <script>
-import HeaderComponent from '@/components/HeaderComponent.vue';
 import MenuComponent from '@/components/navigation/MenuComponent.vue';
 import { ContentData } from '@/components/internal/CardComponent.vue';
 import CardComponent from '@/components/internal/CardComponent.vue';
 import { presaved_json } from "@/assets/js/content-lists/pre-saved-jsons/books_presaved.js";
 import ContentFilters from '@/components/UI/ContentFilters.vue';
+import PaginationElement from '@/components/UI/PaginationElement.vue';
 
 const lists = ["Запланировано", "Читаю", "Прочитано"];
 const genres = [
-  'Драма',
-  'Комедия',
-  'Фантастика',
-  'Боевик',
-  'Триллер',
-  'Ужасы',
-  'Приключения',
-  'Мультфильм',
-  'Романтика',
-  'Фэнтези',
-  'Детектив',
-  'Исторический',
-  'Вестерн',
-  'Мелодрама',
-  'Научная фантастика'
+    'Драма',
+    'Комедия',
+    'Фантастика',
+    'Боевик',
+    'Триллер',
+    'Ужасы',
+    'Приключения',
+    'Мультфильм',
+    'Романтика',
+    'Фэнтези',
+    'Детектив',
+    'Исторический',
+    'Вестерн',
+    'Мелодрама',
+    'Научная фантастика'
 ];
 
 export function createBookCard(bookResponse) {
@@ -75,12 +59,13 @@ export function createBookCard(bookResponse) {
 
 export default {
     name: 'BooksPage',
-    components: { HeaderComponent, MenuComponent, CardComponent, ContentFilters },
+    components: { MenuComponent, CardComponent, ContentFilters, PaginationElement },
     methods: {
         createBookCard: createBookCard
     },
     data() {
         return {
+            type: "BOOK",
             booksData: presaved_json.items,
             genres: genres,
             lists: lists

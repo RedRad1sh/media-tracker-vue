@@ -2,11 +2,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400&display=swap');
 
 :root {
-    --dl-half-transparent-2: rgba(0,0,0,.2);
-    --dl-half-transparent-1: rgba(0,0,0,.1);
+    --dl-half-transparent-2: rgba(0, 0, 0, .2);
+    --dl-half-transparent-1: rgba(0, 0, 0, .1);
     --dl-half-transparent-5: rgba(0, 0, 0, 0.5);
     --dl-color-base-white: rgb(255, 255, 255);
-    --dl-font-family: "Comfortaa",sans-serif!important;
+    --dl-font-family: "Comfortaa", sans-serif !important;
 }
 
 .list {
@@ -31,12 +31,14 @@ body {
     display: flex
 }
 
-.block,.block-row {
+.block,
+.block-row {
     display: flex;
     align-items: center
 }
 
-.block,body {
+.block,
+body {
     flex-direction: column;
     min-height: 100vh
 }
@@ -67,7 +69,8 @@ header {
     top: 0;
 }
 
-.background,.background-filter {
+.background,
+.background-filter {
     height: 100%;
     width: 100%;
     top: 0;
@@ -97,7 +100,8 @@ header {
     position: absolute
 }
 
-.search,.search-field {
+.search,
+.search-field {
     display: flex;
     align-items: center
 }
@@ -117,18 +121,18 @@ header {
     height: 30px;
     overflow: hidden;
     align-self: stretch;
-    box-shadow: 0 1px 3px 0 rgba(47,43,67,.1);
+    box-shadow: 0 1px 3px 0 rgba(47, 43, 67, .1);
     flex-shrink: 0;
-    border-color: rgba(47,43,67,.1);
+    border-color: rgba(47, 43, 67, .1);
     border-style: solid;
     border-width: 1px;
     border-radius: 1px;
     justify-content: space-between;
-    background-color: rgba(78,70,148,.24)
+    background-color: rgba(78, 70, 148, .24)
 }
 
 .search-input {
-    width: 758px;
+    width: 100%;
     height: 60%;
     text-align: left;
     line-height: 20px;
@@ -175,7 +179,8 @@ header {
     font-stretch: normal
 }
 
-.logo-text,a {
+.logo-text,
+a {
     text-decoration: none
 }
 
@@ -185,19 +190,21 @@ header {
     height: 20px
 }
 
-.content-main,footer {
+footer {
     justify-content: center;
     display: flex
 }
 
 .content-main {
+    justify-content: flex-start;
+    display: flex;
     height: auto;
     flex-wrap: wrap;
     align-items: center;
     flex-shrink: 0;
     border-radius: 3px;
-    background-color: rgba(72,64,121,.5);
-    width: 95%;
+    background-color: rgba(72, 64, 121, .5);
+    width: 1400px;
     min-height: 100vh;
 }
 
@@ -207,7 +214,7 @@ header {
     }
 }
 
-@media screen and (max-width:1200px) {
+@media screen and (max-width:1400px) {
     .search {
         width: 50%
     }
@@ -230,7 +237,8 @@ header {
         align-items: center
     }
 
-    .tabbase,.tabbase-active {
+    .tabbase,
+    .tabbase-active {
         padding: 0
     }
 }
@@ -251,7 +259,7 @@ header {
     }
 
     .nav-toggle {
-        position: absolute!important
+        position: absolute !important
     }
 
     .search-input {
@@ -267,7 +275,7 @@ footer {
     background: var(--dl-half-transparent-5);
     height: 40px;
     top: calc(100% + 50px);
-    color: rgba(255,255,255,.8)
+    color: rgba(255, 255, 255, .8)
 }
 
 .footer-text {
@@ -282,11 +290,11 @@ footer {
 
 select {
     position: relative;
-    transition: border-color .1s ease-in-out,box-shadow .1s ease-in-out;
+    transition: border-color .1s ease-in-out, box-shadow .1s ease-in-out;
     border: 0;
     font-family: var(--dl-font-family);
     text-align: center;
-    background: rgba(100,100,255,.3);
+    background: rgba(100, 100, 255, .3);
     color: white;
     font-size: 14px;
     -webkit-border-radius: 3px;
@@ -317,7 +325,8 @@ select:focus>option:hover {
     background-color: #ff0
 }
 
-select option:checked,select option:hover {
+select option:checked,
+select option:hover {
     box-shadow: 0 0 10px 100px #000 inset
 }
 
@@ -333,7 +342,7 @@ select option:checked,select option:hover {
 }
 
 .move-content-link {
-    background-color: rgba(200,147,209,.12);
+    background-color: rgba(200, 147, 209, .12);
     color: white;
     font-size: 26px;
     height: 100%;
@@ -371,6 +380,7 @@ select option:checked,select option:hover {
 .pagination {
     display: inline-block;
     color: white;
+    margin: 0 auto;
 }
 
 .pagination a {
