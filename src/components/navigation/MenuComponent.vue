@@ -1,16 +1,16 @@
 <template>
   <div class="menu-tabs">
     <div :class="activeElement === '0' ? 'menu-tabbase-active' : 'menu-tabbase'">
-      <a :class="activeElement === '0' ? 'menu-active-button' : 'menu-button'" href="FilmsPage">Фильмы</a>
+      <a :class="activeElement === '0' ? 'menu-active-button' : 'menu-button'" href="/FilmsPage">Фильмы</a>
     </div>
     <div :class="activeElement === '1' ? 'menu-tabbase-active' : 'menu-tabbase'">
-      <a :class="activeElement === '1' ? 'menu-active-button' : 'menu-button'" href="BooksPage">Книги</a>
+      <a :class="activeElement === '1' ? 'menu-active-button' : 'menu-button'" href="/BooksPage">Книги</a>
     </div>
     <div :class="activeElement === '2' ? 'menu-tabbase-active' : 'menu-tabbase'">
-      <a :class="activeElement === '2' ? 'menu-active-button' : 'menu-button'" href="GamesPage">Игры</a>
+      <a :class="activeElement === '2' ? 'menu-active-button' : 'menu-button'" href="/GamesPage">Игры</a>
     </div>
     <div :class="activeElement === '3' ? 'menu-tabbase-active' : 'menu-tabbase'">
-      <a :class="activeElement === '3' ? 'menu-active-button' : 'menu-button'" href="RecommendationsPage">Рекомендации</a>
+      <a :class="activeElement === '3' ? 'menu-active-button' : 'menu-button'" href="/RecommendationsPage">Рекомендации</a>
     </div>
   </div>
 </template>
