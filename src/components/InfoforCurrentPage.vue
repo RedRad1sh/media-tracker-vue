@@ -20,11 +20,14 @@ export default {
 
   methods: {
     getRatingStyle(rate) {
-      if (rate < 4) {
+      if (rate < 10) {
+        rate *= 10;
+      }
+      if (rate < 40 ) {
         return "color-inf-bad";
-      } else if (rate >= 4 && rate <= 7) {
+      } else if (rate >= 40 && rate <= 70) {
         return "color-inf-good";
-      } else if (rate > 7) {
+      } else if (rate > 70) {
         return "color-inf-exelent";
       } else {
         return "color-inf-na";

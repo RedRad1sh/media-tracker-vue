@@ -1,4 +1,4 @@
-.film-image {
+.obj-image {
   width: 100%;
   max-width: 300px;
 }
@@ -8,15 +8,7 @@
 }
 
 
-.film-img-bottom {
-  width: auto;
-  display: flex;
-  align-items: flex-start;
-  flex-shrink: 0;
-  justify-content: center; 
-}
-
-.film-actions {
+.obj-actions {
   display: flex;
   align-items: center;
   flex-shrink: 0;
@@ -70,12 +62,9 @@
   padding: 4px 8px;
 }
 
-.film-description-header {
-  display: flex;
-  flex-direction: row
-}
 
-.film-description-element {
+
+.obj-description-element {
   width: 100%;
  /* margin-top: 20px */
 }
@@ -93,11 +82,7 @@ select {
   margin-right: 5px
 }
 
-@media screen and (max-width:1200px) {
-  .text-block {
-    font-size: 14px
-  }
-}
+
 
 textarea {
   padding: 10px;
@@ -108,31 +93,25 @@ textarea {
   height: 100px
 }
 
-.film-first-row{
+.obj-first-row{
   width: 100%;
   display: flex;
   padding: 20px 60px;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 50px;
-  flex-wrap: wrap;
+  gap: 60px;
   box-sizing: border-box;
 }
 
-.film-img-element{
+.obj-img-element{
   max-width: 300px;
   width: 100%;
 }
 
-.film-info-element{
-  max-width: 650px;
+.obj-info-element, .obj-rating-element{
   width: 100%;
 }
 
-.film-rating-element{
-  max-width: 300px;
-  width: 100%;
-}
 
 .info-header {
   background-color: #31004a63;
@@ -158,4 +137,63 @@ textarea {
 .text-format {
   font-weight: 700;
   font-size: 20px;
+}
+
+
+
+
+.game-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: justify;
+  gap: 10px;
+}
+
+.game-block h1 {
+  font-size: 26px;
+  margin: 0px;
+}
+
+.game-block img, .game-block p{
+  margin: 0px;
+}
+
+.game-block ul li{
+  font-size: 20px;
+}
+
+.row-rec{
+  display: flex;
+  gap: 10px;
+}
+
+.block-pc-rec {
+  display: flex;
+  flex-direction: column;
+  color: #f5f5f5;
+  font-size: 20px;
+  padding-left: 5px;
+}
+
+.block-pc-rec ul {
+  margin: 0px;
+}
+
+.block-pc-rec li {
+  font-size: 20px;
+}
+
+@media screen and (max-width:1200px) {
+  .text-block {
+    font-size: 14px
+  }
+
+  .game-block li{
+    font-size: 14px;
+  }
+  .block-pc-rec li {
+    font-size: 14px;
+  }
+    
 }
