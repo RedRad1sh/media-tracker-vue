@@ -1,58 +1,60 @@
 <template lang="">
   <div class="block">
-    <MenuComponent id="menu-include" active-element="1" />
+    <MenuComponent id="menu-include" active-element="0" />
     <div class="content-main">
       <div class="block-row" style="justify-content: center">
         <div class="content-header">{{ filmobj.title }}</div>
       </div>
-      <div class="film-first-row">
-        <div class="film-img-element">
+      <div class="obj-first-row">
+        <div class="obj-img-element">
           <img
             src="@/assets/general_assets/image2415-6yy-400w.png"
             alt="IMAGE2415"
-            class="film-image"
+            class="obj-image"
           />
         </div>
-        <div class="film-info-element">
+        <div class="obj-info-element">
           <div class="info-header">Информация</div>
           <div class="obj-info">
             <InfoforCurrentPage :titles="filminfo" :values="filmInfoObj" />
           </div>
         </div>
-        <div class="film-rating-element">
+      </div>
+      <div class="obj-first-row">
+        <div class="obj-rating-element">
           <div class="info-header">Рейтинги</div>
           <div class="obj-info">
             <InfoforCurrentPage :typeinfo="'RATING'" :titles="filmrating" :values="filmRatingObj" />
           </div>
         </div>
-        <div class="film-rating-element">
+        <div class="obj-rating-element">
         <div class="info-header">Действия</div>
-          <div class="film-actions">
+          <div class="obj-actions">
             <span class="text-format">
               Оценка:
             </span>
             <SelectionMark id="rate"> </SelectionMark>
           </div>
-          <div class="film-actions">
+          <div class="obj-actions">
             <span class="text-format">
               Списки:
             </span>
             <SelectionContent :ObjectType="type"> </SelectionContent>
           </div>
+        </div>
       </div>
-      </div>
-      <div class="film-first-row">
-      <div class="film-description-element">
+      <div class="obj-first-row">
+      <div class="obj-description-element">
         <div class="info-header">Описание</div>
         <div class="text-block">
           {{ filmobj.description }}
         </div>
       </div>
     </div>
-    <div class="film-first-row">
-        <div class="film-description-element">
+    <div class="obj-first-row">
+        <div class="obj-description-element">
           <div class="info-header">Трейлер</div>
-          <iframe width="100%" height="850px" :src="filmobj.video" frameborder="0" allowfullscreen></iframe>
+          <iframe width="100%" height="720px" :src="filmobj.video" frameborder="0" allowfullscreen></iframe>
         </div>
       </div>
       <div class="create-review">
@@ -75,7 +77,7 @@
         </button>
       </div>
       
-      <div class="film-first-row">
+      <div class="obj-first-row">
         <div class="review-container">
           <div class="user-info">
             <img
@@ -146,6 +148,6 @@ export default {
 
 <style scoped>
 
-@import "~@/assets/css/film-page.css";
-@import "~@/assets/css/review-messages.css";
+@import "~@/assets/css/cur-obj-page.scss";
+@import "~@/assets/css/review-messages.scss";
 </style>

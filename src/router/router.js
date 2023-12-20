@@ -7,6 +7,7 @@ import GamesPage from '@/components/content-pages/GamesPage.vue'
 import RecommendationsPage from '@/components/RecommendationsPage.vue'
 import ProfilePage from '@/components/ProfilePage.vue'
 import CurrentFilm from '@/components/content-pages/CurrentFilm.vue'
+import CurrentGame from '@/components/content-pages/CurrentGame.vue'
 import UserLists from "@/components/UserLists"
 
 const routes = [
@@ -41,9 +42,14 @@ const routes = [
         component: RecommendationsPage
     },
     {
-        path: '/CurrentFilm',
+        path: '/current-film/:id',
         meta: { title: 'Фильм', showHeader: true },
         component: CurrentFilm
+    },
+    {
+        path: '/current-game/:id',
+        meta: { title: 'Игра', showHeader: true },
+        component: CurrentGame
     },
     {
         path: '/UserLists',
