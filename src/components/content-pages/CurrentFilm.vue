@@ -8,8 +8,8 @@
       <div class="obj-first-row">
         <div class="obj-img-element">
           <img
-            src="@/assets/general_assets/image2415-6yy-400w.png"
-            alt="IMAGE2415"
+            :src="filmobj.img_url"
+            alt="IMAGE"
             class="obj-image"
           />
         </div>
@@ -51,7 +51,7 @@
         </div>
       </div>
     </div>
-    <div class="obj-first-row">
+    <div v-if="filmobj.video" class="obj-first-row">
         <div class="obj-description-element">
           <div class="info-header">Трейлер</div>
           <iframe width="100%" height="720px" :src="filmobj.video" frameborder="0" allowfullscreen></iframe>
@@ -101,6 +101,7 @@ import MenuComponent from "@/components/navigation/MenuComponent.vue";
 import SelectionMark from "@/components/UI/SelectionMark.vue";
 import SelectionContent from "@/components/UI/SelectionContent.vue";
 import InfoforCurrentPage from "@/components/InfoforCurrentPage.vue";
+import axios from 'axios';
 
 export default {
   name: "CurrentFilm",
@@ -109,29 +110,17 @@ export default {
   data() {
     return {
       type: "FILM",
-      filmobj: {
-        id: 4647040,
-        type: "FILM",
-        image_url: ".png",
-        title: "Залечь на дно в Брюгге",
-        description:
-          "Lorem ipsum dolor sit amet consectetur. Magna etiam nulla natoque risus donec laoreet massa. Enim massa auctor urna cras aliquet eget mauris justo. Morbi tristique nascetur sagittis rhoncus massa imperdiet in auctor netus. Libero ipsum proin vitae quis. Tempor aliquet mi tristique ornare facilisis neque justo iaculis. Magna sapien tristique ultricies vel arcu. Dictum ut integer rhoncus tristique enim mattis in sed. Dictum vel nunc velit massa nisl duis nunc netus. Tortor justo elit faucibus sed in risus quam aliquambibendum.",
-        kp_rating: 7.68,
-        imb_rating: 5.1,
-        mtr_rating: 3,
-        creation_year: "2008",
-        genres: "комедия, преступление, триллер, драма",
-        movie_length: "107 мин",
-        countries: "Великобритания, США",
-        directors: "Мартин Макдона",
-        actors:
-          "Колин Фаррелл, Брендан Глисон, Рэйф Файнс, Клеманс Поэзи, Джордан Прентис",
-        video: "https://www.youtube.com/embed/RcNhbJndBv8",
-      },
+      filmobj: { },
       filminfo: ['Тип:', 'Год производства:',  'Страны:', 'Длительность:', 'Жанры:', 'Режиссеры:', 'Актеры:'],
       filmrating: ['Оценка Кинопоиск:', 'Оценка IMB:', 'Оценка MediaTracker:'],
     };
   },
+
+  
+  mounted() {
+      this.getMoviebyId();
+    },
+  
 
   computed:{
     filmInfoObj() {
@@ -142,6 +131,22 @@ export default {
       return [this.filmobj.kp_rating, this.filmobj.imb_rating, this.filmobj.mtr_rating];
     },
   },
+
+  methods: {
+      getMoviebyId(){
+        let backendUrl = 'http://localhost:3000/movies/' + this.$route.params.id;
+        console.log(backendUrl);
+
+        axios.get(backendUrl)
+          .then(response => {
+            this.filmobj = response.data;
+            console.log(this.filmobj);
+          })
+        .catch(error => {
+           console.error('Ошибка получения данных с бекенда', error);
+        });
+      },
+    },
 
 };
 </script>

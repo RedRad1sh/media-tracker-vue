@@ -2,10 +2,10 @@
     <div class="row-inf" v-for="(title, index) in titles" :key="index">
       <div class="semibold-title">{{ title }}</div>
       <div v-if="typeinfo==='RATING'" :class="'semibold-inf ' + getRatingStyle(values[index])">
-        {{ values[index] }}
+        {{ values[index] !== null ? values[index] : '-' }}
       </div>
       <div v-else class="semibold-inf">
-        {{ values[index] }}
+        {{ values[index] !== null ? values[index] : '-'}}
       </div>
     </div>
 </template>
@@ -20,9 +20,15 @@ export default {
 
   methods: {
     getRatingStyle(rate) {
+
+      if (rate == null) {
+        return "color-inf-na";
+      }
+
       if (rate < 10) {
         rate *= 10;
       }
+
       if (rate < 40 ) {
         return "color-inf-bad";
       } else if (rate >= 40 && rate <= 70) {
