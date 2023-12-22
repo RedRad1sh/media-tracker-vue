@@ -13,8 +13,8 @@
             class="obj-image"
           />
         </div>
-        <div class="obj-info-element">
-          <div class="info-header">Информация</div>
+        <div class="film-info-element">
+          <div class="info-header">{{this.$route.params.id}}</div>
           <div class="obj-info">
             <InfoforCurrentPage :titles="filminfo" :values="filmInfoObj" />
           </div>

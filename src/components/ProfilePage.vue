@@ -114,6 +114,5 @@ export default {
 
 <style lang="scss" scoped>
 @import "~@/assets/css/profile.scss";
-@import "~@/assets/css/nav-right.scss";
 @import "~@/assets/css/styles.scss";
 </style>

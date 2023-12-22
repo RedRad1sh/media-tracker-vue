@@ -5,13 +5,13 @@
         <nav class="nav">
             <ul v-if="!this.$cookies.get('authorized=true')" id="nav">
                 <li><a @click="this.$router.push({ path: '/' })">Главная</a></li>
-                <li><a @click="this.$router.push({ path: '/ProfilePage' })">Профиль</a></li>
-                <li><a @click="this.$router.push({ path: '/UserLists' })">Списки</a></li>
+                <li><a @click="this.$router.push({ path: '/profile' })">Профиль</a></li>
+                <li><a @click="this.$router.push({ path: '/profile/lists' })">Списки</a></li>
                 <li><a id="exit" @click="this.$router.push({ path: 'home' })">Выйти</a></li>
             </ul>
             <ul v-else id="nav">
                 <li><a @click="this.$router.push({ path: '/' })">Главная</a></li>
-                <li><a @click="this.$router.push({ path: '/Login'})">Вход</a></li>
+                <li><a @click="this.$router.push({ path: '/login'})">Вход</a></li>
             </ul>
         </nav>
     </section>
@@ -24,3 +24,7 @@ export default {
 }
 
 </script>
+
+<style scoped>
+@import "~@/assets/css/nav-right.scss";
+</style>
