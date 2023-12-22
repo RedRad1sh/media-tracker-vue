@@ -16,27 +16,27 @@ const routes = [
         component: MainPage
     },
     {
-        path: '/ProfilePage',
+        path: '/profile',
         meta: { title: 'Профиль', showHeader: true },
         component: ProfilePage
     },
     {
-        path: '/FilmsPage',
+        path: '/movies',
         meta: { title: 'Фильмы', showHeader: true },
         component: FilmsPage
     },
     {
-        path: '/GamesPage',
+        path: '/games',
         meta: { title: 'Игры', showHeader: true },
         component: GamesPage
     },
     {
-        path: '/BooksPage',
+        path: '/books',
         meta: { title: 'Книги', showHeader: true },
         component: BooksPage
     },
     {
-        path: '/RecommendationsPage',
+        path: '/recomendations',
         meta: { title: 'Рекомендации', showHeader: true },
         component: RecommendationsPage
     },
@@ -46,7 +46,7 @@ const routes = [
         component: CurrentFilm
     },
     {
-        path: '/UserLists',
+        path: '/profile/lists',
         meta: { title: 'Личные списки', showHeader: true },
         component: UserLists
     },

@@ -1,0 +1,12 @@
+defaults: &defaults
+  backend:
+    url: http://localhost:3000
+
+development:
+  <<: *defaults
+
+production:
+  <<: *defaults
+
+  backend:
+    url: https://media-tracker-backend.onrender.com

@@ -54,7 +54,7 @@
 
         <div class="block-row" style="justify-content: center">
           <div class="content-header">Популярные фильмы</div>
-          <a class="move-content-link" href="/FilmsPage"><span>Открыть фильмы</span></a>
+          <a class="move-content-link" @click="$router.push({path: '/movies'})"><span>Открыть фильмы</span></a>
         </div>
 
         <div class="swiper-container contents">
@@ -73,9 +73,9 @@
                 <br>
                 В ролях: Джейк Джилленхол, Дар Салим, Александр Людвиг, Энтони Старр
               </p>
-              <form class="login-form" action="pages/film-page.html" style="flex-direction: row">
+              <form class="login-form" style="flex-direction: row">
                 <p>
-                  <input type="submit" value="Открыть" />
+                  <input type="submit" value="Открыть" @click.stop.prevent="$router.push({path: '/current-film/1'})"/>
                 </p>
                 <p>
                   <input type="submit" value="Добавить в список" />
@@ -93,9 +93,9 @@
                 <br>
                 В ролях: Киану Ривз, Донни Йен, Билл Скарсгард
               </p>
-              <form class="login-form" action="pages/film-page.html" style="flex-direction: row">
+              <form class="login-form" style="flex-direction: row">
                 <p>
-                  <input type="submit" value="Открыть" />
+                  <input type="submit" value="Открыть" @click.stop.prevent="$router.push({path: '/current-film/1'})"/>
                 </p>
                 <p>
                   <input type="submit" value="Добавить в список" />
@@ -114,9 +114,9 @@
                 <br>
                 В ролях: Джеки Чан
               </p>
-              <form class="login-form" action="pages/film-page.html" style="flex-direction: row">
+              <form class="login-form" style="flex-direction: row">
                 <p>
-                  <input type="submit" value="Открыть" />
+                  <input type="submit" value="Открыть" @click.stop.prevent="$router.push({path: '/current-film/1'})"/>
                 </p>
                 <p>
                   <input type="submit" value="Добавить в список" />
@@ -132,7 +132,7 @@
 
         <div class="block-row" style="justify-content: center">
           <div class="content-header">Популярные игры</div>
-          <a class="move-content-link" href="/GamesPage"><span>Открыть игры</span></a>
+          <a class="move-content-link" @click="$router.push({path: '/games'})"><span>Открыть игры</span></a>
         </div>
 
         <div class="swiper-container contents">
@@ -149,9 +149,9 @@
                 <br>
                 <br>
               </p>
-              <form class="login-form" action="pages/film-page.html" style="flex-direction: row">
+              <form class="login-form" style="flex-direction: row">
                 <p>
-                  <input type="submit" value="Открыть" />
+                  <input type="submit" value="Открыть" @click.stop.prevent="$router.push({path: '/current-game/1'})"/>
                 </p>
                 <p>
                   <input type="submit" value="Добавить в список" />
@@ -169,9 +169,9 @@
                 <br>
                 <br>
               </p>
-              <form class="login-form" action="pages/film-page.html" style="flex-direction: row">
+              <form class="login-form" style="flex-direction: row">
                 <p>
-                  <input type="submit" value="Открыть" />
+                  <input type="submit" value="Открыть" @click.stop.prevent="$router.push({path: '/current-game/1'})"/>
                 </p>
                 <p>
                   <input type="submit" value="Добавить в список" />
@@ -192,7 +192,7 @@
               </p>
               <form class="login-form" action="pages/film-page.html" style="flex-direction: row">
                 <p>
-                  <input type="submit" value="Открыть" />
+                  <input type="submit" value="Открыть" @click.stop.prevent="$router.push({path: '/current-game/1'})"/>
                 </p>
                 <p>
                   <input type="submit" value="Добавить в список" />
@@ -208,7 +208,7 @@
 
         <div class="block-row" style="justify-content: center">
           <div class="content-header">Бестстеллеры литературы</div>
-          <a class="move-content-link" href="/BooksPage"><span>Открыть книги</span></a>
+          <a class="move-content-link" @click="$router.push({path: '/books'})"><span>Открыть книги</span></a>
         </div>
 
         <div class="swiper-container contents">
@@ -222,9 +222,9 @@
                 <br>
                 Автор: Замиль Ахтар
               </p>
-              <form class="login-form" action="pages/film-page.html" style="flex-direction: row">
+              <form class="login-form" style="flex-direction: row">
                 <p>
-                  <input type="submit" value="Открыть" />
+                  <input type="submit" value="Открыть" @click.stop.prevent="$router.push({path: '/current-book/1'})" />
                 </p>
                 <p>
                   <input type="submit" value="Добавить в список" />
@@ -241,9 +241,9 @@
                 <br>
                 Автор: Лю Цысинь
               </p>
-              <form class="login-form" action="pages/film-page.html" style="flex-direction: row">
+              <form class="login-form" style="flex-direction: row">
                 <p>
-                  <input type="submit" value="Открыть" />
+                  <input type="submit" value="Открыть" @click.stop.prevent="$router.push({path: '/current-book/1'})" />
                 </p>
                 <p>
                   <input type="submit" value="Добавить в список" />
@@ -260,9 +260,9 @@
                 <br>
                 Автор: Лю Цысинь
               </p>
-              <form class="login-form" action="pages/film-page.html" style="flex-direction: row">
+              <form class="login-form" style="flex-direction: row">
                 <p>
-                  <input type="submit" value="Открыть" />
+                  <input type="submit" value="Открыть" @click.stop.prevent="$router.push({path: '/current-book/1'})"/>
                 </p>
                 <p>
                   <input type="submit" value="Добавить в список" />
@@ -280,12 +280,12 @@
 
         </div>
 
-        <form class="login-form" action="pages/login.html" style="flex-direction: row">
+        <form class="login-form" style="flex-direction: row">
           <p>
-            <input type="submit" value="Вход" />
+            <input type="submit" value="Вход" @click.stop.prevent="$router.push({path: '/login'})"/>
           </p>
           <p>
-            <input type="submit" value="Регистрация" />
+            <input type="submit" value="Регистрация" @click.stop.prevent="$router.push({path: '/registration'})"/>
           </p>
         </form>
       </div>
@@ -346,6 +346,5 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 @import "~@/assets/css/main-page.scss";
-@import "~@/assets/css/nav-right.scss";
 @import "https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css";
 </style>
