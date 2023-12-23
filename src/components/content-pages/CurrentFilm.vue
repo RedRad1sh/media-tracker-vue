@@ -13,8 +13,8 @@
             class="obj-image"
           />
         </div>
-        <div class="film-info-element">
-          <div class="info-header">{{this.$route.params.id}}</div>
+        <div class="obj-info-element">
+          <div class="info-header">Информация</div>
           <div class="obj-info">
             <InfoforCurrentPage :titles="filminfo" :values="filmInfoObj" />
           </div>
@@ -33,7 +33,7 @@
             <span class="text-format">
               Оценка:
             </span>
-            <SelectionMark id="rate"> </SelectionMark>
+            <SelectionMark id="rate" v-model="selectedValMark"> </SelectionMark>
           </div>
           <div class="obj-actions">
             <span class="text-format">
@@ -66,31 +66,20 @@
           <textarea
             id="review-field"
             class="frame3-frame-inputlabels"
+            v-model = "textareamsg"
           ></textarea>
         </div>
         <button
           id="review-button"
           class="button-create-review"
-          onclick="createMessageElement()"
+          @click="createMessageElement"
         >
           Опубликовать
         </button>
       </div>
       
-      <div class="obj-first-row">
-        <div class="review-container">
-          <div class="user-info">
-            <img
-              class="user-img"
-              src="https://avtozaryad.ru/local/templates/main/assets/images/user.png"
-            />
-            <div class="user-name-rate">
-              <div class="user-name">@username</div>
-              <div class="user-rate">Оценка: 7/10</div>
-            </div>
-          </div>
-          <span class="review-text"> </span>
-        </div>
+      <div class="review-block">
+        <ReviewMessage :revobj="rev" v-for = "rev in reviews" :key="rev.id"/>
       </div>
     </div>
   </div>
@@ -101,11 +90,12 @@ import MenuComponent from "@/components/navigation/MenuComponent.vue";
 import SelectionMark from "@/components/UI/SelectionMark.vue";
 import SelectionContent from "@/components/UI/SelectionContent.vue";
 import InfoforCurrentPage from "@/components/InfoforCurrentPage.vue";
+import ReviewMessage from "@/components/ReviewMessage.vue";
 import axios from 'axios';
 
 export default {
   name: "CurrentFilm",
-  components: { MenuComponent, SelectionMark, SelectionContent, InfoforCurrentPage },
+  components: { MenuComponent, SelectionMark, SelectionContent, InfoforCurrentPage, ReviewMessage },
 
   data() {
     return {
@@ -113,6 +103,12 @@ export default {
       filmobj: { },
       filminfo: ['Тип:', 'Год производства:',  'Страны:', 'Длительность:', 'Жанры:', 'Режиссеры:', 'Актеры:'],
       filmrating: ['Оценка Кинопоиск:', 'Оценка IMB:', 'Оценка MediaTracker:'],
+
+      reviews: [{id: 1, username: 'f',   profurl: "https://avtozaryad.ru/local/templates/main/assets/images/user.png", mark: 5, text: 'dddddddsfdfdfdfdfd'}, 
+                {id: 2, username: 'f54', profurl: "https://avtozaryad.ru/local/templates/main/assets/images/user.png", mark: 10, text: 'dddddddsfdfdfdfdfd'},
+               ],
+      selectedValMark: '-',
+      textareamsg: '',
     };
   },
 
@@ -146,13 +142,18 @@ export default {
            console.error('Ошибка получения данных с бекенда', error);
         });
       },
+
+      createMessageElement(){
+        if (this.selectedValMark !== '-' && this.textareamsg !== ''){
+          this.reviews.push({id: null, username: 'newuser', profurl: "https://avtozaryad.ru/local/templates/main/assets/images/user.png", mark: this.selectedValMark, text: this.textareamsg});
+        }
+      },
+
     },
 
 };
 </script>
 
 <style scoped>
-
-@import "~@/assets/css/cur-obj-page.scss";
-@import "~@/assets/css/review-messages.scss";
+  @import "~@/assets/css/cur-obj-page.scss";
 </style>

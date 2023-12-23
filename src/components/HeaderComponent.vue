@@ -2,7 +2,10 @@
   <label for="nav-toggle" class="nav-toggle" onclick></label>
   <header>
     <div class="header-div">
-      <img src="~@/assets/general_assets/headerbackground7366-mdt-200h.png" alt="background" class="header-background" />
+      <div class="logo" @click="$router.push('/')">
+        <span class="logo-text">Media Tracker</span>
+        <img src="~@/assets/general_assets/onlinegaming17375-egk-200h.png" class="onlinegaming1" />
+      </div>
       <div class="search">
         <div class="search-field">
           <div class="search-content-select">
@@ -16,10 +19,6 @@
           <a href="/films"><img src="~@/assets/general_assets/tailicon7371-ey4g.svg" class="search-icon" /></a>
         </div>
       </div>
-      <a href="/" class="logo">
-        <img src="~@/assets/general_assets/onlinegaming17375-egk-200h.png" class="onlinegaming1" />
-        <span class="logo-text"><span>Media Tracker</span></span>
-      </a>
     </div>
   </header>
   <footer>
@@ -27,8 +26,7 @@
   </footer>
   <HamburgerMenu/>
   <div class="background"></div>
-  <div class="background-filter"></div>`
-  })
+  <div class="background-filter"></div>
 </template>
 
 <script>
