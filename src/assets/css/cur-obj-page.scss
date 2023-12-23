@@ -139,7 +139,16 @@ textarea {
   font-size: 20px;
 }
 
-
+.review-block {
+  width: 100%;
+  display: flex;
+  padding: 20px 60px;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+  box-sizing: border-box;
+  flex-direction: column;
+}
 
 
 .game-block {
