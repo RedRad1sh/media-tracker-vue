@@ -13,7 +13,8 @@
                         :contentData="createBookCard(item)" />
                 </div>
             </div>
-            <PaginationElement :totalPages="23" :currentPage="1" />
+            <PaginationElement :totalPages="this.totalPages"
+                :currentPage="this.$route.query.page ? this.$route.query.page : 1" />
         </div>
     </div>
 </template>
@@ -22,9 +23,10 @@
 import MenuComponent from '@/components/navigation/MenuComponent.vue';
 import { ContentData } from '@/components/internal/CardComponent.vue';
 import CardComponent from '@/components/internal/CardComponent.vue';
-import { presaved_json } from "@/assets/js/content-lists/pre-saved-jsons/books_presaved.js";
 import ContentFilters from '@/components/UI/ContentFilters.vue';
 import PaginationElement from '@/components/UI/PaginationElement.vue';
+import axios from 'axios';
+import { config } from '@/config/config.js';
 
 const lists = ["Запланировано", "Читаю", "Прочитано"];
 const genres = [
@@ -46,14 +48,11 @@ const genres = [
 ];
 
 export function createBookCard(bookResponse) {
-    const image_src = bookResponse.volumeInfo.imageLinks.large
-        || bookResponse.volumeInfo.imageLinks.medium
-        || bookResponse.volumeInfo.imageLinks.small ||
-        bookResponse.volumeInfo.imageLinks.thumbnail;
-    const category = bookResponse.volumeInfo.categories[0];
-    const title = bookResponse.volumeInfo.title;
-    const description = bookResponse.volumeInfo.description;
-    const extra_prop = bookResponse.volumeInfo.authors[0];
+    const image_src = bookResponse.img_url;
+    const category = bookResponse.categories_ru ?? bookResponse.categories;
+    const title = bookResponse.title;
+    const description = bookResponse.description;
+    const extra_prop = bookResponse.authors;
     return new ContentData(image_src, "", category, title, description, extra_prop)
 }
 
@@ -61,14 +60,41 @@ export default {
     name: 'BooksPage',
     components: { MenuComponent, CardComponent, ContentFilters, PaginationElement },
     methods: {
-        createBookCard: createBookCard
+        createBookCard: createBookCard,
+        getBooksById(query) {
+            console.log(config)
+            let backendUrl = `${config.backend.url}/books?page=${query.page - 1 ?? 0}&size=20&search=${query.search ?? ""}`
+            console.log(backendUrl);
+
+            axios.get(backendUrl)
+                .then(response => {
+                    this.booksData = response.data.data;
+                    this.totalPages = response.data.totalPages
+                    this.scrollToTop()
+                })
+                .catch(error => {
+                    console.error('Ошибка получения данных с бекенда', error);
+                });
+        },
+        scrollToTop() {
+            window.scrollTo(0, 0);
+        }
     },
     data() {
         return {
             type: "BOOK",
-            booksData: presaved_json.items,
+            booksData: [],
             genres: genres,
-            lists: lists
+            lists: lists,
+            totalPages: 10
+        }
+    },
+    mounted() {
+        this.getBooksById(this.$route.query)
+    },
+    watch: {
+        '$route'(to) {
+            this.getBooksById(to.query)
         }
     }
 }

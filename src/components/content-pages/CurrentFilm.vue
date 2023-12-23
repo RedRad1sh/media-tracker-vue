@@ -92,6 +92,7 @@ import SelectionContent from "@/components/UI/SelectionContent.vue";
 import InfoforCurrentPage from "@/components/InfoforCurrentPage.vue";
 import ReviewMessage from "@/components/ReviewMessage.vue";
 import axios from 'axios';
+import {config} from '@/config/config.js';
 
 export default {
   name: "CurrentFilm",
@@ -130,7 +131,7 @@ export default {
 
   methods: {
       getMoviebyId(){
-        let backendUrl = 'http://localhost:3000/movies/' + this.$route.params.id;
+        let backendUrl = `${config.backend.url}/movies/` + this.$route.params.id;
         console.log(backendUrl);
 
         axios.get(backendUrl)

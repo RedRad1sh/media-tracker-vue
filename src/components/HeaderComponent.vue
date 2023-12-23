@@ -9,14 +9,15 @@
       <div class="search">
         <div class="search-field">
           <div class="search-content-select">
-            <select>
-              <option selected>Фильмы</option>
-              <option>Книги</option>
-              <option>Игры</option>
+            <select v-model="content">
+              <option selected value="movies">Фильмы</option>
+              <option value="books">Книги</option>
+              <option value="games">Игры</option>
             </select>
           </div>
-          <input type="text" class="search-input" />
-          <a href="/films"><img src="~@/assets/general_assets/tailicon7371-ey4g.svg" class="search-icon" /></a>
+          <input v-model="message" type="text" class="search-input" />
+          <a @click="$router.push(`/${content}?search=${message}`)"><img
+              src="~@/assets/general_assets/tailicon7371-ey4g.svg" class="search-icon" /></a>
         </div>
       </div>
     </div>
@@ -24,7 +25,7 @@
   <footer>
     <div class="footer-text">MediaTracker 2023</div>
   </footer>
-  <HamburgerMenu/>
+  <HamburgerMenu />
   <div class="background"></div>
   <div class="background-filter"></div>
 </template>
@@ -35,7 +36,12 @@ import HamburgerMenu from '@/components/UI/HamburgerMenu.vue';
 
 export default {
   name: 'HeaderComponent',
-  components: { HamburgerMenu }
+  components: { HamburgerMenu },
+  data() {
+    return {
+      content: 'movies'
+    }
+  }
 }
 
 </script>
