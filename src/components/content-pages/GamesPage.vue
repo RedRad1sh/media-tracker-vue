@@ -62,19 +62,21 @@ export default {
     components: { MenuComponent, CardComponent, ContentFilters, PaginationElement },
     methods: {
         getGameById(query) {
-            console.log(config)
-            let backendUrl = `${config.backend.url}/games?page=${query.page - 1 ?? 0}&size=20&search=${query.search ?? ""}`
-            console.log(backendUrl);
+            let backendUrl = `${config.backend.url}/games`
 
-            axios.get(backendUrl)
-                .then(response => {
-                    this.gamesData = response.data.data;
-                    this.totalPages = response.data.totalPages
-                    this.scrollToTop()
-                })
-                .catch(error => {
-                    console.error('Ошибка получения данных с бекенда', error);
-                });
+            axios.get(backendUrl, {
+                params: {
+                    page: query.page - 1 ?? 0,
+                    size: 20,
+                    search: query.search ?? ""
+                }
+            }).then(response => {
+                this.gamesData = response.data.data;
+                this.totalPages = response.data.totalPages
+                this.scrollToTop()
+            }).catch(error => {
+                console.error('Ошибка получения данных с бекенда', error);
+            });
         },
         createGameCard: createGameCard,
         scrollToTop() {

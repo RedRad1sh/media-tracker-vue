@@ -62,19 +62,21 @@ export default {
     methods: {
         createBookCard: createBookCard,
         getBooksById(query) {
-            console.log(config)
-            let backendUrl = `${config.backend.url}/books?page=${query.page - 1 ?? 0}&size=20&search=${query.search ?? ""}`
-            console.log(backendUrl);
+            let backendUrl = `${config.backend.url}/books`
 
-            axios.get(backendUrl)
-                .then(response => {
-                    this.booksData = response.data.data;
-                    this.totalPages = response.data.totalPages
-                    this.scrollToTop()
-                })
-                .catch(error => {
-                    console.error('Ошибка получения данных с бекенда', error);
-                });
+            axios.get(backendUrl, {
+                params: {
+                    page: query.page - 1 ?? 0,
+                    size: 20,
+                    search: query.search ?? ""
+                }
+            }).then(response => {
+                this.booksData = response.data.data;
+                this.totalPages = response.data.totalPages
+                this.scrollToTop()
+            }).catch(error => {
+                console.error('Ошибка получения данных с бекенда', error);
+            });
         },
         scrollToTop() {
             window.scrollTo(0, 0);
