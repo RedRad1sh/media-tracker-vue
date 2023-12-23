@@ -1,7 +1,6 @@
 <template>
     <div class="block">
         <MenuComponent id="menu-include" active-element="0" />
-        {{ console.log(page) }}
         <div class="content-main">
             <div class="block-row" style="justify-content: center">
                 <div class="content-header">Фильмы</div>
@@ -103,7 +102,6 @@ export default {
 </script>
 
 <style scoped>
-@import "~@/assets/css/nav-right.scss";
 @import "~@/assets/css/cards.scss";
 @import "~@/assets/css/content-list.scss";
 @import "~@/assets/css/styles.scss";

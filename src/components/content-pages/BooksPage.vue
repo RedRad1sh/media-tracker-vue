@@ -100,8 +100,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-@import "~@/assets/css/nav-right.scss";
+<style scoped>
 @import "~@/assets/css/cards.scss";
 @import "~@/assets/css/content-list.scss";
 @import "~@/assets/css/styles.scss";
