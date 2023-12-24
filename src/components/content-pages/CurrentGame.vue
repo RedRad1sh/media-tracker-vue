@@ -128,7 +128,7 @@
 
 
     mounted() {
-      this.getGmebyId();
+      this.getGamebyId();
     },
   
     computed:{
@@ -142,7 +142,7 @@
     },
 
     methods: {
-      getGmebyId(){
+      getGamebyId(){
         let backendUrl = 'http://localhost:3000/games/' + this.$route.params.id;
         console.log(backendUrl);
 

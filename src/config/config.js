@@ -1,3 +1,8 @@
-var yaml_config = require('node-yaml-config');
+import yaml from '!!yaml-loader!./config.yml';
 
-var config = yaml_config.load(__dirname + './config.yaml');
+export let config;
+if (process.env.NODE_ENV === 'production') {
+    config = yaml.production;
+} else {
+    config = yaml.development;
+}

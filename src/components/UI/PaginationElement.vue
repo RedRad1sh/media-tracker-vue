@@ -2,7 +2,7 @@
     <div class="pagination">
         <a href="#">&laquo;</a>
         <a :class="elementSelect(`${index}`)" v-for="index in pagination(currentPage, totalPages)"
-            @click="this.$router.push(`?page=${index}`)" :ref="`page-${index}`" :key="index">{{
+            @click="this.$router.push({query: {...this.$route.query, page: index}})" :ref="`page-${index}`" :key="index">{{
                 index }}</a>
         <a href="#">&raquo;</a>
     </div>
