@@ -5,19 +5,26 @@
             <div class="block-row" style="justify-content: center">
                 <div class="content-header">Фильмы</div>
                 <div class="content-header" id="page-number">Страница №{{ this.$route.query.page ?? 1 }}
-                    <span v-if="![undefined, null, ''].includes(this.$route.query.search)">Поиск: {{
-                        this.$route.query.search }}</span>
+                    <span v-if="![undefined, null, ''].includes(this.$route.query.search)">
+                      Поиск: {{ this.$route.query.search }}
+                    </span>
                 </div>
             </div>
             <div id="content-container">
                 <ContentFilters :lists="lists" :genres="genres" />
                 <div class="content-cards" id="film-cards-container">
-                    <CardComponent :ObjectType="type" v-for="item in filmsData" :key="item.id"
-                        :contentData="createFilmCard(item)"></CardComponent>
+                    <CardComponent
+                        :ObjectType="type"
+                        v-for="item in filmsData"
+                        :key="item.id"
+                        :contentData="createFilmCard(item)"
+                    />
                 </div>
             </div>
-            <PaginationElement :totalPages="this.totalPages"
-                :currentPage="this.$route.query.page ? this.$route.query.page : 1" />
+            <PaginationElement
+                :totalPages="this.totalPages"
+                :currentPage="this.$route.query.page ? Number(this.$route.query.page) : 1"
+            />
         </div>
     </div>
 </template>
@@ -54,14 +61,21 @@ export default {
     name: 'FilmsPage',
     components: { MenuComponent, CardComponent, ContentFilters, PaginationElement },
     methods: {
-        getMoviesById(query) {
+        getMovies(query) {
+            this.filmsData = [];
             let backendUrl = `${config.backend.url}/movies`
+            const page = query.page ?
+                query.page - 1
+                : 0;
+            const search = query.search ?
+                query.search
+                : "";
 
             axios.get(backendUrl, {
                 params: {
-                    page: query.page - 1 ?? 0,
+                    page: page,
                     size: 20,
-                    search: query.search ?? ""
+                    search: search
                 }
             }).then(response => {
                 this.filmsData = response.data.data;
@@ -85,7 +99,7 @@ export default {
         }
     },
     mounted() {
-        this.getMoviesById(this.$route.query)
+        this.getMovies(this.$route.query)
     },
     data() {
         return {
@@ -98,7 +112,7 @@ export default {
     },
     watch: {
         '$route'(to) {
-            this.getMoviesById(to.query)
+            this.getMovies(to.query)
         }
     }
 }
@@ -108,4 +122,5 @@ export default {
 <style scoped>
 @import "~@/assets/css/cards.scss";
 @import "~@/assets/css/content-list.scss";
-@import "~@/assets/css/styles.scss";</style>
+@import "~@/assets/css/styles.scss";
+</style>

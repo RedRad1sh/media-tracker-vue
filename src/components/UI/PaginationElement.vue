@@ -1,9 +1,13 @@
 <template>
     <div class="pagination">
         <a href="#">&laquo;</a>
-        <a :class="elementSelect(`${index}`)" v-for="index in pagination(currentPage, totalPages)"
-            @click="this.$router.push({query: {...this.$route.query, page: index}})" :ref="`page-${index}`" :key="index">{{
-                index }}</a>
+        <a :class="Number(currentPage) === index ? 'page-active-button' : ''"
+           v-for="index in pagination(currentPage, totalPages)"
+           @click="this.$router.push({query: {...this.$route.query, page: index}})"
+           :ref="`page-${index}`"
+           :key="index">
+          {{ index }}
+        </a>
         <a href="#">&raquo;</a>
     </div>
 </template>
@@ -26,13 +30,6 @@ export default {
     methods: {
         pagination(currentPageNumber, totalPageNumber) {
             return generate(currentPageNumber, totalPageNumber);
-        },
-        elementSelect(pageNum) {
-            if (pageNum == this.currentPage) {
-                console.log(this.currentPage)
-                return 'page-active-button'
-            }
-            return ''
         }
     }
 }
