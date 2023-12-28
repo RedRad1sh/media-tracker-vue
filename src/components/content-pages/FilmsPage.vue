@@ -31,6 +31,17 @@ import { ContentData } from '@/components/internal/CardComponent.vue';
 import axios from 'axios';
 import { config } from '@/config/config.js';
 
+export function createFilmCard(filmResponse) {
+    const id = filmResponse.const_content_id;
+    const content_type = 'current-film'
+    const image_src = filmResponse.img_url;
+    const category = filmResponse.genres;
+    const title = filmResponse.title;
+    const description = filmResponse.description;
+    const extra_prop = filmResponse.creation_year;
+    return new ContentData(id, content_type, image_src, "", category, title, description, extra_prop)
+}
+
 const lists = ["Запланировано", "Смотрю", "Просмотрено"];
 const genres = [
     'Драма',
@@ -59,7 +70,7 @@ export default {
 
             axios.get(backendUrl, {
                 params: {
-                    page: query.page - 1 ?? 0,
+                    page: (query.page ?? 1) - 1,
                     size: 20,
                     search: query.search ?? ""
                 }
@@ -71,14 +82,7 @@ export default {
                 console.error('Ошибка получения данных с бекенда', error);
             });
         },
-        createFilmCard(filmResponse) {
-            const image_src = filmResponse.img_url;
-            const category = filmResponse.genres;
-            const title = filmResponse.title;
-            const description = filmResponse.description;
-            const extra_prop = filmResponse.creation_year;
-            return new ContentData(image_src, "", category, title, description, extra_prop)
-        },
+        createFilmCard: createFilmCard,
 
         scrollToTop() {
             window.scrollTo(0, 0);
@@ -108,4 +112,5 @@ export default {
 <style scoped>
 @import "~@/assets/css/cards.scss";
 @import "~@/assets/css/content-list.scss";
-@import "~@/assets/css/styles.scss";</style>
+@import "~@/assets/css/styles.scss";
+</style>
