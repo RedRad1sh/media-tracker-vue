@@ -4,17 +4,27 @@
         <div class="content-main">
             <div class="block-row" style="justify-content: center">
                 <div class="content-header">Игры</div>
-                <div class="content-header" id="page-number">1 страница</div>
+                <div class="content-header" id="page-number">Страница №{{ this.$route.query.page ?? 1 }}
+                    <span v-if="![undefined, null, ''].includes(this.$route.query.search)">
+                        Поиск: {{ this.$route.query.search }}
+                    </span>
+                </div>
             </div>
             <div id="content-container">
                 <ContentFilters :lists="lists" :genres="genres" />
                 <div class="content-cards" id="film-cards-container">
-                    <CardComponent :ObjectType="type" v-for="item in gamesData" :key="item.id"
-                        :contentData="createGameCard(item)" />
+                    <CardComponent
+                        :ObjectType="type"
+                        v-for="item in gamesData"
+                        :key="item.id"
+                        :contentData="createGameCard(item)"
+                    />
                 </div>
             </div>
-            <PaginationElement :totalPages="this.totalPages"
-                :currentPage="this.$route.query.page ? this.$route.query.page : 1" />
+            <PaginationElement
+                :totalPages="this.totalPages"
+                :currentPage="this.$route.query.page ? Number(this.$route.query.page) : 1"
+            />
         </div>
     </div>
 </template>
@@ -61,14 +71,21 @@ export default {
     name: 'GamesPage',
     components: { MenuComponent, CardComponent, ContentFilters, PaginationElement },
     methods: {
-        getGameById(query) {
+        getGames(query) {
+            this.gamesData = [];
             let backendUrl = `${config.backend.url}/games`
+            const page = query.page ?
+                query.page - 1
+                : 0;
+            const search = query.search ?
+                query.search
+                : "";
 
             axios.get(backendUrl, {
                 params: {
-                    page: query.page - 1 ?? 0,
+                    page: page,
                     size: 20,
-                    search: query.search ?? ""
+                    search: search
                 }
             }).then(response => {
                 this.gamesData = response.data.data;
@@ -83,7 +100,7 @@ export default {
             window.scrollTo(0, 0);
         }
     }, mounted() {
-        this.getGameById(this.$route.query)
+        this.getGames(this.$route.query)
     }, data() {
         return {
             type: "GAME",
@@ -95,7 +112,7 @@ export default {
     }, watch: {
         '$route'(to) {
             // Do something with the updated value.
-            this.getGameById(to.query)
+            this.getGames(to.query)
         }
     }
 }

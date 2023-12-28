@@ -4,17 +4,27 @@
         <div class="content-main">
             <div class="block-row" style="justify-content: center">
                 <div class="content-header">Книги</div>
-                <div class="content-header" id="page-number">1 страница</div>
+                <div class="content-header" id="page-number">Страница №{{ this.$route.query.page ?? 1 }}
+                    <span v-if="![undefined, null, ''].includes(this.$route.query.search)">
+                        Поиск: {{ this.$route.query.search }}
+                    </span>
+                </div>
             </div>
             <div id="content-container">
                 <ContentFilters :lists="lists" :genres="genres" />
                 <div class="content-cards" id="books-cards-container">
-                    <CardComponent :ObjectType="type" v-for="item in booksData" :key="item.id"
-                        :contentData="createBookCard(item)" />
+                    <CardComponent
+                        :ObjectType="type"
+                        v-for="item in booksData"
+                        :key="item.id"
+                        :contentData="createBookCard(item)"
+                    />
                 </div>
             </div>
-            <PaginationElement :totalPages="this.totalPages"
-                :currentPage="this.$route.query.page ? this.$route.query.page : 1" />
+            <PaginationElement
+                :totalPages="this.totalPages"
+                :currentPage="this.$route.query.page ? Number(this.$route.query.page) : 1"
+            />
         </div>
     </div>
 </template>
@@ -61,14 +71,21 @@ export default {
     components: { MenuComponent, CardComponent, ContentFilters, PaginationElement },
     methods: {
         createBookCard: createBookCard,
-        getBooksById(query) {
+        getBooks(query) {
+            this.booksData = [];
             let backendUrl = `${config.backend.url}/books`
+            const page = query.page ?
+                query.page - 1
+                : 0;
+            const search = query.search ?
+                query.search
+                : "";
 
             axios.get(backendUrl, {
                 params: {
-                    page: query.page - 1 ?? 0,
+                    page: page,
                     size: 20,
-                    search: query.search ?? ""
+                    search: search
                 }
             }).then(response => {
                 this.booksData = response.data.data;
@@ -92,11 +109,11 @@ export default {
         }
     },
     mounted() {
-        this.getBooksById(this.$route.query)
+        this.getBooks(this.$route.query)
     },
     watch: {
         '$route'(to) {
-            this.getBooksById(to.query)
+            this.getBooks(to.query)
         }
     }
 }
