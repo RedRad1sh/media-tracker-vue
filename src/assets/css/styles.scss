@@ -148,7 +148,6 @@ header {
 
 .logo {
     display: flex;
-    align-items: flex-start;
     align-items: center;
     gap: 10px;
     cursor: pointer;
@@ -374,6 +373,7 @@ select option:hover {
 }
 
 .pagination a {
+    cursor: pointer;
     color: white;
     float: left;
     padding: 8px 16px;
