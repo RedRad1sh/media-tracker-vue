@@ -1,5 +1,5 @@
 <template>
-    <select v-model="selectedValue">
+    <select v-model="selectedValue" @change="switchSelect($event)">
       <option value="-">-</option>
       <option v-for="cnttype in arraylist" :key="cnttype" :value="cnttype">{{ cnttype }}</option>
     </select>
@@ -34,7 +34,28 @@
           return [];
         }
       },
-    }
+    },
+
+    methods:{
+      switchSelect(event){
+        this.selectedValue = event.target.value;
+        let backendUrl = 'http://localhost:3000/add-user-lists';
+        const dataToSend = {
+        myProp: this.myProp,
+        };
+
+        if ( this.selectedValue !== '-')
+        {
+          axios.post(backendUrl, dataToSend)
+            .then(response => {
+               console.log('Успешно отправлено:', response.data);
+             })
+             .catch(error => {
+               console.error('Ошибка при отправке данных:', error);
+             });
+        } 
+      }
+    },
   };
   </script>
   
