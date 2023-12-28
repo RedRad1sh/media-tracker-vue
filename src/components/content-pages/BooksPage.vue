@@ -58,12 +58,14 @@ const genres = [
 ];
 
 export function createBookCard(bookResponse) {
+    const id = bookResponse.const_content_id;
+    const content_type = 'current-book'
     const image_src = bookResponse.img_url;
     const category = bookResponse.categories_ru ?? bookResponse.categories;
     const title = bookResponse.title;
     const description = bookResponse.description;
     const extra_prop = bookResponse.authors;
-    return new ContentData(image_src, "", category, title, description, extra_prop)
+    return new ContentData(id, content_type, image_src, "", category, title, description, extra_prop)
 }
 
 export default {

@@ -58,13 +58,15 @@ const genres = [
 ];
 
 export function createGameCard(gameResponse) {
+    const id = gameResponse.const_content_id;
+    const content_type = 'current-game'
     const image_src = `https://cdn.cloudflare.steamstatic.com/steam/apps/${gameResponse.steam_app_id}/hero_capsule.jpg`;
     const alt_image = gameResponse.img_url;
     const category = gameResponse.genres;
     const title = gameResponse.title;
     const description = gameResponse.short_description || gameResponse.description;
     const extra_prop = gameResponse.developers;
-    return new ContentData(image_src, alt_image, category, title, description, extra_prop)
+    return new ContentData(id, content_type, image_src, alt_image, category, title, description, extra_prop)
 }
 
 export default {

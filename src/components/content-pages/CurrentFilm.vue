@@ -131,8 +131,7 @@ export default {
 
   methods: {
       getMoviebyId(){
-        let backendUrl = `${config.backend.url}/movies/` + this.$route.params.id;
-        console.log(backendUrl);
+        let backendUrl = `${config.backend.url}/movies/movie/` + this.$route.params.id;
 
         axios.get(backendUrl)
           .then(response => {

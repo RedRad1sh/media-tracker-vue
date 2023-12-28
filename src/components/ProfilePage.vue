@@ -46,7 +46,6 @@ import MenuComponent from './navigation/MenuComponent.vue';
 import { Chart, registerables } from 'chart.js'
 Chart.register(...registerables);
 function createPieChart(elementName, header, keys, values) {
-    console.log(document)
     const ctx = document.getElementById(elementName);
 
     new Chart(ctx, {
@@ -95,19 +94,29 @@ export default {
     components: {
         MenuComponent
     },
+    methods: {
+        createCharts() {
+            createPieChart('contentChart', 'Просмотренный контент',
+                ['Фильмы', 'Книги', 'Игры'],
+                [19, 12, 3]);
+            createPieChart('kinoChart', 'Фильмы',
+                ['Комедия', 'Боевик', 'Фантастика', 'Драма', 'Триллер', 'Ужасы', 'Приключения', 'Мультфильм'],
+                [7, 10, 23, 15, 8, 5, 12, 9]);
+            createPieChart('booksChart', 'Книги',
+                ['Детектив', 'Фэнтези', 'Ужасы', 'Роман', 'Классика', 'Приключения', 'Научная литература', 'Биография'],
+                [19, 12, 3, 8, 15, 6, 10, 5]);
+            createPieChart('gameChart', 'Игры',
+                ['Шутер', 'Симулятор', 'Стратегия', 'Rogue-like', 'Платформер', 'Гонки', 'Ролевая', 'Аркада'],
+                [19, 12, 3, 2, 8, 6, 15, 5]);
+        }
+    },
     mounted() {
-        createPieChart('contentChart', 'Просмотренный контент',
-            ['Фильмы', 'Книги', 'Игры'],
-            [19, 12, 3]);
-        createPieChart('kinoChart', 'Фильмы',
-            ['Комедия', 'Боевик', 'Фантастика', 'Драма', 'Триллер', 'Ужасы', 'Приключения', 'Мультфильм'],
-            [7, 10, 23, 15, 8, 5, 12, 9]);
-        createPieChart('booksChart', 'Книги',
-            ['Детектив', 'Фэнтези', 'Ужасы', 'Роман', 'Классика', 'Приключения', 'Научная литература', 'Биография'],
-            [19, 12, 3, 8, 15, 6, 10, 5]);
-        createPieChart('gameChart', 'Игры',
-            ['Шутер', 'Симулятор', 'Стратегия', 'Rogue-like', 'Платформер', 'Гонки', 'Ролевая', 'Аркада'],
-            [19, 12, 3, 2, 8, 6, 15, 5]);
+        this.createCharts()
+    },
+    watch: {
+        '$route'() {
+            this.createCharts()
+        }
     }
 }
 </script>

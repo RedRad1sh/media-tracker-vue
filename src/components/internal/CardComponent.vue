@@ -1,6 +1,6 @@
 <template>
   <div class="card-container">
-    <a href="film-page.html" style="width: 100%" @click="this.$router.push({ path: '/FilmPage' })">
+    <a style="width: 100%" @click="this.$router.push({ path: `/${contentData.content_type}/${contentData.id}` })">
       <div class="card-top">
         <img
             :src="contentData.img_src"
@@ -46,7 +46,9 @@ import SelectionContent from "@/components/UI/SelectionContent.vue";
 const DEFAULT_IMG = "https://i.pinimg.com/originals/a6/15/46/a6154624251b16c421b23da5c9511000.jpg";
 
 export class ContentData {
-  constructor(img_src, alt_image, category, title, description, extra_prop) {
+  constructor(id, type, img_src, alt_image, category, title, description, extra_prop) {
+    this.id = id;
+    this.content_type = type;
     this.img_src = img_src;
     this.category = category;
     this.alt_image = alt_image;
