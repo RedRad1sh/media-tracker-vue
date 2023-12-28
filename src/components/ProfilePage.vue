@@ -115,7 +115,6 @@ export default {
     },
     watch: {
         '$route'() {
-            console.log(this.$route.params);
             this.createCharts()
         }
     }

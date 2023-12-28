@@ -144,7 +144,6 @@
     methods: {
       getGamebyId(){
         let backendUrl = 'http://localhost:3000/games/game/' + this.$route.params.id;
-        console.log(backendUrl);
 
         axios.get(backendUrl)
           .then(response => {
