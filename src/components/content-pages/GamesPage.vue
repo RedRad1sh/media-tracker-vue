@@ -105,7 +105,7 @@ export default {
         this.getGames(this.$route.query)
     }, data() {
         return {
-            type: "GAME",
+            type: "Game",
             gamesData: [],
             genres: genres,
             lists: lists,

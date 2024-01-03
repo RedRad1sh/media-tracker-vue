@@ -103,7 +103,7 @@ export default {
     },
     data() {
         return {
-            type: "BOOK",
+            type: "Book",
             booksData: [],
             genres: genres,
             lists: lists,

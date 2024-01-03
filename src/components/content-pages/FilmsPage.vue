@@ -107,7 +107,7 @@ export default {
     },
     data() {
         return {
-            type: "FILM",
+            type: "Movie",
             filmsData: [],
             genres: genres,
             lists: lists,

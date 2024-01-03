@@ -20,6 +20,7 @@
           <ContentTableList
               :content="content.value.filter(film => film.statusType === index - 1)"
               :statuses="content.statuses"
+              @removeElement="removeInList"
           />
         </div>
       </div>
@@ -72,17 +73,23 @@ export default {
           this.headers = filmHeaders;
           break;
         case "BOOK":
+          this.content.value = [];
           this.content.value = books;
           this.content.statuses = bookStatuses;
           this.headers = bookHeaders;
           break;
         case "GAME":
+          this.content.value = [];
           this.content.value = games;
           this.content.statuses = gameStatuses;
           this.headers = gameHeaders;
           break;
       }
-    }
+    },
+    removeInList(index){
+        console.log (index);
+        this.content.value.splice(this.content.value.indexOf(index), 1);
+    },
   }
 }
 </script>

@@ -6,9 +6,16 @@
   </template>
   
   <script>
+  import axios from 'axios';
+  import { config } from '@/config/config.js';
+
   export default {
     props: {
         ObjectType: {
+            type: String,
+            required: true,
+        },
+        ObjectId: {
             type: String,
             required: true,
         }
@@ -21,13 +28,13 @@
     },
     computed:{
       arraylist() {
-        if (this.ObjectType === 'FILM') {
+        if (this.ObjectType === 'Movie') {
           return ['Запланировано', 'Смотрю', 'Просмотрено'];
         } 
-        else if (this.ObjectType === 'GAME') {
+        else if (this.ObjectType === 'Game') {
           return ['Запланировано', 'Прохожу', 'Пройдено'];
         }
-        else if (this.ObjectType === 'BOOK') {
+        else if (this.ObjectType === 'Book') {
           return ['Запланировано', 'Читаю', 'Прочитано'];
         }
         else { 
@@ -39,14 +46,19 @@
     methods:{
       switchSelect(event){
         this.selectedValue = event.target.value;
-        let backendUrl = 'http://localhost:3000/add-user-lists';
-        const dataToSend = {
-        myProp: this.myProp,
-        };
+        let backendUrl =  `${config.backend.url}/lists`;
 
-        if ( this.selectedValue !== '-')
+        const dataToSend = {
+          user_id : '658891c99f8aaf381016ebd0',
+          content_type: this.ObjectType,
+          content_id: this.ObjectId,
+          action: this.selectedValue
+        };
+        console.log(dataToSend);
+
+        if ( dataToSend.action !== '-')
         {
-          axios.post(backendUrl, dataToSend)
+          axios.put(backendUrl, dataToSend)
             .then(response => {
                console.log('Успешно отправлено:', response.data);
              })

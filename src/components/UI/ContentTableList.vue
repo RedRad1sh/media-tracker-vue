@@ -33,7 +33,7 @@
             </select>
           </label>
         </td>
-        <td class="cell-value number" style="color:red;cursor:pointer">X</td>
+        <td class="cell-value number" style="color:red;cursor:pointer" @click="deleteRowContent(film)">X</td>
       </tr>
     </tbody>
   </table>
@@ -52,6 +52,12 @@ export default {
   data() {
     return {
       selectedStatusId: null
+    }
+  },
+
+  methods:{
+    deleteRowContent(film){
+      this.$emit('removeElement', film);
     }
   }
 }

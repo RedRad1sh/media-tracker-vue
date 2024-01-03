@@ -100,7 +100,7 @@ export default {
 
   data() {
     return {
-      type: "FILM",
+      type: "Movie",
       filmobj: { },
       filminfo: ['Тип:', 'Год производства:',  'Страны:', 'Длительность:', 'Жанры:', 'Режиссеры:', 'Актеры:'],
       filmrating: ['Оценка Кинопоиск:', 'Оценка IMB:', 'Оценка MediaTracker:'],
