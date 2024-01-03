@@ -11,7 +11,11 @@
                 </div>
             </div>
             <div id="content-container">
-                <ContentFilters :lists="lists" :genres="genres" />
+                <ContentFilters
+                    :lists="lists"
+                    :genres="genres"
+                    @addGenre="changeGenres"
+                />
                 <div class="content-cards" id="books-cards-container">
                     <CardComponent
                         :ObjectType="type"
@@ -39,23 +43,6 @@ import axios from 'axios';
 import { config } from '@/config/config.js';
 
 const lists = ["Запланировано", "Читаю", "Прочитано"];
-const genres = [
-    'Драма',
-    'Комедия',
-    'Фантастика',
-    'Боевик',
-    'Триллер',
-    'Ужасы',
-    'Приключения',
-    'Мультфильм',
-    'Романтика',
-    'Фэнтези',
-    'Детектив',
-    'Исторический',
-    'Вестерн',
-    'Мелодрама',
-    'Научная фантастика'
-];
 
 export function createBookCard(bookResponse) {
     const id = bookResponse.const_content_id;
@@ -87,7 +74,8 @@ export default {
                 params: {
                     page: page,
                     size: 20,
-                    search: search
+                    search: search,
+                    genres: Array.from(this.selectedGenres)
                 }
             }).then(response => {
                 this.booksData = response.data.data;
@@ -97,25 +85,46 @@ export default {
                 console.error('Ошибка получения данных с бекенда', error);
             });
         },
+        getBooksGenres() {
+            let backendUrl = `${config.backend.url}/books/genres`
+
+            axios.get(backendUrl).then(response => {
+                this.genres = response.data;
+            }).catch(error => {
+                console.error('Ошибка получения данных с бекенда', error);
+            });
+        },
         scrollToTop() {
             window.scrollTo(0, 0);
+        },
+        changeGenres(genre) {
+            if (this.selectedGenres.has(genre)) {
+                this.selectedGenres.delete(genre);
+            } else {
+                this.selectedGenres.add(genre);
+            }
+
+            this.getBooks(this.$route.query);
         }
     },
     data() {
         return {
             type: "Book",
             booksData: [],
-            genres: genres,
+            genres: [],
+            selectedGenres: new Set(),
             lists: lists,
             totalPages: 10
         }
     },
     mounted() {
-        this.getBooks(this.$route.query)
+        this.getBooks(this.$route.query);
+        this.getBooksGenres();
     },
     watch: {
         '$route'(to) {
-            this.getBooks(to.query)
+            this.getBooks(to.query);
+            this.getBooksGenres();
         }
     }
 }

@@ -11,7 +11,11 @@
                 </div>
             </div>
             <div id="content-container">
-                <ContentFilters :lists="lists" :genres="genres" />
+                <ContentFilters
+                    :lists="lists"
+                    :genres="genres"
+                    @addGenre="changeGenres"
+                />
                 <div class="content-cards" id="film-cards-container">
                     <CardComponent
                         :ObjectType="type"
@@ -50,23 +54,6 @@ export function createFilmCard(filmResponse) {
 }
 
 const lists = ["Запланировано", "Смотрю", "Просмотрено"];
-const genres = [
-    'Драма',
-    'Комедия',
-    'Фантастика',
-    'Боевик',
-    'Триллер',
-    'Ужасы',
-    'Приключения',
-    'Мультфильм',
-    'Романтика',
-    'Фэнтези',
-    'Детектив',
-    'Исторический',
-    'Вестерн',
-    'Мелодрама',
-    'Научная фантастика'
-];
 
 export default {
     name: 'FilmsPage',
@@ -86,7 +73,8 @@ export default {
                 params: {
                     page: page,
                     size: 20,
-                    search: search
+                    search: search,
+                    genres: Array.from(this.selectedGenres)
                 }
             }).then(response => {
                 this.filmsData = response.data.data;
@@ -96,27 +84,47 @@ export default {
                 console.error('Ошибка получения данных с бекенда', error);
             });
         },
-        createFilmCard: createFilmCard,
+        getMoviesGenres() {
+            let backendUrl = `${config.backend.url}/movies/genres`
 
+            axios.get(backendUrl).then(response => {
+                this.genres = response.data;
+            }).catch(error => {
+                console.error('Ошибка получения данных с бекенда', error);
+            });
+        },
+        createFilmCard: createFilmCard,
         scrollToTop() {
             window.scrollTo(0, 0);
+        },
+        changeGenres(genre) {
+            if (this.selectedGenres.has(genre)) {
+                this.selectedGenres.delete(genre);
+            } else {
+                this.selectedGenres.add(genre);
+            }
+
+            this.getMovies(this.$route.query);
         }
     },
     mounted() {
-        this.getMovies(this.$route.query)
+        this.getMovies(this.$route.query);
+        this.getMoviesGenres();
     },
     data() {
         return {
             type: "Movie",
             filmsData: [],
-            genres: genres,
+            genres: [],
+            selectedGenres: new Set(),
             lists: lists,
             totalPages: 10
         }
     },
     watch: {
         '$route'(to) {
-            this.getMovies(to.query)
+            this.getMovies(to.query);
+            this.getMoviesGenres();
         }
     }
 }

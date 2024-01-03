@@ -11,7 +11,11 @@
                 </div>
             </div>
             <div id="content-container">
-                <ContentFilters :lists="lists" :genres="genres" />
+                <ContentFilters
+                    :lists="lists"
+                    :genres="genres"
+                    @addGenre="changeGenres"
+                />
                 <div class="content-cards" id="film-cards-container">
                     <CardComponent
                         :ObjectType="type"
@@ -39,23 +43,6 @@ import axios from 'axios';
 import { config } from '@/config/config.js';
 
 const lists = ["Запланировано", "Играю", "Пройдено"];
-const genres = [
-    'Драма',
-    'Комедия',
-    'Фантастика',
-    'Боевик',
-    'Триллер',
-    'Ужасы',
-    'Приключения',
-    'Мультфильм',
-    'Романтика',
-    'Фэнтези',
-    'Детектив',
-    'Исторический',
-    'Вестерн',
-    'Мелодрама',
-    'Научная фантастика'
-];
 
 export function createGameCard(gameResponse) {
     const id = gameResponse.const_content_id;
@@ -87,7 +74,8 @@ export default {
                 params: {
                     page: page,
                     size: 20,
-                    search: search
+                    search: query.search ?? "",
+                    genres: Array.from(this.selectedGenres)
                 }
             }).then(response => {
                 this.gamesData = response.data.data;
@@ -97,24 +85,45 @@ export default {
                 console.error('Ошибка получения данных с бекенда', error);
             });
         },
+        getGamesGenres() {
+            let backendUrl = `${config.backend.url}/games/genres`
+
+            axios.get(backendUrl).then(response => {
+                this.genres = response.data;
+            }).catch(error => {
+                console.error('Ошибка получения данных с бекенда', error);
+            });
+        },
         createGameCard: createGameCard,
         scrollToTop() {
             window.scrollTo(0, 0);
+        },
+        changeGenres(genre) {
+            if (this.selectedGenres.has(genre)) {
+                this.selectedGenres.delete(genre);
+            } else {
+                this.selectedGenres.add(genre);
+            }
+
+            this.getGames(this.$route.query);
         }
     }, mounted() {
-        this.getGames(this.$route.query)
+        this.getGames(this.$route.query);
+        this.getGamesGenres();
     }, data() {
         return {
             type: "Game",
             gamesData: [],
-            genres: genres,
+            genres: [],
+            selectedGenres: new Set(),
             lists: lists,
             totalPages: 10
         }
     }, watch: {
         '$route'(to) {
             // Do something with the updated value.
-            this.getGames(to.query)
+            this.getGames(to.query);
+            this.getGamesGenres();
         }
     }
 }

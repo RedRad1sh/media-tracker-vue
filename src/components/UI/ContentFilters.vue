@@ -35,9 +35,9 @@
       <div class="subheadline">Жанры</div>
       <div class="b-spoiler"><label style="display: none;">Показать список</label>
         <ul>
-          <li v-for="genre in genres" :key="genre">
-            <input autocomplete="off" type="checkbox">
-            <label class="genre-ru">{{ genre }}</label>
+          <li v-for="genre in genres" :key="genre" class="genre">
+            <input autocomplete="off" type="checkbox" @change="addGenre(genre)">
+            <label class="genre-label">{{ genre }}</label>
           </li>
         </ul>
       </div>
@@ -82,10 +82,24 @@ export default {
       booksData: [],
       durations: durations
     }
+  },
+  methods: {
+    addGenre(genre) {
+      this.$emit("addGenre", genre);
+    }
   }
 }
 </script>
 
 <style scoped>
+.genre {
+  display: flex;
+  align-items: start;
+}
 
+.genre-label {
+  display: block;
+  width: 150px;
+  overflow-wrap: anywhere;
+}
 </style> 
