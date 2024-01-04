@@ -56,5 +56,17 @@
     "last 2 versions",
     "not dead",
     "not ie 11"
-  ]
+  ],
+  "description": "Дедлайн: надо сделать внезапно и срочно 22.12.2023",
+  "main": "babel.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RedRad1sh/media-tracker-vue.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RedRad1sh/media-tracker-vue/issues"
+  },
+  "homepage": "https://github.com/RedRad1sh/media-tracker-vue#readme"
 }

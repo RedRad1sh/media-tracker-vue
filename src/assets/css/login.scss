@@ -1,0 +1,118 @@
+.content-login {
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 3px;
+    align-content: flex-start;
+    align-items: flex-start
+}
+
+.content-login-row {
+    margin: 145px auto 0;
+    display: flex;
+    flex-direction: row;
+    border-radius: 3px;
+    background-color: rgba(183,182,224,.5);
+    width: 700px
+}
+
+.content-main,.tabs {
+    justify-content: center;
+    align-items: center;
+    margin: auto
+}
+
+input[type=password],input[type=text] {
+    padding: 10px;
+    margin: 10px 0;
+    border: 0;
+    box-shadow: 0 0 15px 4px var(--dl-half-transparent-2)
+}
+
+.tabs {
+    margin: 10px;
+    border-radius: 10px;
+    width: 100%;
+    z-index: 2;
+    display: flex;
+    height: 70px;
+}
+
+.tabbase,.tabbase-active {
+    text-decoration: none;
+    display: flex;
+    height: 30px;
+    overflow: hidden;
+    align-items: center;
+    border-radius: 5px
+}
+
+.tabbase-active {
+    height: 40px;
+    box-shadow: 0 1px 3px 0 rgba(47,43,67,.10000000149011612);
+    border-radius: 3px;
+    justify-content: center;
+    background-color: var(--dl-color-base-white);
+    color: #003eb3
+}
+
+.tabs li:not(:last-child) {
+    margin-right: 7px
+}
+
+.tabs li a {
+    display: block;
+    top: 4px;
+    padding: 10px 25px;
+    border-radius: 20px;
+    background: #fff;
+    opacity: .7;
+    color: #000743;
+    transition: all .1s ease-in-out
+}
+
+.tabs li a:hover,.tabs li.active a {
+    opacity: 1;
+    top: 0;
+    color: #000
+}
+
+.tabs-panel {
+    display: none;
+    width: 90%;
+    text-align: center
+}
+
+.tabs-panel.active {
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 20px
+}
+
+input[type=button] {
+    background-color: #7b88ff;
+    color: #fff;
+    border: 0;
+    width: 150px;
+    height: 30px;
+    cursor: pointer;
+}
+
+input[type=button]:hover {
+    background-color: #a4a1ff
+}
+
+input:invalid {
+    background-image: linear-gradient(to right,pink,#ffaf86)
+}
+
+@media screen and (max-width:900px) {
+    .content-login-row {
+        flex-direction: column;
+        width: 430px;
+        height: 60vh;
+        min-height: 700px;
+        margin: 100px auto auto
+    }
+}

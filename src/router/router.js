@@ -10,6 +10,7 @@ import CurrentFilm from '@/components/content-pages/CurrentFilm.vue'
 import CurrentGame from '@/components/content-pages/CurrentGame.vue'
 import UserLists from "@/components/UserLists"
 import CurrentBook from '@/components/content-pages/CurrentBook.vue'
+import LoginPage from "@/components/LoginPage";
 
 const routes = [
     {
@@ -61,6 +62,11 @@ const routes = [
         path: '/current-book/:id',
         meta: { title: 'Книга', showHeader: true },
         component: CurrentBook
+    },
+    {
+        path: '/login',
+        meta: { title: 'Авторизация', showHeader: true },
+        component: LoginPage
     },
 ]
 
