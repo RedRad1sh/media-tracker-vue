@@ -53,8 +53,7 @@
       </div>
       <div class="create-review">
         <div class="create-review-container">
-          <label class="text-block text-block-otz" for="review-field"
-          >Оставьте отзыв к книге:</label>
+          <label class="text-block text-block-otz" for="review-field">Оставьте отзыв к книге:</label>
           <br/>
           <textarea
               id="review-field"
