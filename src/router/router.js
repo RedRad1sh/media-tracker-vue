@@ -9,6 +9,7 @@ import ProfilePage from '@/components/ProfilePage.vue'
 import CurrentFilm from '@/components/content-pages/CurrentFilm.vue'
 import CurrentGame from '@/components/content-pages/CurrentGame.vue'
 import UserLists from "@/components/UserLists"
+import CurrentBook from '@/components/content-pages/CurrentBook.vue'
 
 const routes = [
     {
@@ -55,6 +56,11 @@ const routes = [
         path: '/profile/lists',
         meta: { title: 'Личные списки', showHeader: true },
         component: UserLists
+    },
+    {
+        path: '/current-book/:id',
+        meta: { title: 'Книга', showHeader: true },
+        component: CurrentBook
     },
 ]
 
