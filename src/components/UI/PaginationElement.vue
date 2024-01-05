@@ -5,7 +5,9 @@
            v-for="index in pagination(currentPage, totalPages)"
            @click="this.$router.push({query: {...this.$route.query, page: index}})"
            :ref="`page-${index}`"
-           :key="index">
+           :key="index"
+           :style="index === '…' ? 'pointer-events:none' : ''"
+        >
           {{ index }}
         </a>
         <a href="#">&raquo;</a>
@@ -37,8 +39,4 @@ export default {
 </script>
 
 <style scoped>
-.page-active-button {
-    background-color: white;
-    color: rgb(36, 35, 50);
-}
 </style>
