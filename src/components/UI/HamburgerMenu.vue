@@ -3,7 +3,7 @@
         <input type="checkbox" id="nav-toggle" hidden>
         <div class="mask-content" @click="closeMenu"></div>
         <nav class="nav">
-            <ul v-if="!this.$cookies.get('authorized=true')" id="nav">
+            <ul v-if="!this.$cookies.get('authorized=true')" id="nav" @click="closeMenu">
                 <li><a @click="this.$router.push({ path: '/' })">Главная</a></li>
                 <li><a @click="this.$router.push({ path: '/profile' })">Профиль</a></li>
                 <li><a @click="this.$router.push({ path: '/profile/lists' })">Списки</a></li>
