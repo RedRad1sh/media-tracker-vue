@@ -6,7 +6,7 @@
                 <div class="content-header">Фильмы</div>
                 <div class="content-header" id="page-number">Страница №{{ this.$route.query.page ?? 1 }}
                     <span v-if="![undefined, null, ''].includes(this.$route.query.search)">
-                      Поиск: {{ this.$route.query.search }}
+                        Поиск: {{ this.$route.query.search }}
                     </span>
                 </div>
             </div>
@@ -14,7 +14,13 @@
                 <ContentFilters
                     :lists="lists"
                     :genres="genres"
+                    :showDurations="true"
+                    :durations="durations"
                     @addGenre="changeGenres"
+                    @changeRate="changeRate"
+                    @changeYearFrom="changeYearFrom"
+                    @changeYearTo="changeYearTo"
+                    @changeDuration="changeDuration"
                 />
                 <div class="content-cards" id="film-cards-container">
                     <CardComponent
@@ -54,6 +60,23 @@ export function createFilmCard(filmResponse) {
 }
 
 const lists = ["Запланировано", "Смотрю", "Просмотрено"];
+const durations = [
+  {
+    name: 'Короткие',
+    type: 'SHORT',
+    tooltip: 'до 90 минут'
+  },
+  {
+    name: 'Средние',
+    type: 'MEDIUM',
+    tooltip: 'до 120 минут'
+  },
+  {
+    name: 'Длинные',
+    type: 'LONG',
+    tooltip: 'от 120 минут'
+  }
+];
 
 export default {
     name: 'FilmsPage',
@@ -74,7 +97,11 @@ export default {
                     page: page,
                     size: 20,
                     search: search,
-                    genres: Array.from(this.selectedGenres)
+                    genres: Array.from(this.selectedGenres),
+                    rate: this.searchRate,
+                    yearFrom: this.yearFrom,
+                    yearTo: this.yearTo,
+                    durations: Array.from(this.selectedDurations)
                 }
             }).then(response => {
                 this.filmsData = response.data.data;
@@ -105,6 +132,27 @@ export default {
             }
 
             this.getMovies(this.$route.query);
+        },
+        changeRate(rate) {
+            this.searchRate = Number(rate) !== 0 ? rate : undefined;
+            this.getMovies(this.$route.query);
+        },
+        changeYearFrom(yearFrom) {
+            this.yearFrom = Number(yearFrom) !== 0 ? yearFrom : undefined;
+            this.getMovies(this.$route.query);
+        },
+        changeYearTo(yearTo) {
+            this.yearTo = Number(yearTo) !== 0 ? yearTo : undefined;
+            this.getMovies(this.$route.query);
+        },
+        changeDuration(duration) {
+            if (this.selectedDurations.has(duration)) {
+                this.selectedDurations.delete(duration);
+            } else {
+                this.selectedDurations.add(duration);
+            }
+
+            this.getMovies(this.$route.query);
         }
     },
     mounted() {
@@ -117,7 +165,12 @@ export default {
             filmsData: [],
             genres: [],
             selectedGenres: new Set(),
+            searchRate: undefined,
+            yearFrom: undefined,
+            yearTo: undefined,
+            selectedDurations: new Set(),
             lists: lists,
+            durations: durations,
             totalPages: 10
         }
     },

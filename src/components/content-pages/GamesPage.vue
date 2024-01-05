@@ -14,7 +14,11 @@
                 <ContentFilters
                     :lists="lists"
                     :genres="genres"
+                    :showDurations="false"
                     @addGenre="changeGenres"
+                    @changeRate="changeRate"
+                    @changeYearFrom="changeYearFrom"
+                    @changeYearTo="changeYearTo"
                 />
                 <div class="content-cards" id="film-cards-container">
                     <CardComponent
@@ -74,8 +78,12 @@ export default {
                 params: {
                     page: page,
                     size: 20,
-                    search: query.search ?? "",
-                    genres: Array.from(this.selectedGenres)
+                    search: search,
+                    genres: Array.from(this.selectedGenres),
+                    rate: this.searchRate,
+                    yearFrom: this.yearFrom,
+                    yearTo: this.yearTo,
+                    durations: Array.from(this.selectedDurations)
                 }
             }).then(response => {
                 this.gamesData = response.data.data;
@@ -106,6 +114,27 @@ export default {
             }
 
             this.getGames(this.$route.query);
+        },
+        changeRate(rate) {
+            this.searchRate = Number(rate) !== 0 ? rate : undefined;
+            this.getGames(this.$route.query);
+        },
+        changeYearFrom(yearFrom) {
+            this.yearFrom = Number(yearFrom) !== 0 ? yearFrom : undefined;
+            this.getGames(this.$route.query);
+        },
+        changeYearTo(yearTo) {
+            this.yearTo = Number(yearTo) !== 0 ? yearTo : undefined;
+            this.getGames(this.$route.query);
+        },
+        changeDuration(duration) {
+            if (this.selectedDurations.has(duration)) {
+               this.selectedDurations.delete(duration);
+            } else {
+               this.selectedDurations.add(duration);
+            }
+
+            this.getGames(this.$route.query);
         }
     }, mounted() {
         this.getGames(this.$route.query);
@@ -116,6 +145,10 @@ export default {
             gamesData: [],
             genres: [],
             selectedGenres: new Set(),
+            searchRate: undefined,
+            yearFrom: undefined,
+            yearTo: undefined,
+            selectedDurations: new Set(),
             lists: lists,
             totalPages: 10
         }
