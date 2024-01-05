@@ -63,7 +63,6 @@
         {
           axios.put(backendUrl, dataToSend)
             .then(response => {
-              // console.log('Успешно отправлено:', response.data);
                this.$emit('selectChanged');
              })
              .catch(error => {

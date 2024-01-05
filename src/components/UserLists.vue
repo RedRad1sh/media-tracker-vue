@@ -24,46 +24,72 @@
         </li>
       </ul>
       <div class="tabs-panel active" data-index="0">
-
         <div v-if="currentTab === 'FILM'" class="table-lists-block">
-          <div v-for="index in 3" :key="index" style="width: 100%">
-            <span class="tab-header">{{ filmStatuses[index - 1] }}:</span>
-            <ContentTableList
-              :content="userListsMovies.filter((film) =>  filmStatuses.indexOf(film.action) === index - 1)"
-              :statuses="filmStatuses"
-              :tableHeaderUniq = "'Режиссеры'"
-              @updateInfoLists="getUserListsbyId"
-            />
+          <div v-if="userListsMovies.length">
+            <div v-for="index in 3" :key="index" style="width: 100%">
+              <span class="tab-header">{{ filmStatuses[index - 1] }}:</span>
+              <ContentTableList
+                :content="
+                  userListsMovies.filter(
+                    (film) => filmStatuses.indexOf(film.action) === index - 1
+                  )
+                "
+                :statuses="filmStatuses"
+                :tableHeaderUniq="'Режиссеры'"
+                @updateInfoLists="getUserListsbyId"
+              />
+            </div>
+          </div>
+          <div v-else>
+            <div class="content-header">
+              Не наедено списков для контента: Фильмы
+            </div>
           </div>
         </div>
         <div v-if="currentTab === 'GAME'" class="table-lists-block">
-          <div v-for="index in 3" :key="index" style="width: 100%">
-            <span class="tab-header">{{ gameStatuses[index - 1] }}:</span>
-            <ContentTableList
-              :content="userListsGames.filter((film) =>  gameStatuses.indexOf(film.action) === index - 1)"
-              :statuses="gameStatuses"
-              :tableHeaderUniq = "'Издатели'"
-              @updateInfoLists="getUserListsbyId"
-            />
+          <div v-if="userListsGames.length">
+            <div v-for="index in 3" :key="index" style="width: 100%">
+              <span class="tab-header">{{ gameStatuses[index - 1] }}:</span>
+              <ContentTableList
+                :content="
+                  userListsGames.filter(
+                    (film) => gameStatuses.indexOf(film.action) === index - 1
+                  )
+                "
+                :statuses="gameStatuses"
+                :tableHeaderUniq="'Издатели'"
+                @updateInfoLists="getUserListsbyId"
+              />
+            </div>
+          </div>
+          <div v-else>
+            <div class="content-header">
+              Не наедено списков для контента: Игры
+            </div>
           </div>
         </div>
         <div v-if="currentTab === 'BOOK'" class="table-lists-block">
           <div v-if="userListsBooks.length">
-          <div v-for="index in 3" :key="index" style="width: 100%">
-            <span class="tab-header">{{ bookStatuses[index - 1] }}:</span>
-            <ContentTableList
-              :content="userListsBooks.filter((film) =>  bookStatuses.indexOf(film.action) === index - 1)"
-              :statuses="bookStatuses"
-              :tableHeaderUniq = "'Авторы'"
-              @updateInfoLists="getUserListsbyId"
-            />
+            <div v-for="index in 3" :key="index" style="width: 100%">
+              <span class="tab-header">{{ bookStatuses[index - 1] }}:</span>
+              <ContentTableList
+                :content="
+                  userListsBooks.filter(
+                    (film) => bookStatuses.indexOf(film.action) === index - 1
+                  )
+                "
+                :statuses="bookStatuses"
+                :tableHeaderUniq="'Авторы'"
+                @updateInfoLists="getUserListsbyId"
+              />
+            </div>
+          </div>
+          <div v-else>
+            <div class="content-header">
+              Не наедено списков для контента: Книги
+            </div>
           </div>
         </div>
-        <div v-else>
-          <div class="content-header">Не наедено списков для контента: Книги</div>
-        </div>
-        </div>
-
       </div>
     </div>
   </div>
@@ -140,7 +166,7 @@ export default {
 @import "~@/assets/css/styles.scss";
 @import "~@/assets/css/user-lists.scss";
 
-.lists-block{
+.lists-block {
   display: flex;
   flex-direction: column;
   gap: 50px;
