@@ -1,4 +1,4 @@
-<template lang="">
+<template>
   <div class="review-container">
     <div class="user-info">
       <img class="user-img" :src="revobj.profurl"/>
