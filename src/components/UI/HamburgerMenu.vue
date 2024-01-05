@@ -27,4 +27,8 @@ export default {
 
 <style scoped>
 @import "~@/assets/css/nav-right.scss";
+
+a {
+  cursor: pointer;
+}
 </style>

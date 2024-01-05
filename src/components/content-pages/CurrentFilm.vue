@@ -1,4 +1,4 @@
-<template lang="">
+<template>
   <div class="block">
     <MenuComponent id="menu-include" active-element="0" />
     <div class="content-main">
