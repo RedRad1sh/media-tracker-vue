@@ -14,7 +14,13 @@
                 <ContentFilters
                     :lists="lists"
                     :genres="genres"
+                    :showDurations="true"
+                    :durations="durations"
                     @addGenre="changeGenres"
+                    @changeRate="changeRate"
+                    @changeYearFrom="changeYearFrom"
+                    @changeYearTo="changeYearTo"
+                    @changeDuration="changeDuration"
                 />
                 <div class="content-cards" id="books-cards-container">
                     <CardComponent
@@ -43,6 +49,23 @@ import axios from 'axios';
 import { config } from '@/config/config.js';
 
 const lists = ["Запланировано", "Читаю", "Прочитано"];
+const durations = [
+  {
+    name: 'Короткие',
+    type: 'SHORT',
+    tooltip: 'до 120 страниц'
+  },
+  {
+    name: 'Средние',
+    type: 'MEDIUM',
+    tooltip: 'от 120 до 500 страниц'
+  },
+  {
+    name: 'Длинные',
+    type: 'LONG',
+    tooltip: 'от 500 минут'
+  }
+];
 
 export function createBookCard(bookResponse) {
     const id = bookResponse.const_content_id;
@@ -75,7 +98,11 @@ export default {
                     page: page,
                     size: 20,
                     search: search,
-                    genres: Array.from(this.selectedGenres)
+                    genres: Array.from(this.selectedGenres),
+                    rate: this.searchRate,
+                    yearFrom: this.yearFrom,
+                    yearTo: this.yearTo,
+                    durations: Array.from(this.selectedDurations)
                 }
             }).then(response => {
                 this.booksData = response.data.data;
@@ -105,6 +132,27 @@ export default {
             }
 
             this.getBooks(this.$route.query);
+        },
+        changeRate(rate) {
+            this.searchRate = Number(rate) !== 0 ? rate : undefined;
+            this.getBooks(this.$route.query);
+        },
+        changeYearFrom(yearFrom) {
+            this.yearFrom = Number(yearFrom) !== 0 ? yearFrom : undefined;
+            this.getBooks(this.$route.query);
+        },
+        changeYearTo(yearTo) {
+            this.yearTo = Number(yearTo) !== 0 ? yearTo : undefined;
+            this.getBooks(this.$route.query);
+        },
+        changeDuration(duration) {
+            if (this.selectedDurations.has(duration)) {
+                this.selectedDurations.delete(duration);
+            } else {
+                this.selectedDurations.add(duration);
+            }
+
+            this.getBooks(this.$route.query);
         }
     },
     data() {
@@ -113,7 +161,12 @@ export default {
             booksData: [],
             genres: [],
             selectedGenres: new Set(),
+            searchRate: undefined,
+            yearFrom: undefined,
+            yearTo: undefined,
+            selectedDurations: new Set(),
             lists: lists,
+            durations: durations,
             totalPages: 10
         }
     },
