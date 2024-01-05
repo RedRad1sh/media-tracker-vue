@@ -131,6 +131,7 @@ export default {
                 this.selectedGenres.add(genre);
             }
 
+            this.$router.push({query: {...this.$route.query, page: 1}});
             this.getBooks(this.$route.query);
         },
         changeRate(rate) {

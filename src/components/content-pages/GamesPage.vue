@@ -113,6 +113,7 @@ export default {
                 this.selectedGenres.add(genre);
             }
 
+            this.$router.push({query: {...this.$route.query, page: 1}});
             this.getGames(this.$route.query);
         },
         changeRate(rate) {
