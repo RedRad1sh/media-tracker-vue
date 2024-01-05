@@ -88,6 +88,12 @@
   min-height: 500px
 }
 
+.table-lists-block{
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
 .tab-header {
   display: block;
   color: #fff;
@@ -96,7 +102,7 @@
   padding: 10px 0;
   margin: 5px 0;
   width: 100%;
-  font-size: 20px;
+  font-size: 24px;
   font-family: var(--dl-font-family);
   font-weight: 700;
   border: solid 1px var(--dl-half-transparent-2)
@@ -123,18 +129,19 @@
   align-items: center;
   background-color: var(--dl-half-transparent-1);
   padding: 5px 6px;
-  font-size: 16px;
+  font-size: 22px;
   font-weight: 700
 }
 
 .cell-value {
   border-style: solid;
-  font-size: 14px;
+  font-size: 20px;
   width: 250px;
 }
 
 .cell-value > a:hover {
   color: #f2c3c3 !important;
+  cursor: pointer;
 }
 
 .cell-value > a {

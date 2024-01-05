@@ -119,7 +119,7 @@
   
     data() {
       return {
-        type: "GAME",
+        type: "Game",
         gameobj: {},
         gameinfo: ['Тип:', 'Дата выхода:', 'Разработчик:', 'Жанры:'],
         gamerating: ['Оценка Metacritic:', 'Оценка MediaTracker:'],

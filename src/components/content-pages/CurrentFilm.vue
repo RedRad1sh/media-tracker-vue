@@ -39,7 +39,7 @@
             <span class="text-format">
               Списки:
             </span>
-            <SelectionContent :ObjectType="type"> </SelectionContent>
+            <SelectionContent :ObjectType="type" :ObjectId="filmobj.const_content_id" :ObjectAction="1"> </SelectionContent>
           </div>
         </div>
       </div>
@@ -100,7 +100,7 @@ export default {
 
   data() {
     return {
-      type: "FILM",
+      type: "Movie",
       filmobj: { },
       filminfo: ['Тип:', 'Год производства:',  'Страны:', 'Длительность:', 'Жанры:', 'Режиссеры:', 'Актеры:'],
       filmrating: ['Оценка Кинопоиск:', 'Оценка IMB:', 'Оценка MediaTracker:'],

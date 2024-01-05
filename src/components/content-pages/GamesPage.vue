@@ -112,7 +112,7 @@ export default {
         this.getGamesGenres();
     }, data() {
         return {
-            type: "GAME",
+            type: "Game",
             gamesData: [],
             genres: [],
             selectedGenres: new Set(),

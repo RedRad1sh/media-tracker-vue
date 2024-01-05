@@ -92,7 +92,7 @@ export default {
 
   data() {
     return {
-      type: "BOOK",
+      type: "Book",
       bookObj: {},
       bookInfo: ['Тип:', 'Категория:', 'Автор:', 'Издательство:', 'Год издания:', 'Количество страниц:'],
       bookRating: ['Оценка MediaTracker:'],

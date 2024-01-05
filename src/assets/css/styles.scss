@@ -321,13 +321,14 @@ select option:hover {
 
 .content-header {
     color: white;
-    flex-grow: 2;
     font-size: 30px;
     background-color: var(--dl-half-transparent-1);
     margin: 0;
     height: 100%;
     padding: 0 10px 0 60px;
-    line-height: 2.5
+    line-height: 2.5;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .move-content-link {

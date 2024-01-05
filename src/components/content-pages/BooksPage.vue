@@ -109,7 +109,7 @@ export default {
     },
     data() {
         return {
-            type: "BOOK",
+            type: "Book",
             booksData: [],
             genres: [],
             selectedGenres: new Set(),

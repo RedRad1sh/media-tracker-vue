@@ -20,16 +20,6 @@ export let films = [
         statusType: 1
     },
     {
-        id:3,
-        name: "Начало",
-        author: "Кристофер Нолан",
-        genre: "Фантастика",
-        userRate: 7,
-        rating: 8.7,
-        type: "films",
-        statusType: 2
-    },
-    {
         id:4,
         name: "Властелин колец: Возвращение короля",
         author: "Питер Джексон",
@@ -68,16 +58,6 @@ export let films = [
         rating: 8.6,
         type: "films",
         statusType: 0
-    },
-    {
-        id:7,
-        name: "Бойцовский клуб",
-        author: "Дэвид Финчер",
-        genre: "Драма",
-        userRate: 9,
-        rating: 8.8,
-        type: "films",
-        statusType: 1
     },
     {
         id:9,

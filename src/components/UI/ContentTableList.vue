@@ -4,55 +4,65 @@
     <tr>
       <th class="cell-header">#</th>
       <th class="cell-header header-name">Название</th>
-      <th class="cell-header">Режиссер</th>
-      <th class="cell-header">Жанр</th>
+      <th class="cell-header">{{tableHeaderUniq}}</th>
+      <th class="cell-header">Жанры</th>
       <th class="cell-header">Рейтинг</th>
       <th class="cell-header">Оценка</th>
       <th class="cell-header">Действия</th>
-      <th class="cell-header">Удалить</th>
     </tr>
     </thead>
     <tbody>
-      <tr v-for="(film, index) in content" :key="film.id">
+      <tr v-for="(obj, index) in content" :key="obj.content_id.const_content_id">
         <td class="cell-value number">{{ index + 1 }}</td>
-        <td class="cell-value"><a href="film-page.html">{{ film.name }}</a></td>
-        <td class="cell-value"><span>{{ film.author }}</span></td>
-        <td class="cell-value"><span>{{ film.genre }}</span></td>
-        <td class="cell-value rate"><span>{{ film.rating }}</span></td>
+        <td  class="cell-value"><a @click="this.$router.push({ path: `/current-${obj.content_type.toLowerCase()}/${obj.content_id.const_content_id}` })">{{ obj.content_id.title }}</a></td>
+
+        <td v-if="obj.content_type === 'Movie'" class="cell-value"><span>{{ obj.content_id.directors }}</span></td>
+        <td v-else-if="obj.content_type === 'Game'" class="cell-value"><span>{{ obj.content_id.developers }}</span></td>
+        <td v-else-if="obj.content_type === 'Book'" class="cell-value"><span>{{ obj.content_id.authors }}</span></td>
+
+        <td v-if="obj.content_type !== 'Book'" class="cell-value"><span>{{ obj.content_id.genres }}</span></td>
+        <td v-else class="cell-value" ><span>{{ obj.content_id.categories_ru }}</span></td>
+
+        <td class="cell-value rate"><span>{{ obj.content_id.user_rating }}</span></td>
         <td class="cell-value rate">
-          <label>
-            <select v-model="film.userRate">
-              <option v-for="index in 10" :key="index">{{ index }}</option>
-            </select>
-          </label>
+          <SelectionMark/>
         </td>
         <td class="cell-value">
-          <label>
-            <select v-model="film.statusType">
-              <option v-for="index in 3"  :value="index - 1" :key="index">{{ statuses[index - 1] }}</option>
-            </select>
-          </label>
+          <SelectionContent :ObjectType="obj.content_type" :ObjectId="obj.content_id.const_content_id" :ObjectAction="obj.action" @selectChanged="callUpdateLists"/>
         </td>
-        <td class="cell-value number" style="color:red;cursor:pointer">X</td>
       </tr>
     </tbody>
   </table>
 </template>
 
 <script>
+import SelectionMark from "@/components/UI/SelectionMark.vue";
+import SelectionContent from "@/components/UI/SelectionContent.vue";
+
 export default {
   name: "ContentTableList",
+  components: {SelectionContent, SelectionMark},
   props: {
     content: {
       type: Array,
       required: true
     },
-    statuses: []
+    statuses: [],
+    tableHeaderUniq:{
+      type: String,
+      required: true,
+    },
   },
   data() {
     return {
-      selectedStatusId: null
+      selectedStatusId: null,
     }
+  },
+
+  methods:{
+    callUpdateLists() {
+      this.$emit('updateInfoLists');
+    },
   }
 }
 </script>

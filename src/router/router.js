@@ -44,7 +44,7 @@ const routes = [
         component: RecommendationsPage
     },
     {
-        path: '/current-film/:id',
+        path: '/current-movie/:id',
         meta: { title: 'Фильм', showHeader: true },
         component: CurrentFilm
     },

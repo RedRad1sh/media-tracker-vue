@@ -32,7 +32,7 @@
           <SelectionMark class="card-select rate-set"/>
         </label>
         <label class="label-select">Списки
-          <SelectionContent :ObjectType="ObjectType" class="card-select list-add"/>
+          <SelectionContent :ObjectType="ObjectType" :ObjectId="contentData.id" class="card-select list-add"/>
         </label>
       </div>
     </div>
@@ -67,7 +67,7 @@ export default {
         required: true,
       },
       contentData: {
-        type: Object,
+        type: ContentData,
         required: true
       }
     },
