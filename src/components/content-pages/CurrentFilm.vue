@@ -39,7 +39,7 @@
             <span class="text-format">
               Списки:
             </span>
-            <SelectionContent :ObjectType="type"> </SelectionContent>
+            <SelectionContent :ObjectType="type" :ObjectId="filmobj.const_content_id" :ObjectAction="1"> </SelectionContent>
           </div>
         </div>
       </div>

@@ -44,7 +44,7 @@ import { config } from '@/config/config.js';
 
 export function createFilmCard(filmResponse) {
     const id = filmResponse.const_content_id;
-    const content_type = 'current-film'
+    const content_type = 'current-movie'
     const image_src = filmResponse.img_url;
     const category = filmResponse.genres;
     const title = filmResponse.title;

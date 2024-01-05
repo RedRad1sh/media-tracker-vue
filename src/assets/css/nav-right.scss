@@ -108,7 +108,8 @@ body {
     line-height: 2.5;
     opacity: 0;
     transform: translateX(50%);
-    transition: opacity .5s .1s,transform .5s .1s
+    transition: opacity .5s .1s,transform .5s .1s;
+    cursor: pointer;
 }
 
 [id=nav-toggle]:checked~.nav>ul>li {
@@ -205,7 +206,8 @@ body {
     height: 100%;
     background-color: rgba(0,0,0,.4);
     visibility: hidden;
-    opacity: 0
+    opacity: 0;
+    cursor: pointer;
 }
 
 [id=nav-toggle]:checked~.mask-content {

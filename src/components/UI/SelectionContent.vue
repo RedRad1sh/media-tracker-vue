@@ -18,12 +18,16 @@
         ObjectId: {
             type: String,
             required: true,
+        },
+        ObjectAction: {
+            type: String,
+            required: true,
         }
     },
 
     data() {
       return {
-        selectedValue: '-',
+        selectedValue: this.ObjectAction,
       };
     },
     computed:{
@@ -54,18 +58,22 @@
           content_id: this.ObjectId,
           action: this.selectedValue
         };
-        console.log(dataToSend);
 
         if ( dataToSend.action !== '-')
         {
           axios.put(backendUrl, dataToSend)
             .then(response => {
-               console.log('Успешно отправлено:', response.data);
+              // console.log('Успешно отправлено:', response.data);
+               this.$emit('selectChanged');
              })
              .catch(error => {
                console.error('Ошибка при отправке данных:', error);
              });
         } 
+        else{
+          axios.delete (backendUrl + `/user/658891c99f8aaf381016ebd0/content/${this.ObjectId}`)
+          this.$emit('selectChanged');
+        }
       }
     },
   };

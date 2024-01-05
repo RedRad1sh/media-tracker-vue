@@ -1,7 +1,7 @@
 <template>
     <section class="nav-men">
         <input type="checkbox" id="nav-toggle" hidden>
-        <div class="mask-content"></div>
+        <div class="mask-content" @click="closeMenu"></div>
         <nav class="nav">
             <ul v-if="!this.$cookies.get('authorized=true')" id="nav">
                 <li><a @click="this.$router.push({ path: '/' })">Главная</a></li>
@@ -20,7 +20,13 @@
 <script>
 
 export default {
-  name: 'HamburgetMenu'
+  name: 'HamburgetMenu',
+
+  methods: {
+    closeMenu() {
+      document.getElementById('nav-toggle').checked = false;
+    }
+  }
 }
 
 </script>
