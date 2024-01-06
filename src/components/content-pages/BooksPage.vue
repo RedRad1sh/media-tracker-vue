@@ -21,6 +21,7 @@
                     @changeYearFrom="changeYearFrom"
                     @changeYearTo="changeYearTo"
                     @changeDuration="changeDuration"
+                    @changeList="changeList"
                 />
                 <div class="content-cards" id="books-cards-container">
                     <CardComponent
@@ -95,6 +96,7 @@ export default {
 
             axios.get(backendUrl, {
                 params: {
+                    user_id : '658891c99f8aaf381016ebd0',
                     page: page,
                     size: 20,
                     search: search,
@@ -102,7 +104,8 @@ export default {
                     rate: this.searchRate,
                     yearFrom: this.yearFrom,
                     yearTo: this.yearTo,
-                    durations: Array.from(this.selectedDurations)
+                    durations: Array.from(this.selectedDurations),
+                    selectedLists: Array.from(this.selectedLists)
                 }
             }).then(response => {
                 this.booksData = response.data.data;
@@ -111,6 +114,10 @@ export default {
             }).catch(error => {
                 console.error('Ошибка получения данных с бекенда', error);
             });
+        },
+        resetPageAndGetBooks() {
+            this.$router.push({query: {...this.$route.query, page: 1}});
+            this.getBooks(this.$route.query);
         },
         getBooksGenres() {
             let backendUrl = `${config.backend.url}/books/genres`
@@ -131,20 +138,19 @@ export default {
                 this.selectedGenres.add(genre);
             }
 
-            this.$router.push({query: {...this.$route.query, page: 1}});
-            this.getBooks(this.$route.query);
+            this.resetPageAndGetBooks();
         },
         changeRate(rate) {
             this.searchRate = Number(rate) !== 0 ? rate : undefined;
-            this.getBooks(this.$route.query);
+            this.resetPageAndGetBooks();
         },
         changeYearFrom(yearFrom) {
             this.yearFrom = Number(yearFrom) !== 0 ? yearFrom : undefined;
-            this.getBooks(this.$route.query);
+            this.resetPageAndGetBooks();
         },
         changeYearTo(yearTo) {
             this.yearTo = Number(yearTo) !== 0 ? yearTo : undefined;
-            this.getBooks(this.$route.query);
+            this.resetPageAndGetBooks();
         },
         changeDuration(duration) {
             if (this.selectedDurations.has(duration)) {
@@ -153,7 +159,16 @@ export default {
                 this.selectedDurations.add(duration);
             }
 
-            this.getBooks(this.$route.query);
+            this.resetPageAndGetBooks();
+        },
+        changeList(list) {
+            if (this.selectedLists.has(list)) {
+                this.selectedLists.delete(list);
+            } else {
+                this.selectedLists.add(list);
+            }
+
+            this.resetPageAndGetBooks();
         }
     },
     data() {
@@ -162,10 +177,11 @@ export default {
             booksData: [],
             genres: [],
             selectedGenres: new Set(),
+            selectedDurations: new Set(),
+            selectedLists: new Set(),
             searchRate: undefined,
             yearFrom: undefined,
             yearTo: undefined,
-            selectedDurations: new Set(),
             lists: lists,
             durations: durations,
             totalPages: 10

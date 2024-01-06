@@ -14,7 +14,7 @@
       <div class="subheadline">Список</div>
       <ul>
         <li v-for="list in lists" :key="list">
-          <input autocomplete="off" type="checkbox">
+          <input autocomplete="off" type="checkbox" @change="changeList(list)">
           <label class="genre-ru">{{ list }}</label>
         </li>
       </ul>
@@ -105,6 +105,9 @@ export default {
     },
     changeDuration(type) {
       this.$emit("changeDuration", type);
+    },
+    changeList(list) {
+      this.$emit("changeList", list);
     },
   }
 }

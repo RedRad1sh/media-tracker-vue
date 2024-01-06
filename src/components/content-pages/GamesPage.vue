@@ -19,6 +19,7 @@
                     @changeRate="changeRate"
                     @changeYearFrom="changeYearFrom"
                     @changeYearTo="changeYearTo"
+                    @changeList="changeList"
                 />
                 <div class="content-cards" id="film-cards-container">
                     <CardComponent
@@ -76,6 +77,7 @@ export default {
 
             axios.get(backendUrl, {
                 params: {
+                    user_id : '658891c99f8aaf381016ebd0',
                     page: page,
                     size: 20,
                     search: search,
@@ -83,7 +85,8 @@ export default {
                     rate: this.searchRate,
                     yearFrom: this.yearFrom,
                     yearTo: this.yearTo,
-                    durations: Array.from(this.selectedDurations)
+                    durations: Array.from(this.selectedDurations),
+                    selectedLists: Array.from(this.selectedLists)
                 }
             }).then(response => {
                 this.gamesData = response.data.data;
@@ -92,6 +95,10 @@ export default {
             }).catch(error => {
                 console.error('Ошибка получения данных с бекенда', error);
             });
+        },
+        resetPageAndGetGames() {
+            this.$router.push({query: {...this.$route.query, page: 1}});
+            this.getGames(this.$route.query);
         },
         getGamesGenres() {
             let backendUrl = `${config.backend.url}/games/genres`
@@ -113,29 +120,28 @@ export default {
                 this.selectedGenres.add(genre);
             }
 
-            this.$router.push({query: {...this.$route.query, page: 1}});
-            this.getGames(this.$route.query);
+            this.resetPageAndGetGames();
         },
         changeRate(rate) {
             this.searchRate = Number(rate) !== 0 ? rate : undefined;
-            this.getGames(this.$route.query);
+            this.resetPageAndGetGames();
         },
         changeYearFrom(yearFrom) {
             this.yearFrom = Number(yearFrom) !== 0 ? yearFrom : undefined;
-            this.getGames(this.$route.query);
+            this.resetPageAndGetGames();
         },
         changeYearTo(yearTo) {
             this.yearTo = Number(yearTo) !== 0 ? yearTo : undefined;
-            this.getGames(this.$route.query);
+            this.resetPageAndGetGames();
         },
-        changeDuration(duration) {
-            if (this.selectedDurations.has(duration)) {
-               this.selectedDurations.delete(duration);
+        changeList(list) {
+            if (this.selectedLists.has(list)) {
+                this.selectedLists.delete(list);
             } else {
-               this.selectedDurations.add(duration);
+                this.selectedLists.add(list);
             }
 
-            this.getGames(this.$route.query);
+            this.resetPageAndGetGames();
         }
     }, mounted() {
         this.getGames(this.$route.query);
@@ -146,10 +152,11 @@ export default {
             gamesData: [],
             genres: [],
             selectedGenres: new Set(),
+            selectedDurations: new Set(),
+            selectedLists: new Set(),
             searchRate: undefined,
             yearFrom: undefined,
             yearTo: undefined,
-            selectedDurations: new Set(),
             lists: lists,
             totalPages: 10
         }
