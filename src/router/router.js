@@ -11,6 +11,7 @@ import CurrentGame from '@/components/content-pages/CurrentGame.vue'
 import UserLists from "@/components/UserLists"
 import CurrentBook from '@/components/content-pages/CurrentBook.vue'
 import LoginPage from "@/components/LoginPage";
+import UserReviews from "@/components/UserReviews"
 
 const routes = [
     {
@@ -67,6 +68,11 @@ const routes = [
         path: '/login',
         meta: { title: 'Авторизация', showHeader: true },
         component: LoginPage
+    },
+    {
+        path: '/profile/user-reviews',
+        meta: { title: 'Оставленные рецензии', showHeader: true },
+        component: UserReviews
     },
 ]
 
