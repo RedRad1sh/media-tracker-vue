@@ -24,7 +24,11 @@
         <div class="obj-rating-element">
           <div class="info-header">Рейтинг</div>
           <div class="obj-info">
-            <InfoforCurrentPage :typeinfo="'RATING'" :titles="bookRating" :values="bookRatingObj"/>
+            <InfoforCurrentPage
+                                :typeInfo="'RATING'"
+                                :titles="bookRating"
+                                :values="bookRatingObj"
+            />
           </div>
         </div>
         <div class="obj-rating-element">
@@ -33,13 +37,18 @@
             <span class="text-format">
               Оценка:
             </span>
-            <SelectionMark id="rate" v-model="selectedValMark"></SelectionMark>
+            <SelectionMark id="rate"
+                           v-model="selectedRating"
+                           :contentType="'Book'"
+                           :contentId=this.bookObj.const_content_id
+                           @updateRating="getBookById"
+            />
           </div>
           <div class="obj-actions">
             <span class="text-format">
               Списки:
             </span>
-            <SelectionContent :ObjectType="type"></SelectionContent>
+            <SelectionContent :ObjectType="type"/>
           </div>
         </div>
       </div>
@@ -58,20 +67,20 @@
           <textarea
               id="review-field"
               class="frame3-frame-inputlabels"
-              v-model="textareamsg">
+              v-model="textAreaMsg">
           </textarea>
         </div>
         <button
             id="review-button"
             class="button-create-review"
-            @click="createMessageElement"
+            @click="createReview"
         >
           Опубликовать
         </button>
       </div>
 
       <div class="review-block">
-        <ReviewMessage :revobj="rev" v-for="rev in reviews" :key="rev.id"/>
+        <ReviewMessage :revObj="rev" v-for="rev in reviews" :key="rev.id"/>
       </div>
     </div>
   </div>
@@ -85,6 +94,8 @@ import InfoforCurrentPage from "@/components/InfoforCurrentPage.vue";
 import ReviewMessage from "@/components/ReviewMessage.vue";
 import axios from 'axios';
 import {config} from '@/config/config.js';
+import router from "@/router/router";
+import UserStorage from "@/service/user-storage-service";
 
 export default {
   name: "CurrentBook",
@@ -95,62 +106,91 @@ export default {
       type: "Book",
       bookObj: {},
       bookInfo: ['Тип:', 'Категория:', 'Автор:', 'Издательство:', 'Год издания:', 'Количество страниц:'],
-      bookRating: ['Оценка MediaTracker:'],
-
-      reviews: [{
-        id: 1,
-        username: 'whatIsLove',
-        profurl: "https://avtozaryad.ru/local/templates/main/assets/images/user.png",
-        mark: 10,
-        text: 'Baby don\'t hurt me'
-      },],
-      selectedValMark: '-',
-      textareamsg: '',
+      bookRating: ['Оценка OpenLibrary:', 'Оценка MediaTracker:'],
+      reviews: [],
+      selectedRating: '-',
+      textAreaMsg: ''
     };
   },
 
   mounted() {
-    this.getBookbyId();
+    this.getBookById();
   },
 
   computed: {
     bookInfoObj() {
       return ['Книга',
-        this.bookObj.category,
-        this.bookObj.author,
+        this.bookObj.categories_ru,
+        this.bookObj.authors,
         this.bookObj.publisher,
         this.bookObj.published_date,
         this.bookObj.page_count];
     },
 
     bookRatingObj() {
-      return [this.bookObj.mtr_rating];
+      return [this.bookObj.openlib_rating, this.bookObj.user_rating];
     },
   },
 
   methods: {
-    getBookbyId() {
+
+    getBookById() {
       let backendUrl = `${config.backend.url}/books/book/` + this.$route.params.id;
 
       axios.get(backendUrl)
           .then(response => {
             this.bookObj = response.data;
+            this.getReviews();
           })
           .catch(error => {
             console.error('Ошибка получения данных с бекенда', error);
           });
     },
 
-    createMessageElement() {
-      if (this.selectedValMark !== '-' && this.textareamsg !== '') {
-        this.reviews.push({
-          id: null,
-          username: 'newuser',
-          profurl: "https://avtozaryad.ru/local/templates/main/assets/images/user.png",
-          mark: this.selectedValMark,
-          text: this.textareamsg
-        });
+    createReview() {
+      if (this.textAreaMsg !== '') {
+
+        const review = {
+          user_id: UserStorage.getUser().id,
+          content_type: 'Book',
+          content_id: this.bookObj.const_content_id,
+          review_message: this.textAreaMsg
+        }
+
+        const backendUrl = `${config.backend.url}/reviews`;
+        axios.post(backendUrl, review)
+            .then(response => {
+              router.go();
+            })
+            .catch(error => {
+              console.error('Ошибка при создании отзыва', error);
+            });
+
       }
+    },
+
+    getReviews() {
+      const backendUrl = `${config.backend.url}/reviews`;
+
+      axios.get(backendUrl, {params: {content_id: this.bookObj.const_content_id, content_type: 'Book'}})
+          .then(response => {
+            this.reviews = response.data;
+
+            const checkReview = this.reviews.filter(r => r.user_id = UserStorage.getUser().id);
+
+            console.log(checkReview);
+
+            if(checkReview.length){
+              console.log("СУКА")
+              this.selectedRating = checkReview[0].rating
+            }
+            console.log(this.reviews);
+            console.log(this.selectedRating);
+
+          })
+          .catch(error => {
+            console.error('Ошибка получения данных с бекенда', error);
+          });
     },
 
   },

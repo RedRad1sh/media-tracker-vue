@@ -25,10 +25,16 @@
 
         <td class="cell-value rate"><span>{{ obj.content_id.user_rating }}</span></td>
         <td class="cell-value rate">
-          <SelectionMark/>
+          <SelectionMark
+              :contentType="obj.content_type"
+              :contentId="obj.content_id.const_content_id"
+          />
         </td>
         <td class="cell-value">
-          <SelectionContent :ObjectType="obj.content_type" :ObjectId="obj.content_id.const_content_id" :ObjectAction="obj.action" @selectChanged="callUpdateLists"/>
+          <SelectionContent :ObjectType="obj.content_type"
+                            :ObjectId="obj.content_id.const_content_id"
+                            :ObjectAction="obj.action"
+                            @selectChanged="callUpdateLists"/>
         </td>
       </tr>
     </tbody>

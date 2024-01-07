@@ -29,7 +29,10 @@
       </div>
       <div class="card-bottom-actions">
         <label class="label-select">Оценить
-          <SelectionMark class="card-select rate-set"/>
+          <SelectionMark class="card-select rate-set"
+              :contentType="ObjectType"
+              :contentId="contentData.id"
+              />
         </label>
         <label class="label-select">Списки
           <SelectionContent :ObjectType="ObjectType" :ObjectId="contentData.id" class="card-select list-add"/>

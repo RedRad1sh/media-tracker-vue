@@ -1,0 +1,39 @@
+.content-main {
+  align-content: flex-start;
+  gap: 40px;
+  min-height: 80vh;
+  weight: 100%;
+}
+
+img {
+  width: 80px;
+}
+
+.review-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 10px;
+  width: 90%;
+  padding: 8px 12px;
+  border-radius: 14px;
+  background-color: rgba(31, 1, 84, 0.2);
+  color: #dedcf5;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+p {
+  margin: 10px 0;
+  color: #e5e5e5;
+}
+
+.review-info {
+  display: flex;
+  flex-direction: column;
+}

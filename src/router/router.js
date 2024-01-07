@@ -6,11 +6,12 @@ import BooksPage from '@/components/content-pages/BooksPage.vue'
 import GamesPage from '@/components/content-pages/GamesPage.vue'
 import RecommendationsPage from '@/components/RecommendationsPage.vue'
 import ProfilePage from '@/components/ProfilePage.vue'
-import CurrentFilm from '@/components/content-pages/CurrentFilm.vue'
+import CurrentMovie from '@/components/content-pages/CurrentMovie.vue'
 import CurrentGame from '@/components/content-pages/CurrentGame.vue'
 import UserLists from "@/components/UserLists"
 import CurrentBook from '@/components/content-pages/CurrentBook.vue'
 import LoginPage from "@/components/LoginPage";
+import UserReviews from "@/components/UserReviews"
 
 const routes = [
     {
@@ -46,7 +47,7 @@ const routes = [
     {
         path: '/current-movie/:id',
         meta: { title: 'Фильм', showHeader: true },
-        component: CurrentFilm
+        component: CurrentMovie
     },
     {
         path: '/current-game/:id',
@@ -67,6 +68,11 @@ const routes = [
         path: '/login',
         meta: { title: 'Авторизация', showHeader: true },
         component: LoginPage
+    },
+    {
+        path: '/profile/user-reviews',
+        meta: { title: 'Оставленные рецензии', showHeader: true },
+        component: UserReviews
     },
 ]
 
