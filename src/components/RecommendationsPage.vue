@@ -126,7 +126,6 @@ export default {
             this.contentData = []
             let backendUrl = `${config.backend.url}/lists/user/658891c99f8aaf381016ebd0/reccomendations`
             let usingContentTypes = []
-            console.log(this.filterDict)
             if (this.filterDict.checkedMoviesContent) {
                 usingContentTypes.push('Movie')
             }
