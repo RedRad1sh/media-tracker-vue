@@ -21,6 +21,7 @@
                     @changeYearFrom="changeYearFrom"
                     @changeYearTo="changeYearTo"
                     @changeDuration="changeDuration"
+                    @changeList="changeList"
                 />
                 <div class="content-cards" id="film-cards-container">
                     <CardComponent
@@ -94,6 +95,7 @@ export default {
 
             axios.get(backendUrl, {
                 params: {
+                    user_id : '658891c99f8aaf381016ebd0',
                     page: page,
                     size: 20,
                     search: search,
@@ -101,7 +103,8 @@ export default {
                     rate: this.searchRate,
                     yearFrom: this.yearFrom,
                     yearTo: this.yearTo,
-                    durations: Array.from(this.selectedDurations)
+                    durations: Array.from(this.selectedDurations),
+                    selectedLists: Array.from(this.selectedLists)
                 }
             }).then(response => {
                 this.filmsData = response.data.data;
@@ -110,6 +113,10 @@ export default {
             }).catch(error => {
                 console.error('Ошибка получения данных с бекенда', error);
             });
+        },
+        resetPageAndGetMovies() {
+          this.$router.push({query: {...this.$route.query, page: 1}});
+          this.getMovies(this.$route.query);
         },
         getMoviesGenres() {
             let backendUrl = `${config.backend.url}/movies/genres`
@@ -131,20 +138,19 @@ export default {
                 this.selectedGenres.add(genre);
             }
 
-            this.$router.push({query: {...this.$route.query, page: 1}});
-            this.getMovies(this.$route.query);
+            this.resetPageAndGetMovies();
         },
         changeRate(rate) {
             this.searchRate = Number(rate) !== 0 ? rate : undefined;
-            this.getMovies(this.$route.query);
+            this.resetPageAndGetMovies();
         },
         changeYearFrom(yearFrom) {
             this.yearFrom = Number(yearFrom) !== 0 ? yearFrom : undefined;
-            this.getMovies(this.$route.query);
+            this.resetPageAndGetMovies();
         },
         changeYearTo(yearTo) {
             this.yearTo = Number(yearTo) !== 0 ? yearTo : undefined;
-            this.getMovies(this.$route.query);
+            this.resetPageAndGetMovies();
         },
         changeDuration(duration) {
             if (this.selectedDurations.has(duration)) {
@@ -153,7 +159,16 @@ export default {
                 this.selectedDurations.add(duration);
             }
 
-            this.getMovies(this.$route.query);
+            this.resetPageAndGetMovies();
+        },
+        changeList(list) {
+            if (this.selectedLists.has(list)) {
+                this.selectedLists.delete(list);
+            } else {
+                this.selectedLists.add(list);
+            }
+
+            this.resetPageAndGetMovies();
         }
     },
     mounted() {
@@ -166,10 +181,11 @@ export default {
             filmsData: [],
             genres: [],
             selectedGenres: new Set(),
+            selectedDurations: new Set(),
+            selectedLists: new Set(),
             searchRate: undefined,
             yearFrom: undefined,
             yearTo: undefined,
-            selectedDurations: new Set(),
             lists: lists,
             durations: durations,
             totalPages: 10
