@@ -64,7 +64,7 @@
         <button
             id="review-button"
             class="button-create-review"
-            @click="createMessageElement"
+            @click="createReview"
         >
           Опубликовать
         </button>
@@ -85,6 +85,8 @@ import InfoforCurrentPage from "@/components/InfoforCurrentPage.vue";
 import ReviewMessage from "@/components/ReviewMessage.vue";
 import axios from 'axios';
 import {config} from '@/config/config.js';
+import reviewMessage from "@/components/ReviewMessage";
+import router from "@/router/router";
 
 export default {
   name: "CurrentBook",
@@ -97,20 +99,14 @@ export default {
       bookInfo: ['Тип:', 'Категория:', 'Автор:', 'Издательство:', 'Год издания:', 'Количество страниц:'],
       bookRating: ['Оценка MediaTracker:'],
 
-      reviews: [{
-        id: 1,
-        username: 'whatIsLove',
-        profurl: "https://avtozaryad.ru/local/templates/main/assets/images/user.png",
-        mark: 10,
-        text: 'Baby don\'t hurt me'
-      },],
+      reviews: [],
       selectedValMark: '-',
       textareamsg: '',
     };
   },
 
   mounted() {
-    this.getBookbyId();
+    this.getBookById();
   },
 
   computed: {
@@ -129,28 +125,52 @@ export default {
   },
 
   methods: {
-    getBookbyId() {
+    getBookById() {
       let backendUrl = `${config.backend.url}/books/book/` + this.$route.params.id;
 
       axios.get(backendUrl)
           .then(response => {
             this.bookObj = response.data;
+            this.getReviews();
           })
           .catch(error => {
             console.error('Ошибка получения данных с бекенда', error);
           });
     },
 
-    createMessageElement() {
-      if (this.selectedValMark !== '-' && this.textareamsg !== '') {
-        this.reviews.push({
-          id: null,
-          username: 'newuser',
-          profurl: "https://avtozaryad.ru/local/templates/main/assets/images/user.png",
-          mark: this.selectedValMark,
-          text: this.textareamsg
-        });
+    createReview() {
+      if (this.textareamsg !== '') {
+
+        const review = {
+          user_id: '658891c99f8aaf381016ebd0',
+          content_type: 'Book',
+          content_id: this.bookObj.const_content_id,
+          review_message: this.textareamsg
+        }
+
+        const backendUrl = `${config.backend.url}/reviews`;
+        axios.post(backendUrl, review)
+            .then(response => {
+              router.go();
+            })
+            .catch(error => {
+              console.error('Ошибка при создании отзыва', error);
+            });
+
       }
+    },
+
+    getReviews() {
+      const backendUrl = `${config.backend.url}/reviews`;
+
+      axios.get(backendUrl, {params: {content_id: this.bookObj.const_content_id, content_type: 'Book'}})
+          .then(response => {
+            this.reviews = response.data;
+            console.log(this.reviews);
+          })
+          .catch(error => {
+            console.error('Ошибка получения данных с бекенда', error);
+          });
     },
 
   },

@@ -1,20 +1,23 @@
 <template>
   <div class="review-container">
-    <div class="user-info">
-      <div class="film-link">
-        <!--Не ебу как сделать ссылку  -->
-        <a href="film-page.html">
-          <img :src="revobj.coverPicture"/>
-          <div class="user-name">{{ revobj.name }}</div>
-        </a>
-      </div>
-      <img class="user-img" :src="revobj.profurl"/>
-      <div class="user-name-rate">
-        <div class="user-name">{{ revobj.username }}</div>
-        <div class="user-rate">Оценка: {{ revobj.mark }}/10</div>
-      </div>
+    <div v-if="showContentInfo" class="film-link">
+      <!--Не ебу как сделать ссылку (потому что тупой) -->
+      <a href="film-page.html">
+        <img :src="revobj.contentPicture"/>
+        <div class="user-name">{{ revobj.contentTitle }}</div>
+      </a>
     </div>
-    <span class="review-text">{{ revobj.text }}</span>
+    <div class="review-info">
+      <div class="user-info">
+        <img class="user-img" :src="revobj.userImage"/>
+        <div class="user-name-rate">
+          <div class="user-name">{{ revobj.username }}</div>
+          <div class="user-rate">Оценка: {{ revobj.rating }}/10</div>
+        </div>
+      </div>
+      <span class="review-text">{{ revobj.review_message }}</span>
+    </div>
+
   </div>
 </template>
 
@@ -24,6 +27,9 @@ export default {
     revobj: {
       type: Object,
       required: true
+    },
+    showContentInfo: {
+      type: Boolean
     }
   },
 

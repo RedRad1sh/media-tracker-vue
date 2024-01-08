@@ -17,7 +17,7 @@
                     <a href="user-lists.html" class="text">
                         📋 Списки контента
                     </a>
-                    <a href="user-reviews.html" class="text">
+                    <a href="/profile/user-reviews" class="text">
                         📒 Оставленные рецензии
                     </a>
                 </div>
