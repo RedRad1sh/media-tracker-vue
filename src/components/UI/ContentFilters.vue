@@ -9,8 +9,8 @@
         </li>
       </ul>
     </div>
-    <div class="text-block -text-block mylist-text-block"><span
-        class="filter text-block-filter item-sign"></span>
+    <div class="text-block -text-block mylist-text-block" v-if="isUserAuth()">
+      <span class="filter text-block-filter item-sign"></span>
       <div class="subheadline">Список</div>
       <ul>
         <li v-for="list in lists" :key="list">
@@ -66,6 +66,8 @@
 </template>
 
 <script>
+import UserStorage from "@/service/user-storage-service";
+
 export default {
   name: "ContentFilters",
   props: {
@@ -109,6 +111,9 @@ export default {
     changeList(list) {
       this.$emit("changeList", list);
     },
+    isUserAuth() {
+      return UserStorage.isUserAuth();
+    }
   }
 }
 </script>

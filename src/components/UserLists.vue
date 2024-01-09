@@ -36,7 +36,7 @@
                 "
                 :statuses="filmStatuses"
                 :tableHeaderUniq="'Режиссеры'"
-                @updateInfoLists="getUserListsbyId"
+                @updateInfoLists="getUserListsById"
               />
             </div>
           </div>
@@ -58,7 +58,7 @@
                 "
                 :statuses="gameStatuses"
                 :tableHeaderUniq="'Издатели'"
-                @updateInfoLists="getUserListsbyId"
+                @updateInfoLists="getUserListsById"
               />
             </div>
           </div>
@@ -80,7 +80,7 @@
                 "
                 :statuses="bookStatuses"
                 :tableHeaderUniq="'Авторы'"
-                @updateInfoLists="getUserListsbyId"
+                @updateInfoLists="getUserListsById"
               />
             </div>
           </div>
@@ -100,6 +100,7 @@ import MenuComponent from "../components/navigation/MenuComponent.vue";
 import ContentTableList from "@/components/UI/ContentTableList.vue";
 import { config } from "@/config/config.js";
 import axios from "axios";
+import UserStorage from "@/service/user-storage-service";
 
 const filmStatuses = ["Запланировано", "Смотрю", "Просмотрено"];
 const bookStatuses = ["Запланировано", "Читаю", "Прочитано"];
@@ -125,7 +126,7 @@ export default {
   },
 
   mounted() {
-    this.getUserListsbyId();
+    this.getUserListsById();
   },
 
   methods: {
@@ -143,12 +144,9 @@ export default {
       }
     },
 
-    getUserListsbyId() {
-      let backendUrl =
-        `${config.backend.url}/lists/user/` + "658891c99f8aaf381016ebd0";
-      console.log(backendUrl);
-      axios
-        .get(backendUrl)
+    getUserListsById() {
+      let backendUrl = `${config.backend.url}/lists/user/` + UserStorage.getUser().id;
+      axios.get(backendUrl)
         .then((response) => {
           this.userListsMovies = response.data.movieList;
           this.userListsGames = response.data.gameList;

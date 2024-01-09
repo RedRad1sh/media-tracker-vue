@@ -8,6 +8,7 @@
   <script>
   import axios from 'axios';
   import { config } from '@/config/config.js';
+  import UserStorage from "@/service/user-storage-service";
 
   export default {
     props: {
@@ -51,9 +52,10 @@
       switchSelect(event){
         this.selectedValue = event.target.value;
         let backendUrl =  `${config.backend.url}/lists`;
+        const userId = UserStorage.getUser().id;
 
         const dataToSend = {
-          user_id : '658891c99f8aaf381016ebd0',
+          user_id : userId,
           content_type: this.ObjectType,
           content_id: this.ObjectId,
           action: this.selectedValue
@@ -70,7 +72,7 @@
              });
         } 
         else{
-          axios.delete (backendUrl + `/user/658891c99f8aaf381016ebd0/content/${this.ObjectId}`)
+          axios.delete (backendUrl + `/user/${userId}/content/${this.ObjectId}`)
           this.$emit('selectChanged');
         }
       }

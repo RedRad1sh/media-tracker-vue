@@ -9,16 +9,23 @@
     <div :class="activeElement === '2' ? 'menu-tabbase-active' : 'menu-tabbase'">
       <a :class="activeElement === '2' ? 'menu-active-button' : 'menu-button'" href="/games">Игры</a>
     </div>
-    <div :class="activeElement === '3' ? 'menu-tabbase-active' : 'menu-tabbase'">
+    <div :class="activeElement === '3' ? 'menu-tabbase-active' : 'menu-tabbase'" v-if="isUserAuth()">
       <a :class="activeElement === '3' ? 'menu-active-button' : 'menu-button'" href="/recomendations">Рекомендации</a>
     </div>
   </div>
 </template>
 
 <script>
+import UserStorage from "@/service/user-storage-service";
+
 export default {
   name: 'MenuComponent',
-  props: ["activeElement"]
+  props: ["activeElement"],
+  methods: {
+    isUserAuth() {
+      return UserStorage.isUserAuth();
+    }
+  }
 }
 
 </script>

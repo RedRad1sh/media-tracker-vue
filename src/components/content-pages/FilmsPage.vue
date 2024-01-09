@@ -48,6 +48,7 @@ import PaginationElement from '@/components/UI/PaginationElement.vue';
 import { ContentData } from '@/components/internal/CardComponent.vue';
 import axios from 'axios';
 import { config } from '@/config/config.js';
+import UserStorage from "@/service/user-storage-service";
 
 export function createFilmCard(filmResponse) {
     const id = filmResponse.const_content_id;
@@ -95,7 +96,7 @@ export default {
 
             axios.get(backendUrl, {
                 params: {
-                    user_id : '658891c99f8aaf381016ebd0',
+                    user_id : UserStorage.getUser().id,
                     page: page,
                     size: 20,
                     search: search,
