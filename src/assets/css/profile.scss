@@ -2,24 +2,57 @@
     width: 300px;
     height: 300px;
     display: flex;
-    overflow: hidden;
     align-items: center;
-    flex-shrink: 0;
     flex-direction: column;
     justify-content: center;
 }
 
+.image_block {
+    position: relative;
+    border-radius: 270px;
+    cursor: pointer;
+}
+
 .image {
-    height: 50%;
+    width: 200px;
+    height: 200px;
     border-color: rgb(129, 156, 255);
     border-style: solid;
     border-radius: 270px;
+    object-fit: cover;
 }
+
+.img-overfl{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color:#000;
+    border-radius: 270px;
+    opacity: 0.5;
+    z-index: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+  }
+  
+  .image_block:hover  .img-overfl{
+    transition: ease 0.2s;
+    visibility: visible;
+  }
+  
+  .img-overfl img {
+    z-index: 2;
+    width: 50px;
+    height: 50px;
+  }
 
 .image-text {
     color: rgba(255, 255, 255, 1);
     height: auto;
-    font-size: 16px;
+    font-size: 20px;
     text-align: center;
     margin-top: 30px;
 }
@@ -29,7 +62,6 @@
     overflow: hidden;
     align-self: stretch;
     align-items: center;
-    flex-shrink: 0;
     flex-direction: row;
     justify-content: space-around;
     font-size: 200px;
@@ -39,12 +71,13 @@
     min-width: 100%;
 }
 
-.text {
+.text-s {
     color: rgba(255, 255, 255, 1);
     height: auto;
     font-size: 20px;
     text-align: left;
     align-self: auto;
+    cursor: pointer;
 }
 
 
@@ -65,7 +98,7 @@
     justify-content: space-around;
     width: 100%;
     flex-wrap: wrap;
-    margin-bottom: 50px;
+    margin: 20px 0;
 }
 
 .content-main {
@@ -75,10 +108,6 @@
     min-height: 10vh;
 }
 
-.content-header {
-    width: 90%;
-}
-
 .profile-info {
     background: radial-gradient(ellipse farthest-corner at 0 -521%, #00000063 59%, #00030da1 69%, #000a1f4a 95%);
     border-radius: 20px;
@@ -86,6 +115,18 @@
     border-bottom-style: ridge;
     border-top-style: ridge;
     border-color: #0b1f4b24;
+}
+
+.chart-block{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+}
+
+.chart-title{
+    color: white;
+    font-size: 24px;
 }
 
 #contentChart {

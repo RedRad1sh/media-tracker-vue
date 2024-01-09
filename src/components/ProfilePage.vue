@@ -1,127 +1,188 @@
 <template>
-    <div class="block">
-        <MenuComponent id="menu-include" active-element="-1" />
-        <div class="content-main">
-            <div class="profile-info container-row">
-                <div class="image-frame">
-                    <img src="../assets/general_assets/image31416-6yvs-400w.png" alt="image31416" class="image" />
-                    <span class="image-text">
-                        <span>Добро пожаловать, Radish!</span>
-                    </span>
-                </div>
-                <div class="pie-frame">
-                    <canvas id="contentChart">
-                    </canvas>
-                </div>
-                <div class="navigation">
-                    <a href="user-lists.html" class="text">
-                        📋 Списки контента
-                    </a>
-                    <a href="user-reviews.html" class="text">
-                        📒 Оставленные рецензии
-                    </a>
-                </div>
+  <div class="block">
+    <MenuComponent id="menu-include" active-element="-1" />
+    <div class="content-main">
+      <div class="profile-info container-row">
+        <div class="image-frame">
+          <div class="image_block" @click="openModal">
+            <img
+              :src="this.profileData.img_url" alt="image31416" class="image"/>
+            <div class="img-overfl">
+              <img src="../assets/general_assets/plus-wt.svg" alt="" />
             </div>
-            <div class="container-row">
-                <div class="pie-frame">
-                    <canvas id="kinoChart">
-                    </canvas>
-                </div>
-                <div class="pie-frame">
-                    <canvas id="booksChart">
-                    </canvas>
-                </div>
-                <div class="pie-frame">
-                    <canvas id="gameChart">
-                    </canvas>
-                </div>
-            </div>
+          </div>
+          <div class="image-text">
+            <span>Добро пожаловать, {{ this.profileData.login }}!</span>
+          </div>
         </div>
+        <div class="chart-block">
+           <div class="chart-title">Просмотренный контент</div>
+           <DoughnutChart :chartData="chartDataAll" :chartOptions="chartOptions"/>
+        </div>
+        <div class="navigation">
+          <a @click="this.$router.push({ path: `/profile/lists` })" class="text-s"> 📋 Списки контента </a>
+          <a @click="this.$router.push({ path: `/profile/user-reviews` })" class="text-s"> 📒 Оставленные рецензии </a>
+        </div>
+      </div>
+      <StatsRowType :rowTitle="'Статистика по жанрам фильмов:'" :chartData="chartDataMovie"/>
+      <StatsRowType :rowTitle="'Статистика по жанрам игр:'"     :chartData="chartDataGame"/>
+      <StatsRowType :rowTitle="'Статистика по жанрам книг:'"    :chartData="chartDataBook"/>
     </div>
+    <ChangeImgProfileModal :show="showModal" @closeModal="closeModal"/>
+  </div>
 </template>
 
 <script>
-import MenuComponent from './navigation/MenuComponent.vue';
-/* eslint no-unused-vars: 0 */
-import { Chart, registerables } from 'chart.js'
-Chart.register(...registerables);
-function createPieChart(elementName, header, keys, values) {
-    const ctx = document.getElementById(elementName);
-
-    new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-            labels: keys,
-            datasets: [{
-                data: values,
-                borderWidth: 1
-            }],
-            options: {
-                maintainAspectRatio: false,
-            }
-        },
-        options: {
-            plugins: {
-                title: {
-                    display: true,
-                    text: header,
-                    font: {
-                        family: 'sans-serif',
-                        size: 24
-                    },
-                    color: 'white' // Изменение цвета текста заголовка
-                },
-                legend: {
-                    padding: "20",
-                    position: 'right',
-                    labels: {
-                        font: {
-                            size: 14
-                        },
-                        color: 'white' // Изменение цвета текста легенды
-                    }
-                }
-            }
-        }
-    });
-}
+import MenuComponent from "./navigation/MenuComponent.vue";
+import ChangeImgProfileModal from "./internal/ChangeImgProfileModal.vue";
+import DoughnutChart from './DoughnutChart.vue';
+import StatsRowType from './StatsRowType.vue';
+import { config } from '@/config/config.js';
+import axios from "axios";
 
 export default {
-    name: 'ProfilePage',
-    props: {
-        msg: String
+  name: "ProfilePage",
+  props: {
+    msg: String,
+  },
+  components: {
+    MenuComponent, ChangeImgProfileModal, DoughnutChart, StatsRowType
+  },
+  data() {
+    return {
+      showModal: false,
+      profileData: {},
+      allContentStats: {},
+      movieStatsPlanningGenres: {},
+      movieStatsWatchingGenres: {},
+      movieStatsWatchedGenres: {},
+      gameStatsPlanningGenres: {},
+      gameStatsWatchingGenres: {},
+      gameStatsWatchedGenres: {},
+      bookStatsPlanningGenres: {},
+      bookStatsWatchingGenres: {},
+      bookStatsWatchedGenres: {},
+      test1: [],
+
+
+      chartOptions: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          title: {
+            align: 'start',
+            display: true,
+            font: {
+              size: 24,
+              family: 'sans-serif',
+            },
+            color: 'white',
+         },
+         legend: {
+          position: "right",
+          labels: {
+            font: {
+              size: 14,
+            },
+            color: "white",
+          },    
+         },
+       },
+      },
+    };
+  },
+
+    computed: {
+      chartDataAll() { return this.getChartData(this.allContentStats.contentType, this.allContentStats.count ) },
+
+      chartDataMovie() {
+        const actions = ['Запланировано', 'Смотрю', 'Просмотрено'];
+        const moviePData =  this.getChartData(this.movieStatsPlanningGenres.genres, this.movieStatsPlanningGenres.count);
+        const movieWData =  this.getChartData(this.movieStatsWatchingGenres.genres, this.movieStatsWatchingGenres.count);
+        const movieWDData = this.getChartData(this.movieStatsWatchedGenres.genres,  this.movieStatsWatchedGenres.count );
+       return {actions: actions,
+               data: [moviePData, movieWData, movieWDData],
+              };
+      },
+
+      chartDataGame() {
+        const actions = ['Запланировано', 'Прохожу', 'Пройдено'];
+        const gamePData =  this.getChartData(this.gameStatsPlanningGenres.genres, this.gameStatsPlanningGenres.count);
+        const gameWData =  this.getChartData(this.gameStatsWatchingGenres.genres, this.gameStatsWatchingGenres.count);
+        const gameWDData = this.getChartData(this.gameStatsWatchedGenres.genres,  this.gameStatsWatchedGenres.count );
+       return {actions: actions,
+               data: [gamePData, gameWData, gameWDData],
+              };
+      },
+
+      chartDataBook() {
+        const actions = ['Запланировано', 'Читаю', 'Прочитано'];
+        const bookPData =  this.getChartData(this.bookStatsPlanningGenres.genres, this.bookStatsPlanningGenres.count);
+        const bookWData =  this.getChartData(this.bookStatsWatchingGenres.genres, this.bookStatsWatchingGenres.count);
+        const bookWDData = this.getChartData(this.bookStatsWatchedGenres.genres,  this.bookStatsWatchedGenres.count );
+       return {actions: actions,
+               data: [bookPData, bookWData, bookWDData],
+              };
+      },
+
+  },
+
+  methods: {
+    openModal() {
+      this.showModal = true;
     },
-    components: {
-        MenuComponent
+    closeModal(){
+      this.showModal = false;
+      this.getUserProfileInfo();
     },
-    methods: {
-        createCharts() {
-            createPieChart('contentChart', 'Просмотренный контент',
-                ['Фильмы', 'Книги', 'Игры'],
-                [19, 12, 3]);
-            createPieChart('kinoChart', 'Фильмы',
-                ['Комедия', 'Боевик', 'Фантастика', 'Драма', 'Триллер', 'Ужасы', 'Приключения', 'Мультфильм'],
-                [7, 10, 23, 15, 8, 5, 12, 9]);
-            createPieChart('booksChart', 'Книги',
-                ['Детектив', 'Фэнтези', 'Ужасы', 'Роман', 'Классика', 'Приключения', 'Научная литература', 'Биография'],
-                [19, 12, 3, 8, 15, 6, 10, 5]);
-            createPieChart('gameChart', 'Игры',
-                ['Шутер', 'Симулятор', 'Стратегия', 'Rogue-like', 'Платформер', 'Гонки', 'Ролевая', 'Аркада'],
-                [19, 12, 3, 2, 8, 6, 15, 5]);
-        }
+    getUserProfileInfo(){
+      let backendUrl = `${config.backend.url}/users/` + '658891c99f8aaf381016ebd0'
+      axios.get(backendUrl)
+            .then(response => {
+              this.profileData = response.data;
+            })
+            .catch(error => {
+               console.error('Ошибка получения данных с бекенда', error);
+            });
     },
-    mounted() {
-        this.createCharts()
+    getUserProfileStats(){
+      let backendUrl = `${config.backend.url}/profile/stats/` + '658891c99f8aaf381016ebd0'
+      console.log  (backendUrl);
+      axios.get(backendUrl)
+            .then(response => {
+              this.allContentStats = response.data.allContentStats;
+              this.movieStatsPlanningGenres = response.data.movieStats.planningGenres;
+              this.movieStatsWatchingGenres = response.data.movieStats.watchingGenres;
+              this.movieStatsWatchedGenres = response.data.movieStats.watchedGenres;
+
+              this.gameStatsPlanningGenres = response.data.gameStats.planningGenres;
+              this.gameStatsWatchingGenres = response.data.gameStats.watchingGenres;
+              this.gameStatsWatchedGenres = response.data.gameStats.watchedGenres;
+
+              this.bookStatsPlanningGenres = response.data.bookStats.planningGenres;
+              this.bookStatsWatchingGenres = response.data.bookStats.watchingGenres;
+              this.bookStatsWatchedGenres = response.data.bookStats.watchedGenres;
+
+              this.test1 = response.data.bookStats;
+            })
+            .catch(error => {
+               console.error('Ошибка получения данных с бекенда', error);
+            });
     },
-    watch: {
-        '$route'() {
-            this.createCharts()
-        }
+    getChartData(labels, data ){
+      return { labels: labels,
+               datasets: [{ data: data, },],
+      };
     }
-}
+  },
+  mounted() {
+    this.getUserProfileInfo();
+    this.getUserProfileStats();   
+  },
+};
 </script>
 
-<style lang="scss" scoped>
-@import "~@/assets/css/profile.scss";
-@import "~@/assets/css/styles.scss";
+<style scoped>
+  @import "~@/assets/css/profile.scss";
+  @import "~@/assets/css/styles.scss";
 </style>
