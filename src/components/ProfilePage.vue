@@ -62,9 +62,6 @@ export default {
       bookStatsPlanningGenres: {},
       bookStatsWatchingGenres: {},
       bookStatsWatchedGenres: {},
-      test1: [],
-
-
       chartOptions: {
         responsive: true,
         maintainAspectRatio: false,
@@ -163,7 +160,6 @@ export default {
               this.bookStatsWatchingGenres = response.data.bookStats.watchingGenres;
               this.bookStatsWatchedGenres = response.data.bookStats.watchedGenres;
 
-              this.test1 = response.data.bookStats;
             })
             .catch(error => {
                console.error('Ошибка получения данных с бекенда', error);
