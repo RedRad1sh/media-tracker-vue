@@ -3,13 +3,13 @@
         <input type="checkbox" id="nav-toggle" hidden>
         <div class="mask-content" @click="closeMenu"></div>
         <nav class="nav">
-            <ul v-if="!this.$cookies.get('authorized=true')" id="nav" @click="closeMenu">
+            <ul v-if="isUserAuth()" id="nav" @click="closeMenu">
                 <li><a @click="this.$router.push({ path: '/' })">Главная</a></li>
                 <li><a @click="this.$router.push({ path: '/profile' })">Профиль</a></li>
                 <li><a @click="this.$router.push({ path: '/profile/lists' })">Списки</a></li>
-                <li><a id="exit" @click="this.$router.push({ path: 'home' })">Выйти</a></li>
+                <li><a id="exit" @click="logOut">Выйти</a></li>
             </ul>
-            <ul v-else id="nav">
+            <ul v-else id="nav" @click="closeMenu">
                 <li><a @click="this.$router.push({ path: '/' })">Главная</a></li>
                 <li><a @click="this.$router.push({ path: '/login'})">Вход</a></li>
             </ul>
@@ -18,13 +18,20 @@
 </template>
 
 <script>
+import UserStorage from "@/service/user-storage-service";
 
 export default {
-  name: 'HamburgetMenu',
-
+  name: 'HamburgerMenu',
   methods: {
     closeMenu() {
       document.getElementById('nav-toggle').checked = false;
+    },
+    logOut() {
+      UserStorage.logoutUser();
+      this.$router.go();
+    },
+    isUserAuth() {
+      return UserStorage.isUserAuth();
     }
   }
 }

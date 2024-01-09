@@ -48,6 +48,7 @@ import ContentFilters from '@/components/UI/ContentFilters.vue';
 import PaginationElement from '@/components/UI/PaginationElement.vue';
 import axios from 'axios';
 import { config } from '@/config/config.js';
+import UserStorage from "@/service/user-storage-service";
 
 const lists = ["Запланировано", "Читаю", "Прочитано"];
 const durations = [
@@ -96,7 +97,7 @@ export default {
 
             axios.get(backendUrl, {
                 params: {
-                    user_id : '658891c99f8aaf381016ebd0',
+                    user_id : UserStorage.getUser().id,
                     page: page,
                     size: 20,
                     search: search,

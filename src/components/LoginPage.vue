@@ -26,11 +26,14 @@
           <div class="description">
             <form class="login-form">
               <label>Введите логин <br>
-                <input type="text" required>
+                <input v-model="authUser.login" type="text" required>
               </label>
               <label>Введите пароль <br>
-                <input type="password" required>
+                <input v-model="authUser.password" type="password" required>
               </label>
+              <div v-if="errorMessage" style="color:red">
+                <span>{{ errorMessage }}</span>
+              </div>
               <p>
                 <input @click="authorize()" type="button" value="Войти"/>
               </p>
@@ -56,6 +59,9 @@
               <label>Ссылка на фото профиля <br>
                 <input v-model="newUser.imgUrl" type="text">
               </label>
+              <div v-if="errorMessage" style="color:red">
+                <span>{{ errorMessage }}</span>
+              </div>
               <p>
                 <input @click="registerUser()" type="button" value="Зарегистрироваться"/>
               </p>
@@ -71,20 +77,34 @@
 import {config} from "@/config/config";
 import axios from "axios";
 import router from "@/router/router";
+import UserStorage from "@/service/user-storage-service";
 
 export default {
   name: "LoginPage",
   methods: {
     authorize() {
-      // TODO
+      const backendUrl = `${config.backend.url}/users/auth`;
+      axios.post(backendUrl, this.authUser)
+          .then(response => {
+            if (response.data.errorMessage) {
+              this.errorMessage = response.data.errorMessage;
+            } else {
+              this.errorMessage = undefined;
+              UserStorage.storeUser(response.data.token, response.data.user);
+              location.reload();
+            }
+          })
+          .catch(error => {
+            console.error('Ошибка при регистрации пользователя', error);
+          });
     },
     registerUser() {
       if (this.newUser.password === this.confirmPassword) {
         const backendUrl = `${config.backend.url}/users`;
         axios.post(backendUrl, this.newUser)
             .then(response => {
-              // TODO если бэк будет возвращать состояние авторизованности пользователя, то брать тут из response
-              router.push("/");
+              UserStorage.storeUser(response.data.token, response.data.user);
+              location.reload();
             })
             .catch(error => {
               console.error('Ошибка при регистрации пользователя', error);
@@ -95,11 +115,18 @@ export default {
   data() {
     return {
       type: 'AUTH',
+      authUser: {},
       newUser: {},
-      confirmPassword: ""
+      confirmPassword: "",
+      errorMessage: undefined
     }
   },
   mounted() {
+    if (UserStorage.isUserAuth()) {
+      router.push("/");
+      return;
+    }
+
     async function init () {
       const node = document.querySelector("#type-text")
 
