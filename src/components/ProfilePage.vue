@@ -4,9 +4,9 @@
     <div class="content-main">
       <div class="profile-info container-row">
         <div class="image-frame">
-          <div class="image_block" @click="openModal">
+          <div class="image_block" @click="openModal"  >
             <img
-              :src="this.profileData.img_url" alt="image31416" class="image"/>
+              :src="this.profileData.img_url" alt="image31416" class="image" @error="replaceByDefault"/>
             <div class="img-overfl">
               <img src="../assets/general_assets/plus-wt.svg" alt="" />
             </div>
@@ -40,7 +40,7 @@ import StatsRowType from './StatsRowType.vue';
 import { config } from '@/config/config.js';
 import axios from "axios";
 import UserStorage from "@/service/user-storage-service";
-
+const DEFAULT_IMG = "https://i.pinimg.com/originals/a6/15/46/a6154624251b16c421b23da5c9511000.jpg";
 export default {
   name: "ProfilePage",
   props: {
@@ -100,7 +100,6 @@ export default {
     },
     getUserProfileStats(){
       let backendUrl = `${config.backend.url}/profile/stats/` + UserStorage.getUser().id;
-      console.log  (backendUrl);
       axios.get(backendUrl)
             .then(response => {
               this.allContentStats = response.data.allContentStats;
@@ -112,7 +111,9 @@ export default {
                console.error('Ошибка получения данных с бекенда', error);
             });
     },
-
+    replaceByDefault(e) {
+      e.target.src = DEFAULT_IMG
+    }
   },
   mounted() {
     this.getUserProfileInfo();

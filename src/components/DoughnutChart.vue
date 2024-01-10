@@ -1,6 +1,12 @@
 <template>
-  <div>
+  <div v-if="isNoEmpty"> 
     <Doughnut :data="getDataForChart" :options="chartOptions" ref="myChart" />
+  </div>
+  <div class="not-found-block" v-else>
+    Данные не найдены. 
+    <br> 
+    Добавте что-нибудь в список.
+    <img src="../assets/general_assets/defolt_chart.png" alt="" />
   </div>
 </template>
 
@@ -25,6 +31,7 @@ export default {
 
   data() {
     return {
+      isNoEmpty: true,
       chartOptions: {
         responsive: true,
         maintainAspectRatio: false,
@@ -61,6 +68,7 @@ export default {
     chartData: {
       handler(newChartData) {
         this.updateChart(newChartData);
+        this.updateSost();
       },
       deep: true,
     },
@@ -72,7 +80,9 @@ export default {
     }
   },
 
-  
+  mounted() {
+    this.updateSost();
+  },
 
   methods: {
     getChartData(labels, data ){
@@ -88,6 +98,34 @@ export default {
       //  console.log(this.$refs.myChart.chart.options.plugins.title.text);
       }
     },
+    updateSost(){
+      const chartDataValues = Object.values(this.chartData)[0];
+      if (chartDataValues && chartDataValues.count) {
+        this.isNoEmpty = (chartDataValues.count.length > 0) ? true : false  ;
+      }
+    }
   },
 };
 </script>
+
+<style scoped>
+  .not-found-block{
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    gap: 10px;
+    text-align: center;
+    color: white;
+    font-size: 16px;
+  }
+  .not-found-block img{
+    width: 180px;
+    height: 180px;
+    border-color: rgb(129, 156, 255);
+    border-style: solid;
+    border-radius: 270px;
+    -o-object-fit: cover;
+    object-fit: cover;
+  }
+</style>

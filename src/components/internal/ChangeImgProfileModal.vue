@@ -14,6 +14,7 @@
 <script>
 import { config } from '@/config/config.js';
 import axios from "axios";
+import UserStorage from "@/service/user-storage-service";
 
 export default {
   props: {
@@ -34,7 +35,7 @@ export default {
     sendChanges(){
       let backendUrl =  `${config.backend.url}/profile/update-img`;
       const dataToSend = {
-          user_id : '658891c99f8aaf381016ebd0',
+          user_id : UserStorage.getUser().id,
           new_img_url: this.inputUrl
         };
       console.log(dataToSend);
