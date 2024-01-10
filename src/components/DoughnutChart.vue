@@ -95,7 +95,6 @@ export default {
         this.$refs.myChart.chart.data = newChartData;
         this.$refs.myChart.chart.options = this.chartOptions;
         this.$refs.myChart.chart.options.plugins.title.text = this.chartTitle;
-      //  console.log(this.$refs.myChart.chart.options.plugins.title.text);
       }
     },
     updateSost(){
