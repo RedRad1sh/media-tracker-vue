@@ -1,8 +1,8 @@
 <template>
  <div class="content-header">{{ rowTitle }}</div>
  <div class="container-row">
-   <div class="chart-block" v-for="(obj, index) in chartData.data" :key="index">
-     <div class="chart-title">{{ chartData.actions[index] }}</div>
+   <div class="chart-block" v-for="(obj, index) in chartData" :key="index">
+     <div class="chart-title">{{ Object.values(obj)[0].actions}}</div>
      <DoughnutChart :chartData="obj" :chartOptions="chartOptions"/>
    </div>
  </div>
@@ -14,38 +14,10 @@ export default {
 components: {
     DoughnutChart
   },
-  data() {
-    return {
-      chartOptions: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          title: {
-            align: 'start',
-            display: true,
-            font: {
-              size: 24,
-              family: 'sans-serif',
-            },
-            color: 'white',
-         },
-         legend: {
-          position: "right",
-          labels: {
-            font: {
-              size: 14,
-            },
-            color: "white",
-          },    
-         },
-       },
-      },
-    };
-  },
 
 props: {
     chartData: {
-      type: Object,
+      type: Array,
       required: true,
     },
     rowTitle: {

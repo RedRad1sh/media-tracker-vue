@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Doughnut :data="chartData" :options="chartOptions" ref="myChart" />
+    <Doughnut :data="getDataForChart" :options="chartOptions" ref="myChart" />
   </div>
 </template>
 
@@ -18,13 +18,45 @@ export default {
       type: Object,
       required: true,
     },
-    chartOptions: {
-      type: Object,
-    },
     chartTitle: {
       type: String,
     },
   },
+
+  data() {
+    return {
+      chartOptions: {
+        responsive: true,
+        maintainAspectRatio: false,
+        
+        plugins: {
+          title: {
+            align: 'start',
+            display: true,
+            font: {
+              size: 24,
+              family: 'sans-serif',
+            },
+            color: 'white',
+         },
+         legend: {
+          position: "right",
+          fullSize: true,
+          itemWrap: true,
+          labels: {
+            boxWidth: 15,
+            padding: 5,
+            font: {
+              size: 14,
+            },
+            color: "white",
+          },    
+         },
+       },
+      },
+    };
+  },
+
   watch: {
     chartData: {
       handler(newChartData) {
@@ -33,7 +65,21 @@ export default {
       deep: true,
     },
   },
+
+  computed:{ 
+    getDataForChart(){
+      return this.getChartData(Object.values(this.chartData)[0].genres, Object.values(this.chartData)[0].count)
+    }
+  },
+
+  
+
   methods: {
+    getChartData(labels, data ){
+      return { labels: labels,
+               datasets: [{ data: data, },],
+      };
+    },
     updateChart(newChartData) {
       if (this.$refs.myChart) {
         this.$refs.myChart.chart.data = newChartData;

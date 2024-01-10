@@ -46,82 +46,37 @@ export default {
     msg: String,
   },
   components: {
-    MenuComponent, ChangeImgProfileModal, DoughnutChart, StatsRowType
+    MenuComponent, ChangeImgProfileModal, StatsRowType, DoughnutChart
   },
   data() {
     return {
       showModal: false,
       profileData: {},
       allContentStats: {},
-      movieStatsPlanningGenres: {},
-      movieStatsWatchingGenres: {},
-      movieStatsWatchedGenres: {},
-      gameStatsPlanningGenres: {},
-      gameStatsWatchingGenres: {},
-      gameStatsWatchedGenres: {},
-      bookStatsPlanningGenres: {},
-      bookStatsWatchingGenres: {},
-      bookStatsWatchedGenres: {},
-      chartOptions: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          title: {
-            align: 'start',
-            display: true,
-            font: {
-              size: 24,
-              family: 'sans-serif',
-            },
-            color: 'white',
-         },
-         legend: {
-          position: "right",
-          labels: {
-            font: {
-              size: 14,
-            },
-            color: "white",
-          },    
-         },
-       },
-      },
+      movieStats: [],
+      gameStats: [],
+      bookStats: [],
     };
   },
 
     computed: {
-      chartDataAll() { return this.getChartData(this.allContentStats.contentType, this.allContentStats.count ) },
+      chartDataAll() { return { data: { genres: this.allContentStats.contentType,
+                                        count:  this.allContentStats.count 
+                                      }
+                              }
+      },
 
       chartDataMovie() {
-        const actions = ['Запланировано', 'Смотрю', 'Просмотрено'];
-        const moviePData =  this.getChartData(this.movieStatsPlanningGenres.genres, this.movieStatsPlanningGenres.count);
-        const movieWData =  this.getChartData(this.movieStatsWatchingGenres.genres, this.movieStatsWatchingGenres.count);
-        const movieWDData = this.getChartData(this.movieStatsWatchedGenres.genres,  this.movieStatsWatchedGenres.count );
-       return {actions: actions,
-               data: [moviePData, movieWData, movieWDData],
-              };
+        return this.movieStats;
       },
 
       chartDataGame() {
-        const actions = ['Запланировано', 'Прохожу', 'Пройдено'];
-        const gamePData =  this.getChartData(this.gameStatsPlanningGenres.genres, this.gameStatsPlanningGenres.count);
-        const gameWData =  this.getChartData(this.gameStatsWatchingGenres.genres, this.gameStatsWatchingGenres.count);
-        const gameWDData = this.getChartData(this.gameStatsWatchedGenres.genres,  this.gameStatsWatchedGenres.count );
-       return {actions: actions,
-               data: [gamePData, gameWData, gameWDData],
-              };
+        return this.gameStats;
       },
 
       chartDataBook() {
-        const actions = ['Запланировано', 'Читаю', 'Прочитано'];
-        const bookPData =  this.getChartData(this.bookStatsPlanningGenres.genres, this.bookStatsPlanningGenres.count);
-        const bookWData =  this.getChartData(this.bookStatsWatchingGenres.genres, this.bookStatsWatchingGenres.count);
-        const bookWDData = this.getChartData(this.bookStatsWatchedGenres.genres,  this.bookStatsWatchedGenres.count );
-       return {actions: actions,
-               data: [bookPData, bookWData, bookWDData],
-              };
+        return this.bookStats;
       },
-
   },
 
   methods: {
@@ -148,28 +103,15 @@ export default {
       axios.get(backendUrl)
             .then(response => {
               this.allContentStats = response.data.allContentStats;
-              this.movieStatsPlanningGenres = response.data.movieStats.planningGenres;
-              this.movieStatsWatchingGenres = response.data.movieStats.watchingGenres;
-              this.movieStatsWatchedGenres = response.data.movieStats.watchedGenres;
-
-              this.gameStatsPlanningGenres = response.data.gameStats.planningGenres;
-              this.gameStatsWatchingGenres = response.data.gameStats.watchingGenres;
-              this.gameStatsWatchedGenres = response.data.gameStats.watchedGenres;
-
-              this.bookStatsPlanningGenres = response.data.bookStats.planningGenres;
-              this.bookStatsWatchingGenres = response.data.bookStats.watchingGenres;
-              this.bookStatsWatchedGenres = response.data.bookStats.watchedGenres;
-
+              this.movieStats = response.data.movieStats;
+              this.gameStats = response.data.gameStats;
+              this.bookStats = response.data.bookStats;
             })
             .catch(error => {
                console.error('Ошибка получения данных с бекенда', error);
             });
     },
-    getChartData(labels, data ){
-      return { labels: labels,
-               datasets: [{ data: data, },],
-      };
-    }
+
   },
   mounted() {
     this.getUserProfileInfo();
