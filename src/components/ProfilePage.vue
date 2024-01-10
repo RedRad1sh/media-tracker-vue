@@ -39,6 +39,7 @@ import DoughnutChart from './DoughnutChart.vue';
 import StatsRowType from './StatsRowType.vue';
 import { config } from '@/config/config.js';
 import axios from "axios";
+import UserStorage from "@/service/user-storage-service";
 
 export default {
   name: "ProfilePage",
@@ -88,7 +89,7 @@ export default {
       this.getUserProfileInfo();
     },
     getUserProfileInfo(){
-      let backendUrl = `${config.backend.url}/users/` + '658891c99f8aaf381016ebd0'
+      let backendUrl = `${config.backend.url}/users/`+ UserStorage.getUser().id;
       axios.get(backendUrl)
             .then(response => {
               this.profileData = response.data;
@@ -98,7 +99,7 @@ export default {
             });
     },
     getUserProfileStats(){
-      let backendUrl = `${config.backend.url}/profile/stats/` + '658891c99f8aaf381016ebd0'
+      let backendUrl = `${config.backend.url}/profile/stats/` + UserStorage.getUser().id;
       console.log  (backendUrl);
       axios.get(backendUrl)
             .then(response => {
