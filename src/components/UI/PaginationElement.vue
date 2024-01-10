@@ -1,7 +1,8 @@
 <template>
     <div class="pagination">
-        <a href="#">&laquo;</a>
-        <a :class="Number(currentPage) === index ? 'page-active-button' : ''"
+        <a :class="{'current-page-btn': currentPage === 1, 'page-btn': currentPage !== 1}"
+            href="#" @click="this.$router.push({query: {...this.$route.query, page: getPreviousPage()}})">&laquo;</a>
+        <a :class="{'current-page-btn': currentPage === index, 'page-btn': currentPage !== index}"
            v-for="index in pagination(currentPage, totalPages)"
            @click="this.$router.push({query: {...this.$route.query, page: index}})"
            :ref="`page-${index}`"
@@ -10,7 +11,8 @@
         >
           {{ index }}
         </a>
-        <a href="#">&raquo;</a>
+        <a :class="{'current-page-btn': currentPage === totalPages, 'page-btn': currentPage !== totalPages}"
+            href="#" @click="this.$router.push({query: {...this.$route.query, page: getNextPage()}})">&raquo;</a>
     </div>
 </template>
 
@@ -30,6 +32,12 @@ export default {
         }
     },
     methods: {
+        getPreviousPage() {
+          return this.currentPage === 1? 1:this.currentPage - 1;
+        },
+        getNextPage() {
+          return this.currentPage === this.totalPages? this.currentPage: this.currentPage + 1;
+        },
         pagination(currentPageNumber, totalPageNumber) {
             return generate(currentPageNumber, totalPageNumber);
         }
