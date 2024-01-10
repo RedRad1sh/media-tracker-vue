@@ -277,6 +277,12 @@ footer {
     align-items: flex-start
 }
 
+.search-text {
+    font-size: 18px;
+    margin: 15px auto;
+    color: white;
+}
+
 select {
     position: relative;
     transition: border-color .1s ease-in-out, box-shadow .1s ease-in-out;

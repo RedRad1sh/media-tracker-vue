@@ -3,7 +3,6 @@
         <MenuComponent id="menu-include" active-element="3" />
         <div class="content-main recomendations-content">
             <div class="rec-settings">
-                <button type="button" @click="showModal" class="openHelp help-button">?</button>
                 <HelpComponentModal ref="modal" />
                 <div class="header-settings">
                     <div class="header-settings-text">
@@ -74,6 +73,7 @@
                         <span>Сформировать рекомендации</span>
                     </button>
                 </div>
+                <button type="button" @click="showModal" class="openHelp help-button">?</button>
             </div>
             <div id="loader"></div>
             <div class="content-cards">
