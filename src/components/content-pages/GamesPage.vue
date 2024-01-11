@@ -44,8 +44,8 @@ import PaginationElement from '@/components/UI/PaginationElement.vue';
 import axios from 'axios';
 import { config } from '@/config/config.js';
 import UserStorage from "@/service/user-storage-service";
+import {gameStatuses} from "@/service/global-constants.js";
 
-const lists = ["Запланировано", "Играю", "Пройдено"];
 
 export function createGameCard(gameResponse) {
     const id = gameResponse.const_content_id;
@@ -155,7 +155,7 @@ export default {
             searchRate: undefined,
             yearFrom: undefined,
             yearTo: undefined,
-            lists: lists,
+            lists: gameStatuses,
             totalPages: 10
         }
     }, watch: {

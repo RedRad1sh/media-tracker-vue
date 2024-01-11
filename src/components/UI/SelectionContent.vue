@@ -9,6 +9,7 @@
   import axios from 'axios';
   import { config } from '@/config/config.js';
   import UserStorage from "@/service/user-storage-service";
+  import {filmStatuses, gameStatuses, bookStatuses} from "@/service/global-constants.js";
 
   export default {
     props: {
@@ -34,13 +35,13 @@
     computed:{
       arraylist() {
         if (this.ObjectType === 'Movie') {
-          return ['Запланировано', 'Смотрю', 'Просмотрено'];
+          return filmStatuses;
         } 
         else if (this.ObjectType === 'Game') {
-          return ['Запланировано', 'Прохожу', 'Пройдено'];
+          return gameStatuses;
         }
         else if (this.ObjectType === 'Book') {
-          return ['Запланировано', 'Читаю', 'Прочитано'];
+          return bookStatuses;
         }
         else { 
           return [];

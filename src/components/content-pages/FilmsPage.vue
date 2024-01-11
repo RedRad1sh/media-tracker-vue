@@ -46,6 +46,7 @@ import { ContentData } from '@/components/internal/CardComponent.vue';
 import axios from 'axios';
 import { config } from '@/config/config.js';
 import UserStorage from "@/service/user-storage-service";
+import {filmStatuses} from "@/service/global-constants.js";
 
 export function createFilmCard(filmResponse) {
     const id = filmResponse.const_content_id;
@@ -58,7 +59,6 @@ export function createFilmCard(filmResponse) {
     return new ContentData(id, content_type, image_src, "", category, title, description, extra_prop)
 }
 
-const lists = ["Запланировано", "Смотрю", "Просмотрено"];
 const durations = [
   {
     name: 'Короткие',
@@ -184,7 +184,7 @@ export default {
             searchRate: undefined,
             yearFrom: undefined,
             yearTo: undefined,
-            lists: lists,
+            lists: filmStatuses,
             durations: durations,
             totalPages: 10
         }

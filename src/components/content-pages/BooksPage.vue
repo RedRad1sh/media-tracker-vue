@@ -46,8 +46,8 @@ import PaginationElement from '@/components/UI/PaginationElement.vue';
 import axios from 'axios';
 import { config } from '@/config/config.js';
 import UserStorage from "@/service/user-storage-service";
+import {bookStatuses} from "@/service/global-constants.js";
 
-const lists = ["Запланировано", "Читаю", "Прочитано"];
 const durations = [
   {
     name: 'Короткие',
@@ -180,7 +180,7 @@ export default {
             searchRate: undefined,
             yearFrom: undefined,
             yearTo: undefined,
-            lists: lists,
+            lists: bookStatuses,
             durations: durations,
             totalPages: 10
         }

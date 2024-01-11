@@ -26,7 +26,7 @@
       <div class="tabs-panel active" data-index="0">
         <div v-if="currentTab === 'FILM'" class="table-lists-block">
           <div v-if="userListsMovies.length">
-            <div v-for="index in 3" :key="index" style="width: 100%">
+            <div v-for="index in filmStatuses.length" :key="index" style="width: 100%">
               <span class="tab-header">{{ filmStatuses[index - 1] }}:</span>
               <ContentTableList
                 :content="
@@ -48,7 +48,7 @@
         </div>
         <div v-if="currentTab === 'GAME'" class="table-lists-block">
           <div v-if="userListsGames.length">
-            <div v-for="index in 3" :key="index" style="width: 100%">
+            <div v-for="index in gameStatuses.length" :key="index" style="width: 100%">
               <span class="tab-header">{{ gameStatuses[index - 1] }}:</span>
               <ContentTableList
                 :content="
@@ -70,7 +70,7 @@
         </div>
         <div v-if="currentTab === 'BOOK'" class="table-lists-block">
           <div v-if="userListsBooks.length">
-            <div v-for="index in 3" :key="index" style="width: 100%">
+            <div v-for="index in bookStatuses.length" :key="index" style="width: 100%">
               <span class="tab-header">{{ bookStatuses[index - 1] }}:</span>
               <ContentTableList
                 :content="
@@ -101,10 +101,7 @@ import ContentTableList from "@/components/UI/ContentTableList.vue";
 import { config } from "@/config/config.js";
 import axios from "axios";
 import UserStorage from "@/service/user-storage-service";
-
-const filmStatuses = ["Запланировано", "Смотрю", "Просмотрено"];
-const bookStatuses = ["Запланировано", "Читаю", "Прочитано"];
-const gameStatuses = ["Запланировано", "Прохожу", "Пройдено"];
+import {filmStatuses, gameStatuses, bookStatuses} from "@/service/global-constants.js";
 
 export default {
   name: "UserLists",

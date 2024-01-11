@@ -16,7 +16,6 @@
                     <div class="rec-checboxes">
                         <div class="check-content-item">
                             <input v-model="filterDict.checkedMoviesContent" id="films-checkbox" type="checkbox" />
-                            <input v-model="filterDict.checkedMoviesContent" id="films-checkbox" type="checkbox" />
 
                             <label for="films-checkbox">
                                 Фильмы
@@ -24,14 +23,12 @@
                         </div>
                         <div class="check-content-item">
                             <input v-model="filterDict.checkedBooksContent" id="books-checkbox" type="checkbox" />
-                            <input v-model="filterDict.checkedBooksContent" id="books-checkbox" type="checkbox" />
 
                             <label for="books-checkbox">
                                 Книги
                             </label>
                         </div>
                         <div class="check-content-item">
-                            <input v-model="filterDict.checkedGamesContent" id="games-checkbox" type="checkbox" />
                             <input v-model="filterDict.checkedGamesContent" id="games-checkbox" type="checkbox" />
 
                             <label for="games-checkbox">
@@ -45,9 +42,6 @@
                     <div class="search-content-select">
                         <select aria-label="content-select" v-model="selectedContentType"
                             :value="filterDict.selectedContentType">
-                            <option value="Movie">Фильмы</option>
-                            <option value="Book">Книги</option>
-                            <option value="Game">Игры</option>
                             <option value="Movie">Фильмы</option>
                             <option value="Book">Книги</option>
                             <option value="Game">Игры</option>
@@ -95,12 +89,8 @@ import MenuComponent from '@/components/navigation/MenuComponent.vue';
 import { createGameCard } from "@/components/content-pages/GamesPage.vue"
 import { createFilmCard } from "@/components/content-pages/FilmsPage.vue"
 import { createBookCard } from "@/components/content-pages/BooksPage.vue"
-import { createFilmCard } from "@/components/content-pages/FilmsPage.vue"
-import { createBookCard } from "@/components/content-pages/BooksPage.vue"
 import CardComponent from '@/components/internal/CardComponent.vue';
 import HelpComponentModal from '@/components/internal/HelpComponentModal.vue';
-import axios from 'axios';
-import { config } from '@/config/config.js';
 import axios from 'axios';
 import { config } from '@/config/config.js';
 
@@ -111,7 +101,6 @@ export default {
     },
     data() {
         return {
-            selectedContentType: 'Movie',
             selectedContentType: 'Movie',
             isModalVisible: false,
             contentData: [],
@@ -132,7 +121,6 @@ export default {
         }
     },
     methods: {
-        createGameCard: createGameCard,
         createRecomendations() {
             // userid пока константа - 658891c99f8aaf381016ebd0
             this.contentData = []
