@@ -15,21 +15,21 @@
                     <span>Учитываемые списки </span>
                     <div class="rec-checboxes">
                         <div class="check-content-item">
-                            <input :checked="filterDict.checkedMoviesContent" id="films-checkbox" type="checkbox" />
+                            <input v-model="filterDict.checkedMoviesContent" id="films-checkbox" type="checkbox" />
 
                             <label for="films-checkbox">
                                 Фильмы
                             </label>
                         </div>
                         <div class="check-content-item">
-                            <input :checked="filterDict.checkedBooksContent" id="books-checkbox" type="checkbox" />
+                            <input v-model="filterDict.checkedBooksContent" id="books-checkbox" type="checkbox" />
 
                             <label for="books-checkbox">
                                 Книги
                             </label>
                         </div>
                         <div class="check-content-item">
-                            <input :checked="filterDict.checkedGamesContent" id="games-checkbox" type="checkbox" />
+                            <input v-model="filterDict.checkedGamesContent" id="games-checkbox" type="checkbox" />
 
                             <label for="games-checkbox">
                                 Игры
@@ -40,11 +40,11 @@
                 <div class="settings-menuitem">
                     <span>Рекомендуемый контент </span>
                     <div class="search-content-select">
-                        <select aria-label="content-select" v-model="defaultSelectContent"
+                        <select aria-label="content-select" v-model="selectedContentType"
                             :value="filterDict.selectedContentType">
-                            <option value="movies">Фильмы</option>
-                            <option value="books">Книги</option>
-                            <option value="games">Игры</option>
+                            <option value="Movie">Фильмы</option>
+                            <option value="Book">Книги</option>
+                            <option value="Game">Игры</option>
                         </select>
                     </div>
                 </div>
@@ -75,10 +75,9 @@
                 </div>
                 <button type="button" @click="showModal" class="openHelp help-button">?</button>
             </div>
-            <div id="loader"></div>
             <div class="content-cards">
                 <h1 class="recomendations-info" v-if="contentData.length == 0">Здесь будут отображены ваши рекомендации</h1>
-                <CardComponent v-for="item in contentData" :key="item.id" :contentData="createGameCard(item)">
+                <CardComponent v-for="item in contentData" :key="item.id" :contentData="createCard(item)">
                 </CardComponent>
             </div>
         </div>
@@ -87,36 +86,66 @@
 
 <script>
 import MenuComponent from '@/components/navigation/MenuComponent.vue';
-import { presaved_json } from "@/assets/js/content-lists/pre-saved-jsons/games_presaved.js"
 import { createGameCard } from "@/components/content-pages/GamesPage.vue"
+import { createFilmCard } from "@/components/content-pages/FilmsPage.vue"
+import { createBookCard } from "@/components/content-pages/BooksPage.vue"
 import CardComponent from '@/components/internal/CardComponent.vue';
 import HelpComponentModal from '@/components/internal/HelpComponentModal.vue';
+import axios from 'axios';
+import { config } from '@/config/config.js';
 
 export default {
     name: 'RecommendationsPage',
     components: {
-         MenuComponent, CardComponent, HelpComponentModal
+        MenuComponent, CardComponent, HelpComponentModal
     },
     data() {
         return {
-            defaultSelectContent: 'movies',
+            selectedContentType: 'Movie',
             isModalVisible: false,
             contentData: [],
             filterDict: {
-                selectedContentType: '',
                 genresList: '',
                 minYear: '',
                 maxYear: '',
                 checkedMoviesContent: true,
                 checkedBooksContent: false,
                 checkedGamesContent: false
-            }
+            },
+            createCard: createGameCard,
+            createCardMap: {
+                'Movie': createFilmCard,
+                'Game': createGameCard,
+                'Book': createBookCard
+            },
         }
     },
     methods: {
-        createGameCard: createGameCard,
         createRecomendations() {
-            this.contentData = presaved_json
+            // userid пока константа - 658891c99f8aaf381016ebd0
+            this.contentData = []
+            let backendUrl = `${config.backend.url}/lists/user/658891c99f8aaf381016ebd0/reccomendations`
+            let usingContentTypes = []
+            if (this.filterDict.checkedMoviesContent) {
+                usingContentTypes.push('Movie')
+            }
+            if (this.filterDict.checkedBooksContent) {
+                usingContentTypes.push('Book')
+            }
+            if (this.filterDict.checkedGamesContent) {
+                usingContentTypes.push('Game')
+            }
+            axios.get(backendUrl, {
+                params: {
+                    usingContentTypes: usingContentTypes.join(','),
+                    recommendContentType: this.selectedContentType
+                }
+            }).then(response => {
+                this.createCard = this.createCardMap[this.selectedContentType]
+                this.contentData = response.data.contentArray;
+            }).catch(error => {
+                console.error('Ошибка получения данных с бекенда', error);
+            });
         },
         showModal() {
             this.$refs.modal.show = true
