@@ -2,14 +2,11 @@
     <div class="block">
         <MenuComponent id="menu-include" active-element="0" />
         <div class="content-main">
-            <div class="block-row" style="justify-content: center">
-                <div class="content-header">Фильмы</div>
-                <div class="content-header" id="page-number">Страница №{{ this.$route.query.page ?? 1 }}
-                    <span v-if="![undefined, null, ''].includes(this.$route.query.search)">
-                        Поиск: {{ this.$route.query.search }}
-                    </span>
-                </div>
-            </div>
+          <div class="block-row" style="justify-content: center">
+                <span class="search-text" v-if="![undefined, null, ''].includes(this.$route.query.search)">
+                        Результаты по запросу: {{ this.$route.query.search }}
+                </span>
+          </div>
             <div id="content-container">
                 <ContentFilters
                     :lists="lists"

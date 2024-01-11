@@ -14,18 +14,17 @@
 
 /* Кнопка-справка */
 .help-button {
-    position: absolute;
+    border-radius: 50%;
     top: 0;
     left: 0;
-    margin-left: 5px;
-    margin-top: 5px;
-    background-color: #ffffff00;
+    float: right;
+    background-color: rgba(0, 0, 0, 0.45);
     color: rgb(255, 255, 255);
-    height: 30px;
-    width: 30px;
+    height: 25px;
+    width: 25px;
     padding: 1px;
     border: none;
-    font-size: 18px;
+    font-size: 12px;
 }
 
 /* Лоадер */
