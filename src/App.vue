@@ -3,6 +3,7 @@
     <HeaderComponent/>
     <router-view></router-view>
   </div>
+  <notifications position="bottom left" group="nots" />
 </template>
 
 <script>

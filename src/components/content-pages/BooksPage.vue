@@ -4,35 +4,20 @@
         <div class="content-main">
             <div class="block-row" style="justify-content: center">
                 <span class="search-text" v-if="![undefined, null, ''].includes(this.$route.query.search)">
-                        Результаты по запросу: {{ this.$route.query.search }}
+                    Результаты по запросу: {{ this.$route.query.search }}
                 </span>
             </div>
             <div id="content-container">
-                <ContentFilters
-                    :lists="lists"
-                    :genres="genres"
-                    :showDurations="true"
-                    :durations="durations"
-                    @addGenre="changeGenres"
-                    @changeRate="changeRate"
-                    @changeYearFrom="changeYearFrom"
-                    @changeYearTo="changeYearTo"
-                    @changeDuration="changeDuration"
-                    @changeList="changeList"
-                />
+                <ContentFilters :lists="lists" :genres="genres" :showDurations="true" :durations="durations"
+                    @addGenre="changeGenres" @changeRate="changeRate" @changeYearFrom="changeYearFrom"
+                    @changeYearTo="changeYearTo" @changeDuration="changeDuration" @changeList="changeList" />
                 <div class="content-cards" id="books-cards-container">
-                    <CardComponent
-                        :ObjectType="type"
-                        v-for="item in booksData"
-                        :key="item.id"
-                        :contentData="createBookCard(item)"
-                    />
+                    <CardComponent :ObjectType="type" v-for="item in booksData" :key="item.id"
+                        :contentData="createBookCard(item)" />
                 </div>
             </div>
-            <PaginationElement
-                :totalPages="this.totalPages"
-                :currentPage="this.$route.query.page ? Number(this.$route.query.page) : 1"
-            />
+            <PaginationElement :totalPages="this.totalPages"
+                :currentPage="this.$route.query.page ? Number(this.$route.query.page) : 1" />
         </div>
     </div>
 </template>
@@ -46,24 +31,24 @@ import PaginationElement from '@/components/UI/PaginationElement.vue';
 import axios from 'axios';
 import { config } from '@/config/config.js';
 import UserStorage from "@/service/user-storage-service";
-import {bookStatuses} from "@/service/global-constants.js";
+import { bookStatuses } from "@/service/global-constants.js";
 
 const durations = [
-  {
-    name: 'Короткие',
-    type: 'SHORT',
-    tooltip: 'до 120 страниц'
-  },
-  {
-    name: 'Средние',
-    type: 'MEDIUM',
-    tooltip: 'от 120 до 500 страниц'
-  },
-  {
-    name: 'Длинные',
-    type: 'LONG',
-    tooltip: 'от 500 минут'
-  }
+    {
+        name: 'Короткие',
+        type: 'SHORT',
+        tooltip: 'до 120 страниц'
+    },
+    {
+        name: 'Средние',
+        type: 'MEDIUM',
+        tooltip: 'от 120 до 500 страниц'
+    },
+    {
+        name: 'Длинные',
+        type: 'LONG',
+        tooltip: 'от 500 минут'
+    }
 ];
 
 export function createBookCard(bookResponse) {
@@ -94,7 +79,7 @@ export default {
 
             axios.get(backendUrl, {
                 params: {
-                    user_id : UserStorage.getUser().id,
+                    user_id: UserStorage.getUser().id,
                     page: page,
                     size: 20,
                     search: search,
@@ -111,10 +96,16 @@ export default {
                 this.scrollToTop()
             }).catch(error => {
                 console.error('Ошибка получения данных с бекенда', error);
+                this.$notify({
+                    group: 'nots',
+                    type: 'error',
+                    title: 'Ошибка',
+                    text: 'Не удалось получить список книг'
+                });
             });
         },
         resetPageAndGetBooks() {
-            this.$router.push({query: {...this.$route.query, page: 1}});
+            this.$router.push({ query: { ...this.$route.query, page: 1 } });
             this.getBooks(this.$route.query);
         },
         getBooksGenres() {

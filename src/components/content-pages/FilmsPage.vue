@@ -2,37 +2,22 @@
     <div class="block">
         <MenuComponent id="menu-include" active-element="0" />
         <div class="content-main">
-          <div class="block-row" style="justify-content: center">
+            <div class="block-row" style="justify-content: center">
                 <span class="search-text" v-if="![undefined, null, ''].includes(this.$route.query.search)">
-                        Результаты по запросу: {{ this.$route.query.search }}
+                    Результаты по запросу: {{ this.$route.query.search }}
                 </span>
-          </div>
+            </div>
             <div id="content-container">
-                <ContentFilters
-                    :lists="lists"
-                    :genres="genres"
-                    :showDurations="true"
-                    :durations="durations"
-                    @addGenre="changeGenres"
-                    @changeRate="changeRate"
-                    @changeYearFrom="changeYearFrom"
-                    @changeYearTo="changeYearTo"
-                    @changeDuration="changeDuration"
-                    @changeList="changeList"
-                />
+                <ContentFilters :lists="lists" :genres="genres" :showDurations="true" :durations="durations"
+                    @addGenre="changeGenres" @changeRate="changeRate" @changeYearFrom="changeYearFrom"
+                    @changeYearTo="changeYearTo" @changeDuration="changeDuration" @changeList="changeList" />
                 <div class="content-cards" id="film-cards-container">
-                    <CardComponent
-                        :ObjectType="type"
-                        v-for="item in filmsData"
-                        :key="item.id"
-                        :contentData="createFilmCard(item)"
-                    />
+                    <CardComponent :ObjectType="type" v-for="item in filmsData" :key="item.id"
+                        :contentData="createFilmCard(item)" />
                 </div>
             </div>
-            <PaginationElement
-                :totalPages="this.totalPages"
-                :currentPage="this.$route.query.page ? Number(this.$route.query.page) : 1"
-            />
+            <PaginationElement :totalPages="this.totalPages"
+                :currentPage="this.$route.query.page ? Number(this.$route.query.page) : 1" />
         </div>
     </div>
 </template>
@@ -46,7 +31,7 @@ import { ContentData } from '@/components/internal/CardComponent.vue';
 import axios from 'axios';
 import { config } from '@/config/config.js';
 import UserStorage from "@/service/user-storage-service";
-import {filmStatuses} from "@/service/global-constants.js";
+import { filmStatuses } from "@/service/global-constants.js";
 
 export function createFilmCard(filmResponse) {
     const id = filmResponse.const_content_id;
@@ -60,21 +45,21 @@ export function createFilmCard(filmResponse) {
 }
 
 const durations = [
-  {
-    name: 'Короткие',
-    type: 'SHORT',
-    tooltip: 'до 90 минут'
-  },
-  {
-    name: 'Средние',
-    type: 'MEDIUM',
-    tooltip: 'до 120 минут'
-  },
-  {
-    name: 'Длинные',
-    type: 'LONG',
-    tooltip: 'от 120 минут'
-  }
+    {
+        name: 'Короткие',
+        type: 'SHORT',
+        tooltip: 'до 90 минут'
+    },
+    {
+        name: 'Средние',
+        type: 'MEDIUM',
+        tooltip: 'до 120 минут'
+    },
+    {
+        name: 'Длинные',
+        type: 'LONG',
+        tooltip: 'от 120 минут'
+    }
 ];
 
 export default {
@@ -93,7 +78,7 @@ export default {
 
             axios.get(backendUrl, {
                 params: {
-                    user_id : UserStorage.getUser().id,
+                    user_id: UserStorage.getUser().id,
                     page: page,
                     size: 20,
                     search: search,
@@ -110,11 +95,17 @@ export default {
                 this.scrollToTop()
             }).catch(error => {
                 console.error('Ошибка получения данных с бекенда', error);
+                this.$notify({
+                    group: 'nots',
+                    type: 'error',
+                    title: 'Ошибка',
+                    text: 'Не удалось получить список фильмов'
+                });
             });
         },
         resetPageAndGetMovies() {
-          this.$router.push({query: {...this.$route.query, page: 1}});
-          this.getMovies(this.$route.query);
+            this.$router.push({ query: { ...this.$route.query, page: 1 } });
+            this.getMovies(this.$route.query);
         },
         getMoviesGenres() {
             let backendUrl = `${config.backend.url}/movies/genres`

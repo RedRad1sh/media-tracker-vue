@@ -2,35 +2,22 @@
     <div class="block">
         <MenuComponent id="menu-include" active-element="2" />
         <div class="content-main">
-          <div class="block-row" style="justify-content: center">
+            <div class="block-row" style="justify-content: center">
                 <span class="search-text" v-if="![undefined, null, ''].includes(this.$route.query.search)">
-                        Результаты по запросу: {{ this.$route.query.search }}
+                    Результаты по запросу: {{ this.$route.query.search }}
                 </span>
-          </div>
+            </div>
             <div id="content-container">
-                <ContentFilters
-                    :lists="lists"
-                    :genres="genres"
-                    :showDurations="false"
-                    @addGenre="changeGenres"
-                    @changeRate="changeRate"
-                    @changeYearFrom="changeYearFrom"
-                    @changeYearTo="changeYearTo"
-                    @changeList="changeList"
-                />
+                <ContentFilters :lists="lists" :genres="genres" :showDurations="false" @addGenre="changeGenres"
+                    @changeRate="changeRate" @changeYearFrom="changeYearFrom" @changeYearTo="changeYearTo"
+                    @changeList="changeList" />
                 <div class="content-cards" id="film-cards-container">
-                    <CardComponent
-                        :ObjectType="type"
-                        v-for="item in gamesData"
-                        :key="item.id"
-                        :contentData="createGameCard(item)"
-                    />
+                    <CardComponent :ObjectType="type" v-for="item in gamesData" :key="item.id"
+                        :contentData="createGameCard(item)" />
                 </div>
             </div>
-            <PaginationElement
-                :totalPages="this.totalPages"
-                :currentPage="this.$route.query.page ? Number(this.$route.query.page) : 1"
-            />
+            <PaginationElement :totalPages="this.totalPages"
+                :currentPage="this.$route.query.page ? Number(this.$route.query.page) : 1" />
         </div>
     </div>
 </template>
@@ -44,7 +31,7 @@ import PaginationElement from '@/components/UI/PaginationElement.vue';
 import axios from 'axios';
 import { config } from '@/config/config.js';
 import UserStorage from "@/service/user-storage-service";
-import {gameStatuses} from "@/service/global-constants.js";
+import { gameStatuses } from "@/service/global-constants.js";
 
 
 export function createGameCard(gameResponse) {
@@ -75,7 +62,7 @@ export default {
 
             axios.get(backendUrl, {
                 params: {
-                    user_id : UserStorage.getUser().id,
+                    user_id: UserStorage.getUser().id,
                     page: page,
                     size: 20,
                     search: search,
@@ -92,10 +79,16 @@ export default {
                 this.scrollToTop()
             }).catch(error => {
                 console.error('Ошибка получения данных с бекенда', error);
+                this.$notify({
+                    group: 'nots',
+                    type: 'error',
+                    title: 'Ошибка',
+                    text: 'Не удалось получить список игр'
+                });
             });
         },
         resetPageAndGetGames() {
-            this.$router.push({query: {...this.$route.query, page: 1}});
+            this.$router.push({ query: { ...this.$route.query, page: 1 } });
             this.getGames(this.$route.query);
         },
         getGamesGenres() {

@@ -9,7 +9,7 @@
             @error="replaceByDefault"
         />
         <div class="card-tag">
-          <span class="card-genre Caption"><span>{{ contentData.category }}</span></span>
+          <span class="card-genre Caption"><span>{{ contentData.category.split(',').slice(0,3).join(',') }}</span></span>
         </div>
       </div>
     </a>
