@@ -44,7 +44,6 @@
                     <span>Рекомендуемый контент </span>
                     <div class="search-content-select">
                         <select aria-label="content-select" v-model="selectedContentType"
-                        <select aria-label="content-select" v-model="selectedContentType"
                             :value="filterDict.selectedContentType">
                             <option value="Movie">Фильмы</option>
                             <option value="Book">Книги</option>
@@ -84,8 +83,7 @@
             </div>
             <div class="content-cards">
                 <h1 class="recomendations-info" v-if="contentData.length == 0">Здесь будут отображены ваши рекомендации</h1>
-                <CardComponent v-for="item in contentData" :key="item.id" :contentData="createCard(item)">
-                <CardComponent v-for="item in contentData" :key="item.id" :contentData="createCard(item)">
+                <CardComponent :ObjectType="selectedContentType" v-for="item in contentData" :key="item.id" :contentData="createCard(item)">
                 </CardComponent>
             </div>
         </div>
@@ -110,7 +108,6 @@ export default {
     name: 'RecommendationsPage',
     components: {
         MenuComponent, CardComponent, HelpComponentModal
-        MenuComponent, CardComponent, HelpComponentModal
     },
     data() {
         return {
@@ -125,13 +122,6 @@ export default {
                 checkedMoviesContent: true,
                 checkedBooksContent: false,
                 checkedGamesContent: false
-            },
-            createCard: createGameCard,
-            createCardMap: {
-                'Movie': createFilmCard,
-                'Game': createGameCard,
-                'Book': createBookCard
-            },
             },
             createCard: createGameCard,
             createCardMap: {
