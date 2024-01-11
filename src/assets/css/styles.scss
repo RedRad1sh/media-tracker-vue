@@ -110,7 +110,7 @@ header {
     width: 60%;
     padding: 0 1px;
     flex-direction: column
-}   
+}
 
 .search-field {
     width: 100%;
@@ -388,6 +388,7 @@ select option:hover {
 
 .current-page-btn {
     background-color: rgba(26, 30, 62, 0.12);
+    pointer-events: none;
     cursor: default;
     color: #121231;
     float: left;
