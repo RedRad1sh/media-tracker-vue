@@ -59,7 +59,7 @@
 
         <div class="swiper-container contents">
           <!-- Additional required wrapper -->
-            <SwpSlide :typeurl="'current-film'" :newsobj="newsf" />
+            <SwpSlide :typeurl="'current-movie'" :newsobj="newsf" />
         </div>
 
         <div class="block-row" style="justify-content: center">

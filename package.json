@@ -10,7 +10,7 @@
   "dependencies": {
     "@bramus/pagination-sequence": "^1.2.1",
     "axios": "^1.6.2",
-    "chart.js": "^4.4.0",
+    "chart.js": "^4.4.1",
     "core-js": "^3.8.3",
     "cors": "^2.8.5",
     "dompurify": "^3.0.6",
@@ -18,9 +18,11 @@
     "swiper": "^11.0.5",
     "util": "^0.12.5",
     "vue": "^3.2.13",
+    "vue-chartjs": "^5.3.0",
     "vue-cookies": "^1.8.3",
     "vue-plugin-load-script": "^2.1.1",
-    "vue-router": "^4.2.5"
+    "vue-router": "^4.2.5",
+    "vue3-charts": "^1.1.33"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",
