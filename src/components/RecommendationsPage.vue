@@ -124,7 +124,6 @@ export default {
     },
     methods: {
         createRecomendations() {
-            // userid пока константа - 658891c99f8aaf381016ebd0
             this.contentData = []
             let backendUrl = `${config.backend.url}/lists/user/${UserStorage.getUser().id}/reccomendations`
             let usingContentTypes = []
