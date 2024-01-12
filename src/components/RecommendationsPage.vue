@@ -77,7 +77,8 @@
             </div>
             <div class="content-cards">
                 <h1 class="recomendations-info" v-if="contentData.length == 0">Здесь будут отображены ваши рекомендации</h1>
-                <CardComponent v-for="item in contentData" :key="item.id" :contentData="createCard(item)">
+                <CardComponent :ObjectType="selectedContentType" v-for="item in contentData" :key="item.id"
+                    :contentData="createCard(item)">
                 </CardComponent>
             </div>
         </div>
@@ -93,6 +94,7 @@ import CardComponent from '@/components/internal/CardComponent.vue';
 import HelpComponentModal from '@/components/internal/HelpComponentModal.vue';
 import axios from 'axios';
 import { config } from '@/config/config.js';
+import UserStorage from "@/service/user-storage-service";
 
 export default {
     name: 'RecommendationsPage',
@@ -122,9 +124,8 @@ export default {
     },
     methods: {
         createRecomendations() {
-            // userid пока константа - 658891c99f8aaf381016ebd0
             this.contentData = []
-            let backendUrl = `${config.backend.url}/lists/user/658891c99f8aaf381016ebd0/reccomendations`
+            let backendUrl = `${config.backend.url}/lists/user/${UserStorage.getUser().id}/reccomendations`
             let usingContentTypes = []
             if (this.filterDict.checkedMoviesContent) {
                 usingContentTypes.push('Movie')
@@ -145,6 +146,12 @@ export default {
                 this.contentData = response.data.contentArray;
             }).catch(error => {
                 console.error('Ошибка получения данных с бекенда', error);
+                this.$notify({
+                    group: 'nots',
+                    type: 'error',
+                    title: 'Ошибка',
+                    text: 'Не удалось сформировать рекоммендации'
+                });
             });
         },
         showModal() {

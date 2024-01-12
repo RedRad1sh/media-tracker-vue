@@ -4,9 +4,8 @@
     <div class="content-main">
       <div class="profile-info container-row">
         <div class="image-frame">
-          <div class="image_block" @click="openModal"  >
-            <img
-              :src="this.profileData.img_url" alt="image31416" class="image" @error="replaceByDefault"/>
+          <div class="image_block" @click="openModal">
+            <img :src="this.profileData.img_url" alt="image31416" class="image" @error="replaceByDefault" />
             <div class="img-overfl">
               <img src="../assets/general_assets/plus-wt.svg" alt="" />
             </div>
@@ -16,19 +15,19 @@
           </div>
         </div>
         <div class="chart-block">
-           <div class="chart-title">Просмотренный контент</div>
-           <DoughnutChart :chartData="chartDataAll" :chartOptions="chartOptions"/>
+          <div class="chart-title">Просмотренный контент</div>
+          <DoughnutChart :chartData="chartDataAll" :chartOptions="chartOptions" />
         </div>
         <div class="navigation">
           <a @click="this.$router.push({ path: `/profile/lists` })" class="text-s"> 📋 Списки контента </a>
           <a @click="this.$router.push({ path: `/profile/user-reviews` })" class="text-s"> 📒 Оставленные рецензии </a>
         </div>
       </div>
-      <StatsRowType :rowTitle="'Статистика по жанрам фильмов:'" :chartData="chartDataMovie"/>
-      <StatsRowType :rowTitle="'Статистика по жанрам игр:'"     :chartData="chartDataGame"/>
-      <StatsRowType :rowTitle="'Статистика по жанрам книг:'"    :chartData="chartDataBook"/>
+      <StatsRowType :rowTitle="'Статистика по жанрам фильмов:'" :chartData="chartDataMovie" />
+      <StatsRowType :rowTitle="'Статистика по жанрам игр:'" :chartData="chartDataGame" />
+      <StatsRowType :rowTitle="'Статистика по жанрам книг:'" :chartData="chartDataBook" />
     </div>
-    <ChangeImgProfileModal :show="showModal" @closeModal="closeModal"/>
+    <ChangeImgProfileModal :show="showModal" @closeModal="closeModal" />
   </div>
 </template>
 
@@ -60,56 +59,71 @@ export default {
     };
   },
 
-    computed: {
-      chartDataAll() { return { data: { genres: this.allContentStats.contentType,
-                                        count:  this.allContentStats.count 
-                                      }
-                              }
-      },
+  computed: {
+    chartDataAll() {
+      return {
+        data: {
+          genres: this.allContentStats.contentType,
+          count: this.allContentStats.count
+        }
+      }
+    },
 
-      chartDataMovie() {
-        return this.movieStats;
-      },
+    chartDataMovie() {
+      return this.movieStats;
+    },
 
-      chartDataGame() {
-        return this.gameStats;
-      },
+    chartDataGame() {
+      return this.gameStats;
+    },
 
-      chartDataBook() {
-        return this.bookStats;
-      },
+    chartDataBook() {
+      return this.bookStats;
+    },
   },
 
   methods: {
     openModal() {
       this.showModal = true;
     },
-    closeModal(){
+    closeModal() {
       this.showModal = false;
       this.getUserProfileInfo();
     },
-    getUserProfileInfo(){
-      let backendUrl = `${config.backend.url}/users/`+ UserStorage.getUser().id;
+    getUserProfileInfo() {
+      let backendUrl = `${config.backend.url}/users/` + UserStorage.getUser().id;
       axios.get(backendUrl)
-            .then(response => {
-              this.profileData = response.data;
-            })
-            .catch(error => {
-               console.error('Ошибка получения данных с бекенда', error);
-            });
+        .then(response => {
+          this.profileData = response.data;
+        })
+        .catch(error => {
+          console.error('Ошибка получения данных с бекенда', error);
+          this.$notify({
+            group: 'nots',
+            type: 'error',
+            title: 'Ошибка',
+            text: 'Не удалось получить информацию по пользователю'
+          });
+        });
     },
-    getUserProfileStats(){
+    getUserProfileStats() {
       let backendUrl = `${config.backend.url}/profile/stats/` + UserStorage.getUser().id;
       axios.get(backendUrl)
-            .then(response => {
-              this.allContentStats = response.data.allContentStats;
-              this.movieStats = response.data.movieStats;
-              this.gameStats = response.data.gameStats;
-              this.bookStats = response.data.bookStats;
-            })
-            .catch(error => {
-               console.error('Ошибка получения данных с бекенда', error);
-            });
+        .then(response => {
+          this.allContentStats = response.data.allContentStats;
+          this.movieStats = response.data.movieStats;
+          this.gameStats = response.data.gameStats;
+          this.bookStats = response.data.bookStats;
+        })
+        .catch(error => {
+          console.error('Ошибка получения данных с бекенда', error);
+          this.$notify({
+            group: 'nots',
+            type: 'error',
+            title: 'Ошибка',
+            text: 'Не удалось получить статистику пользователя'
+          });
+        });
     },
     replaceByDefault(e) {
       e.target.src = DEFAULT_IMG
@@ -117,12 +131,12 @@ export default {
   },
   mounted() {
     this.getUserProfileInfo();
-    this.getUserProfileStats();   
+    this.getUserProfileStats();
   },
 };
 </script>
 
 <style scoped>
-  @import "~@/assets/css/profile.scss";
-  @import "~@/assets/css/styles.scss";
+@import "~@/assets/css/profile.scss";
+@import "~@/assets/css/styles.scss";
 </style>
