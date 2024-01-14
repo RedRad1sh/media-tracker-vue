@@ -164,7 +164,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "~@/assets/css/styles.css";
+@import "~@/assets/css/styles.scss";
 @import "~@/assets/css/user-lists.css";
 
 .lists-block {
