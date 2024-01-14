@@ -112,6 +112,7 @@
   import SelectionContent from "@/components/UI/SelectionContent.vue";
   import InfoforCurrentPage from "@/components/InfoforCurrentPage.vue";
   import axios from 'axios';
+  import {config} from '@/config/config.js';
   
   export default {
     name: "CurrentFilm",
@@ -143,7 +144,7 @@
 
     methods: {
       getGamebyId(){
-        let backendUrl = '${config.backend.url}/games/game/' + this.$route.params.id;
+        let backendUrl = `${config.backend.url}/games/game/` + this.$route.params.id;
 
         axios.get(backendUrl)
           .then(response => {
