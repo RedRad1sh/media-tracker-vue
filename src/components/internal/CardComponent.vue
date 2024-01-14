@@ -24,8 +24,6 @@
           <span style="overflow: hidden">{{ contentData.description }}</span>
         </span>
         <span class="card-extra-property">
-          <span>{{ console.log(contentData)  }}</span>
-
           <span>{{ contentData.extra_prop.split(',')[0] }}</span>
         </span>
       </div>
