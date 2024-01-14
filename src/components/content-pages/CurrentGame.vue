@@ -152,10 +152,17 @@ export default {
       axios.get(backendUrl)
           .then(response => {
             this.gameObj = response.data;
+            this.gameObj.video = this.gameObj.video ? this.gameObj.video.replace('http', 'https') : ""
             this.getReviews();
           })
           .catch(error => {
             console.error('Ошибка получения данных с бекенда', error);
+            this.$notify({
+            group: 'nots',
+            type: 'error',
+            title: 'Ошибка',
+            text: 'Не удалось получить информацию по игре'
+          });
           });
     },
 
@@ -176,6 +183,7 @@ export default {
             })
             .catch(error => {
               console.error('Ошибка при создании отзыва', error);
+              
             });
 
       }
@@ -199,7 +207,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss"  scoped>
 
 @import "~@/assets/css/cur-obj-page.scss";
 

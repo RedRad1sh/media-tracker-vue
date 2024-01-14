@@ -4,5 +4,5 @@ export let config;
 if (process.env.NODE_ENV === 'production') {
     config = yaml.production;
 } else {
-    config = yaml.development;
+    config = yaml.production;
 }

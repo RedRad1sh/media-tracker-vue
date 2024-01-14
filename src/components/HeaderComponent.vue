@@ -15,7 +15,7 @@
               <option value="games">Игры</option>
             </select>
           </div>
-          <input v-model="message" type="text" class="search-input" />
+          <input id="search" v-model="message" type="text" class="search-input" v-on:keyup.enter="$router.push(`/${content}?search=${message}`)" />
           <a href="#" @click="$router.push(`/${content}?search=${message}`)">
             <img src="~@/assets/general_assets/tailicon7371-ey4g.svg" class="search-icon" />
           </a>

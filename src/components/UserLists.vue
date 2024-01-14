@@ -151,15 +151,21 @@ export default {
         })
         .catch((error) => {
           console.error("Ошибка получения данных с бекенда", error);
+          this.$notify({
+                    group: 'nots',
+                    type: 'error',
+                    title: 'Ошибка',
+                    text: 'Не удалось получить списки пользователя'
+                });
         });
     },
   },
 };
 </script>
 
-<style scoped>
-@import "~@/assets/css/styles.scss";
-@import "~@/assets/css/user-lists.scss";
+<style lang="scss" scoped>
+@import "~@/assets/css/styles.css";
+@import "~@/assets/css/user-lists.css";
 
 .lists-block {
   display: flex;

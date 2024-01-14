@@ -1,22 +1,18 @@
 <template>
   <div class="block">
-    <MenuComponent id="menu-include" active-element="1"/>
+    <MenuComponent id="menu-include" active-element="1" />
     <div class="content-main">
       <div class="block-row" style="justify-content: center">
         <div class="content-header">{{ bookObj.title }}</div>
       </div>
       <div class="obj-first-row">
         <div class="obj-img-element">
-          <img
-              :src="bookObj.img_url"
-              alt="IMAGE"
-              class="obj-image"
-          />
+          <img :src="bookObj.img_url" alt="IMAGE" class="obj-image" />
         </div>
         <div class="obj-info-element">
           <div class="info-header">Информация</div>
           <div class="obj-info">
-            <InfoforCurrentPage :titles="bookInfo" :values="bookInfoObj"/>
+            <InfoforCurrentPage :titles="bookInfo" :values="bookInfoObj" />
           </div>
         </div>
       </div>
@@ -99,7 +95,7 @@ import UserStorage from "@/service/user-storage-service";
 
 export default {
   name: "CurrentBook",
-  components: {MenuComponent, SelectionMark, SelectionContent, InfoforCurrentPage, ReviewMessage},
+  components: { MenuComponent, SelectionMark, SelectionContent, InfoforCurrentPage, ReviewMessage },
 
   data() {
     return {
@@ -164,6 +160,7 @@ export default {
             })
             .catch(error => {
               console.error('Ошибка при создании отзыва', error);
+              
             });
 
       }
@@ -198,7 +195,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 @import "~@/assets/css/cur-obj-page.scss";
 </style>
   

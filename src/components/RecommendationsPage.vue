@@ -173,7 +173,7 @@ export default {
 
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 @import "~@/assets/css/cards.scss";
 @import "~@/assets/css/recomendations.scss";
 </style>

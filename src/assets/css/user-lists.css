@@ -1,0 +1,193 @@
+.text {
+  color: #fff;
+  height: auto;
+  font-size: 16px;
+  text-align: center;
+  font-weight: 500;
+  line-height: 24px;
+  font-stretch: normal;
+  text-decoration: none;
+}
+
+.tabs {
+  margin: 10px auto;
+  border-radius: 10px;
+  width: 90%;
+  display: block;
+  z-index: 2;
+  background-color: var(--dl-half-transparent-1)
+}
+
+.tabbase {
+  text-decoration: none;
+  height: 30px;
+  overflow: hidden;
+  flex-grow: 1;
+  justify-content: center;
+  border-radius: 50px;
+}
+
+.tabbase,
+.tabbase-active,
+.tabs {
+  display: flex;
+  align-items: center
+}
+
+.tabbase-active {
+  text-decoration: none;
+  overflow: hidden;
+  height: 40px;
+  flex-grow: 1;
+  box-shadow: 0 1px 3px 0 rgba(47, 43, 67, .10000000149011612);
+  border-radius: 50px;
+  justify-content: center;
+  background-color: var(--dl-color-base-white);
+  color: #003eb3
+}
+
+.tabs {
+  height: 70px;
+  padding-inline-start: 0;
+  padding: 0 20px
+}
+
+.tabs li:not(:last-child) {
+  margin-right: 7px
+}
+
+.tabs li a {
+  display: block;
+  top: 4px;
+  padding: 10px 250px;
+  border-radius: 20px;
+  background: #fff;
+  opacity: .7;
+  color: #000743;
+  transition: all .1s ease-in-out
+}
+
+.tabs li a:hover {
+  opacity: 1;
+  top: 0;
+  color: #000
+}
+
+.tabs-panel {
+  display: none;
+  width: 90%;
+  text-align: center
+}
+
+.tabs-panel.active {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  min-height: 500px
+}
+
+.table-lists-block {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.tab-header {
+  display: block;
+  color: #fff;
+  background-color: rgba(0, 0, 0, .3);
+  text-align: center;
+  padding: 10px 0;
+  margin: 5px 0;
+  width: 100%;
+  font-size: 24px;
+  font-family: var(--dl-font-family);
+  font-weight: 700;
+  border: solid 1px var(--dl-half-transparent-2)
+}
+
+.cell-value>select,
+.table {
+  width: 100%;
+  width: -moz-available;
+  /* WebKit-based browsers will ignore this. */
+  width: -webkit-fill-available;
+  /* Mozilla-based browsers will ignore this. */
+  width: fill-available;
+}
+
+.cell-header,
+.cell-value {
+  flex-grow: 1;
+  border-color: rgba(185, 185, 185, 0.05);
+  flex-direction: column;
+  color: #c3e1f2;
+  height: auto;
+  text-align: center;
+  font-family: var(--dl-font-family);
+  line-height: 130%;
+  font-stretch: normal;
+  text-decoration: none
+}
+
+.cell-header {
+  align-items: center;
+  background-color: var(--dl-half-transparent-1);
+  padding: 5px 6px;
+  font-size: 22px;
+  font-weight: 700
+}
+
+.cell-value {
+  border-style: solid;
+  font-size: 20px;
+  width: 250px;
+}
+
+.cell-value>a:hover {
+  color: #f2c3c3 !important;
+  cursor: pointer;
+}
+
+.cell-value>a {
+  color: #76fd7a;
+}
+
+
+select {
+  color: white;
+}
+
+.oops-text {
+  margin: 10px 10px;
+}
+
+.number {
+  width: 20px;
+}
+
+.rate {
+  width: 60px;
+}
+
+.header-name {
+  width: 310px;
+}
+
+@media screen and (max-width:1000px) {
+  .cell-header {
+    font-size: 18px;
+    font-weight: 600
+  }
+  .cell-value {
+    font-size: 16px;
+    font-weight: 600
+  }
+  .cell-value>select {
+    font-size: 16px;
+  }
+}

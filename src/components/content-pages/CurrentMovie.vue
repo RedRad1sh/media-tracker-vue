@@ -194,6 +194,6 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 @import "~@/assets/css/cur-obj-page.scss";
 </style>
