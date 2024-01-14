@@ -2,7 +2,7 @@
   <div class="review-container">
     <div v-if="showContentInfo" class="film-link">
       <!--Не ебу как сделать ссылку (потому что тупой) -->
-      <a href="film-page.html">
+      <a href="#" @click="openContentPage()">
         <img :src="revObj.contentPicture"/>
         <div class="user-name">{{ revObj.contentTitle }}</div>
       </a>
@@ -22,6 +22,8 @@
 </template>
 
 <script>
+import router from "@/router/router";
+
 export default {
   props: {
     revObj: {
@@ -33,10 +35,18 @@ export default {
     }
   },
 
+  methods:{
+
+    openContentPage(){
+      let backendUrl = `/current-${this.revObj.contentType.toLowerCase()}/${this.revObj.contentId}`;
+      router.push(backendUrl)
+    }
+  }
+
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 @import "~@/assets/css/review-messages.scss";
 @import "~@/assets/css/user-reviews.scss";
 </style>

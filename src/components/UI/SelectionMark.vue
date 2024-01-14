@@ -41,6 +41,7 @@ export default {
 
       const backendUrl = `${config.backend.url}/reviews/rating`;
       axios.post(backendUrl, review)
+          .then(() => this.$emit('updateReview'))
           .catch(error => {
             console.error('Ошибка при обновлении оценки отзыва', error);
           });

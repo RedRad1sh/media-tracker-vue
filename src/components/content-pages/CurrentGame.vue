@@ -37,7 +37,8 @@
                 id="rate"
                 v-model="selectedRating"
                 :contentType="'Game'"
-                :contentId=this.gameObj.const_content_id
+                :contentId="this.gameObj.const_content_id"
+                @updateReview="getGameById"
             />
           </div>
           <div class="obj-actions">
@@ -74,9 +75,9 @@
       </div>
       <div class="create-review">
         <div class="create-review-container">
-          <label class="text-block text-block-otz" for="review-field"
-          >Оставьте отзыв к игре:</label
-          >
+          <label class="text-block text-block-otz" for="review-field">
+            Оставьте отзыв к игре:
+          </label>
           <br/>
           <textarea
               id="review-field"
@@ -140,8 +141,7 @@ export default {
     },
 
     gameRatingObj() {
-      return [this.gameObj.metcrt_rating,
-        this.gameObj.user_rating];
+      return [this.gameObj.metcrt_rating, this.gameObj.user_rating];
     },
   },
 
@@ -151,7 +151,8 @@ export default {
 
       axios.get(backendUrl)
           .then(response => {
-            this.gameObj = response.data;
+            this.gameObj = response.data.game;
+            this.gameObj.user_rating = response.data.rating;
             this.gameObj.video = this.gameObj.video ? this.gameObj.video.replace('http', 'https') : ""
             this.getReviews();
           })
@@ -183,7 +184,6 @@ export default {
             })
             .catch(error => {
               console.error('Ошибка при создании отзыва', error);
-              
             });
 
       }

@@ -1,18 +1,24 @@
 <template>
   <div class="block">
-    <MenuComponent id="menu-include" active-element="1" />
+    <MenuComponent id="menu-include" active-element="1"/>
     <div class="content-main">
       <div class="block-row" style="justify-content: center">
         <div class="content-header">{{ bookObj.title }}</div>
       </div>
       <div class="obj-first-row">
         <div class="obj-img-element">
-          <img :src="bookObj.img_url" alt="IMAGE" class="obj-image" />
+          <img
+              :src="bookObj.img_url"
+              alt="IMAGE"
+              class="obj-image"
+          />
         </div>
         <div class="obj-info-element">
           <div class="info-header">Информация</div>
           <div class="obj-info">
-            <InfoforCurrentPage :titles="bookInfo" :values="bookInfoObj" />
+            <InfoforCurrentPage :titles="bookInfo"
+                                :values="bookInfoObj"
+            />
           </div>
         </div>
       </div>
@@ -37,7 +43,7 @@
                            v-model="selectedRating"
                            :contentType="'Book'"
                            :contentId=this.bookObj.const_content_id
-                           @updateRating="getBookById"
+                           @updateReview="getBookById"
             />
           </div>
           <div class="obj-actions">
@@ -95,7 +101,7 @@ import UserStorage from "@/service/user-storage-service";
 
 export default {
   name: "CurrentBook",
-  components: { MenuComponent, SelectionMark, SelectionContent, InfoforCurrentPage, ReviewMessage },
+  components: {MenuComponent, SelectionMark, SelectionContent, InfoforCurrentPage, ReviewMessage},
 
   data() {
     return {
@@ -129,13 +135,13 @@ export default {
   },
 
   methods: {
-
     getBookById() {
       let backendUrl = `${config.backend.url}/books/book/` + this.$route.params.id;
 
       axios.get(backendUrl)
           .then(response => {
-            this.bookObj = response.data;
+            this.bookObj = response.data.book;
+            this.bookObj.user_rating = response.data.rating;
             this.getReviews();
           })
           .catch(error => {
@@ -160,7 +166,6 @@ export default {
             })
             .catch(error => {
               console.error('Ошибка при создании отзыва', error);
-              
             });
 
       }
@@ -175,14 +180,9 @@ export default {
 
             const checkReview = this.reviews.filter(r => r.user_id = UserStorage.getUser().id);
 
-            console.log(checkReview);
-
             if(checkReview.length){
-              console.log("СУКА")
               this.selectedRating = checkReview[0].rating
             }
-            console.log(this.reviews);
-            console.log(this.selectedRating);
 
           })
           .catch(error => {
