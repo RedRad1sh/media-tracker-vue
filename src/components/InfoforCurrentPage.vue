@@ -1,7 +1,7 @@
 <template>
     <div class="row-inf" v-for="(title, index) in titles" :key="index">
       <div class="semibold-title">{{ title }}</div>
-      <div v-if="typeinfo==='RATING'" :class="'semibold-inf ' + getRatingStyle(values[index])">
+      <div v-if="typeInfo==='RATING'" :class="'semibold-inf ' + getRatingStyle(values[index])">
         {{ values[index] !== null ? values[index] : '-' }}
       </div>
       <div v-else class="semibold-inf">
@@ -13,7 +13,7 @@
 <script>
 export default {
   props: {
-    typeinfo: String,
+    typeInfo: String,
     titles: Array,
     values: Array,
   },
