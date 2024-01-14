@@ -237,13 +237,26 @@ footer {
         width: 45%
     }
     .content-header {
-        font-size: 26px;
+        font-size: 25px;
     }
 }
 
 @media screen and (max-width:900px) {
     .search {
-        width: 350px
+        width: 350px;
+        margin-right: 100px;
+    }
+
+    .page-btn {
+        width: 15px;
+        padding: 5px 10px !important;
+        text-align: center;
+    }
+
+    .current-page-btn {
+        width: 15px;
+        padding: 5px 10px !important;
+        text-align: center;
     }
 
     header {
@@ -278,7 +291,7 @@ footer {
 .search-content-select {
     margin-right: 5px;
     display: flex;
-    align-items: flex-start
+    align-items: flex-start;
 }
 
 .search-text {
@@ -335,7 +348,7 @@ select option:hover {
     background-color: var(--dl-half-transparent-1);
     margin: 0;
     height: 100%;
-    padding: 0 10px 0 60px;
+    padding: 0 10px 0 30px;
     line-height: 2.5;
     width: 100%;
     box-sizing: border-box;
@@ -348,7 +361,7 @@ select option:hover {
     height: 100%;
     text-align: center;
     line-height: 2.7;
-    width: 300px
+    width: 400px
 }
 
 .move-content-link span {

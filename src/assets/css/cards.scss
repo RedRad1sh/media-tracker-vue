@@ -6,7 +6,8 @@
 .card-top {
     display: flex;
     align-items: flex-start;
-    flex-direction: column
+    flex-direction: column;
+    cursor: pointer;
 }
 
 .card-film-icon {

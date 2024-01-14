@@ -15,10 +15,10 @@
       </div>
       <div class="content-login">
         <ul class="tabs">
-          <li :class="this.type === 'AUTH' ? 'tabbase-active' : 'tabbase'" @click="this.type='AUTH'">
+          <li :class="this.type === 'AUTH' ? 'tabbase-active' : 'tabbase'" @click="this.type = 'AUTH'">
             <a href="#" class="text">Авторизация</a>
           </li>
-          <li :class="this.type === 'REG' ? 'tabbase-active' : 'tabbase'" @click="this.type='REG'">
+          <li :class="this.type === 'REG' ? 'tabbase-active' : 'tabbase'" @click="this.type = 'REG'">
             <a href="#" class="text">Регистрация</a>
           </li>
         </ul>
@@ -35,7 +35,7 @@
                 <span>{{ errorMessage }}</span>
               </div>
               <p>
-                <input @click="authorize()" type="button" value="Войти"/>
+                <input @click="authorize()" type="button" value="Войти" />
               </p>
             </form>
           </div>
@@ -63,7 +63,7 @@
                 <span>{{ errorMessage }}</span>
               </div>
               <p>
-                <input @click="registerUser()" type="button" value="Зарегистрироваться"/>
+                <input @click="registerUser()" type="button" value="Зарегистрироваться" />
               </p>
             </form>
           </div>
@@ -74,7 +74,7 @@
 </template>
 
 <script>
-import {config} from "@/config/config";
+import { config } from "@/config/config";
 import axios from "axios";
 import router from "@/router/router";
 import UserStorage from "@/service/user-storage-service";
@@ -85,30 +85,30 @@ export default {
     authorize() {
       const backendUrl = `${config.backend.url}/users/auth`;
       axios.post(backendUrl, this.authUser)
-          .then(response => {
-            if (response.data.errorMessage) {
-              this.errorMessage = response.data.errorMessage;
-            } else {
-              this.errorMessage = undefined;
-              UserStorage.storeUser(response.data.token, response.data.user);
-              location.reload();
-            }
-          })
-          .catch(error => {
-            console.error('Ошибка при регистрации пользователя', error);
-          });
+        .then(response => {
+          if (response.data.errorMessage) {
+            this.errorMessage = response.data.errorMessage;
+          } else {
+            this.errorMessage = undefined;
+            UserStorage.storeUser(response.data.token, response.data.user);
+            location.reload();
+          }
+        })
+        .catch(error => {
+          console.error('Ошибка при регистрации пользователя', error);
+        });
     },
     registerUser() {
       if (this.newUser.password === this.confirmPassword) {
         const backendUrl = `${config.backend.url}/users`;
         axios.post(backendUrl, this.newUser)
-            .then(response => {
-              UserStorage.storeUser(response.data.token, response.data.user);
-              location.reload();
-            })
-            .catch(error => {
-              console.error('Ошибка при регистрации пользователя', error);
-            });
+          .then(response => {
+            UserStorage.storeUser(response.data.token, response.data.user);
+            location.reload();
+          })
+          .catch(error => {
+            console.error('Ошибка при регистрации пользователя', error);
+          });
       }
     }
   },
@@ -124,10 +124,16 @@ export default {
   mounted() {
     if (UserStorage.isUserAuth()) {
       router.push("/");
+      this.$notify({
+        group: 'nots',
+        type: 'info',
+        title: '',
+        text: 'Вы авторизованы'
+      });
       return;
     }
 
-    async function init () {
+    async function init() {
       const node = document.querySelector("#type-text")
 
       await sleep(1000)
@@ -161,7 +167,7 @@ export default {
 
     async function clearText(el, text) {
       for (let character of text) {
-        el.innerText = el.innerText.slice(0, el.innerText.length -1);
+        el.innerText = el.innerText.slice(0, el.innerText.length - 1);
         await sleep(typeInterval());
       }
     }
