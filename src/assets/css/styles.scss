@@ -67,6 +67,9 @@ header {
     display: flex;
     height: 80px;
     width: 100%;
+    width: -moz-available;
+    width: -webkit-fill-available;
+    width: fill-available;
     position: fixed;
     z-index: 5;
     top: 0;
@@ -249,10 +252,6 @@ footer {
 
     .nav-toggle {
         position: absolute !important
-    }
-
-    .search-input {
-        width: 150px
     }
 
 }
