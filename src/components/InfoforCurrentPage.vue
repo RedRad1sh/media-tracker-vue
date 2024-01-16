@@ -25,7 +25,7 @@ export default {
         return "color-inf-na";
       }
 
-      if (rate < 10) {
+      if (rate <= 10) {
         rate *= 10;
       }
 
