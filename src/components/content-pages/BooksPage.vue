@@ -192,5 +192,4 @@ export default {
 <style scoped>
 @import "~@/assets/css/cards.scss";
 @import "~@/assets/css/content-list.scss";
-@import "~@/assets/css/styles.scss";
 </style>

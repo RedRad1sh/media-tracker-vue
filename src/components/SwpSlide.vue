@@ -15,9 +15,6 @@
       <p>
         <input type="submit" value="Открыть" @click.stop.prevent="$router.push({path: `/${typeurl}/${obg._id}`})"/>
       </p>
-      <p>
-        <input type="submit" value="Добавить в список" />
-      </p>
     </form>
    <img style="object-position: 0 0" class="img-movie" :src="obg.img_url" alt="Формирование рекомендаций">
   </swiper-slide>

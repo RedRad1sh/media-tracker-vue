@@ -24,7 +24,7 @@
           <span style="overflow: hidden">{{ contentData.description }}</span>
         </span>
         <span class="card-extra-property">
-          <span>{{ contentData.extra_prop }}</span>
+          <span>{{ contentData.extra_prop.split(',')[0] }}</span>
         </span>
       </div>
       <div class="card-bottom-actions">
@@ -53,11 +53,11 @@ export class ContentData {
     this.id = id;
     this.content_type = type;
     this.img_src = img_src;
-    this.category = category;
+    this.category = category ?? "";
     this.alt_image = alt_image;
     this.title = title;
     this.description = description;
-    this.extra_prop = extra_prop;
+    this.extra_prop = extra_prop ? extra_prop.toString() : "";
   }
 }
 
@@ -82,6 +82,6 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 @import "~@/assets/css/styles.scss";
 </style>

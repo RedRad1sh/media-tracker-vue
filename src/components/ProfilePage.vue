@@ -138,5 +138,4 @@ export default {
 
 <style scoped>
 @import "~@/assets/css/profile.scss";
-@import "~@/assets/css/styles.scss";
 </style>

@@ -84,10 +84,7 @@
 
         <form class="login-form" style="flex-direction: row">
           <p>
-            <input type="submit" value="Вход" @click.stop.prevent="$router.push({path: '/login'})"/>
-          </p>
-          <p>
-            <input type="submit" value="Регистрация" @click.stop.prevent="$router.push({path: '/registration'})"/>
+            <input style="cursor: pointer" type="submit" value="Вход / Регистрация" @click.stop.prevent="$router.push({path: '/login'})"/>
           </p>
         </form>
       </div>
