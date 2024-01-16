@@ -38,6 +38,7 @@
                 v-model="selectedRating"
                 :contentType="'Movie'"
                 :contentId=this.movieObj.const_content_id
+                @updateReview="getMovieById"
             />
           </div>
           <div class="obj-actions">
@@ -146,7 +147,8 @@ export default {
 
       axios.get(backendUrl)
           .then(response => {
-            this.movieObj = response.data;
+            this.movieObj = response.data.movie;
+            this.movieObj.user_rating = response.data.rating;
             this.getReviews();
           })
           .catch(error => {

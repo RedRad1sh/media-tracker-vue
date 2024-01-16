@@ -4,7 +4,10 @@
     <div class="content-main">
       <div class="content-header">Оставленные рецензии</div>
       <ReviewMessage :showContentInfo="true"
-                     :revObj="rev" v-for="rev in reviews" :key="rev.id"/>
+                     :revObj="rev"
+                     v-for="rev in reviews"
+                     :key="rev.id"
+      />
     </div>
   </div>
 </template>
@@ -25,7 +28,7 @@ export default {
 
   methods: {
     getUserReviews() {
-      let backendUrl = `${config.backend.url}/reviews/` + UserStorage.getUser().id;
+      let backendUrl = `${config.backend.url}/reviews/user/` + UserStorage.getUser().id;
 
       axios.get(backendUrl)
           .then(response => {
