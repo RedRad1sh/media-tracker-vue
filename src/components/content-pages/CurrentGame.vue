@@ -45,7 +45,10 @@
               <span class="text-format">
                 Списки:
               </span>
-            <SelectionContent :ObjectType="type"/>
+            <SelectionContent :ObjectType="type"
+                              :ObjectId="gameObj.const_content_id"
+                              :ObjectAction="gameObj.user_actoin"
+                              @selectChanged="getGameById"/>
           </div>
         </div>
       </div>
@@ -147,12 +150,13 @@ export default {
 
   methods: {
     getGameById() {
-      let backendUrl = `${config.backend.url}/games/game/` + this.$route.params.id;
+      let backendUrl = `${config.backend.url}/games/game/` + this.$route.params.id + '/' + UserStorage.getUser().id;
 
       axios.get(backendUrl)
           .then(response => {
             this.gameObj = response.data.game;
             this.gameObj.user_rating = response.data.rating;
+            this.gameObj.user_actoin = response.data.userList.action;
             this.gameObj.video = this.gameObj.video ? this.gameObj.video.replace('http', 'https') : ""
             this.getReviews();
           })

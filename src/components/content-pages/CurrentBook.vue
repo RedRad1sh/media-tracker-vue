@@ -50,7 +50,10 @@
             <span class="text-format">
               Списки:
             </span>
-            <SelectionContent :ObjectType="type"/>
+            <SelectionContent :ObjectType="type"
+                              :ObjectId="bookObj.const_content_id"
+                              :ObjectAction="bookObj.user_actoin"
+                              @selectChanged="getBookById"/>
           </div>
         </div>
       </div>
@@ -136,12 +139,13 @@ export default {
 
   methods: {
     getBookById() {
-      let backendUrl = `${config.backend.url}/books/book/` + this.$route.params.id;
+      let backendUrl = `${config.backend.url}/books/book/` + this.$route.params.id + '/' + UserStorage.getUser().id;
 
       axios.get(backendUrl)
           .then(response => {
             this.bookObj = response.data.book;
             this.bookObj.user_rating = response.data.rating;
+            this.bookObj.user_actoin = response.data.userList.action;
             this.getReviews();
           })
           .catch(error => {

@@ -47,7 +47,8 @@
             </span>
             <SelectionContent :ObjectType="type"
                               :ObjectId="movieObj.const_content_id"
-                              :ObjectAction="1"
+                              :ObjectAction="movieObj.user_actoin"
+                              @selectChanged="getMovieById"
             />
           </div>
         </div>
@@ -143,12 +144,13 @@ export default {
 
   methods: {
     getMovieById() {
-      let backendUrl = `${config.backend.url}/movies/movie/` + this.$route.params.id;
+      let backendUrl = `${config.backend.url}/movies/movie/` + this.$route.params.id + '/' + UserStorage.getUser().id;
 
       axios.get(backendUrl)
           .then(response => {
             this.movieObj = response.data.movie;
             this.movieObj.user_rating = response.data.rating;
+            this.movieObj.user_actoin = response.data.userList.action;
             this.getReviews();
           })
           .catch(error => {

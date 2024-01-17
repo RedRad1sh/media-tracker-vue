@@ -1,15 +1,21 @@
 <template>
   <select v-model="selectedValue" @change="switchSelect($event)">
     <option value="-">-</option>
-    <option v-for="cnttype in arraylist" :key="cnttype" :value="cnttype">{{ cnttype }}</option>
+    <option v-for="cnttype in arraylist" :key="cnttype" :value="cnttype">
+      {{ cnttype }}
+    </option>
   </select>
 </template>
-  
+
 <script>
-import axios from 'axios';
-import { config } from '@/config/config.js';
+import axios from "axios";
+import { config } from "@/config/config.js";
 import UserStorage from "@/service/user-storage-service";
-import { filmStatuses, gameStatuses, bookStatuses } from "@/service/global-constants.js";
+import {
+  filmStatuses,
+  gameStatuses,
+  bookStatuses,
+} from "@/service/global-constants.js";
 
 export default {
   props: {
@@ -24,7 +30,7 @@ export default {
     ObjectAction: {
       type: String,
       required: true,
-    }
+    },
   },
 
   data() {
@@ -34,18 +40,24 @@ export default {
   },
   computed: {
     arraylist() {
-      if (this.ObjectType === 'Movie') {
+      if (this.ObjectType === "Movie") {
         return filmStatuses;
-      }
-      else if (this.ObjectType === 'Game') {
+      } else if (this.ObjectType === "Game") {
         return gameStatuses;
-      }
-      else if (this.ObjectType === 'Book') {
+      } else if (this.ObjectType === "Book") {
         return bookStatuses;
-      }
-      else {
+      } else {
         return [];
       }
+    },
+  },
+
+  watch: {
+    ObjectAction: {
+      handler(newValue, oldValue) {
+        this.selectedValue = this.ObjectAction;
+      },
+      immediate: true,
     },
   },
 
@@ -59,45 +71,45 @@ export default {
         user_id: userId,
         content_type: this.ObjectType,
         content_id: this.ObjectId,
-        action: this.selectedValue
+        action: this.selectedValue,
       };
 
-      if (dataToSend.action !== '-') {
-        axios.put(backendUrl, dataToSend)
-          .then(response => {
-            this.$emit('selectChanged');
+      if (dataToSend.action !== "-") {
+        axios
+          .put(backendUrl, dataToSend)
+          .then((response) => {
+            this.$emit("selectChanged");
             this.$notify({
-              group: 'nots',
-              type: 'success',
-              title: 'Успех',
-              text: 'Контент успешно добавлен в список'
+              group: "nots",
+              type: "success",
+              title: "Успех",
+              text: "Контент успешно добавлен в список",
             });
           })
-          .catch(error => {
-            console.error('Ошибка при отправке данных:', error);
+          .catch((error) => {
+            console.error("Ошибка при отправке данных:", error);
             this.$notify({
-              group: 'nots',
-              type: 'error',
-              title: 'Ошибка',
-              text: 'Не удалось добавить контент в список'
+              group: "nots",
+              type: "error",
+              title: "Ошибка",
+              text: "Не удалось добавить контент в список",
             });
           });
-      }
-      else {
-        axios.delete(backendUrl + `/user/${userId}/content/${this.ObjectId}`)
-        this.$emit('selectChanged');
+      } else {
+        axios.delete(backendUrl + `/user/${userId}/content/${this.ObjectId}`);
+        this.$emit("selectChanged");
         this.$notify({
-              group: 'nots',
-              type: 'success',
-              title: 'Успех',
-              text: 'Контент успешно удален из списка'
-            });
+          group: "nots",
+          type: "success",
+          title: "Успех",
+          text: "Контент успешно удален из списка",
+        });
       }
-    }
+    },
   },
 };
 </script>
-  
+
 <style scoped>
 select {
   position: relative;
