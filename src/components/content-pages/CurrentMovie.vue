@@ -48,6 +48,7 @@
             <SelectionContent :ObjectType="type"
                               :ObjectId="movieObj.const_content_id"
                               :ObjectAction="movieObj.user_actoin"
+                              @selectChanged="getMovieById"
             />
           </div>
         </div>

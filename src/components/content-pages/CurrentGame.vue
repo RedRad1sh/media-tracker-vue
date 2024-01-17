@@ -45,7 +45,10 @@
               <span class="text-format">
                 Списки:
               </span>
-            <SelectionContent :ObjectType="type"/>
+            <SelectionContent :ObjectType="type"
+                              :ObjectId="gameObj.const_content_id"
+                              :ObjectAction="gameObj.user_actoin"
+                              @selectChanged="getGameById"/>
           </div>
         </div>
       </div>

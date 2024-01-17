@@ -50,7 +50,10 @@
             <span class="text-format">
               Списки:
             </span>
-            <SelectionContent :ObjectType="type"/>
+            <SelectionContent :ObjectType="type"
+                              :ObjectId="bookObj.const_content_id"
+                              :ObjectAction="bookObj.user_actoin"
+                              @selectChanged="getBookById"/>
           </div>
         </div>
       </div>
