@@ -147,12 +147,13 @@ export default {
 
   methods: {
     getGameById() {
-      let backendUrl = `${config.backend.url}/games/game/` + this.$route.params.id;
+      let backendUrl = `${config.backend.url}/games/game/` + this.$route.params.id + '/' + UserStorage.getUser().id;
 
       axios.get(backendUrl)
           .then(response => {
             this.gameObj = response.data.game;
             this.gameObj.user_rating = response.data.rating;
+            this.gameObj.user_actoin = response.data.userList.action;
             this.gameObj.video = this.gameObj.video ? this.gameObj.video.replace('http', 'https') : ""
             this.getReviews();
           })
