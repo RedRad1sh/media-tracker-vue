@@ -3,7 +3,7 @@
     <div v-if="showContentInfo" class="film-link">
       <!--Не ебу как сделать ссылку (потому что тупой) -->
       <a href="#" @click="openContentPage()">
-        <img :src="revObj.contentPicture"/>
+        <img class="image-content" :src="revObj.contentPicture"/>
         <div class="user-name">{{ revObj.contentTitle }}</div>
       </a>
     </div>
