@@ -41,7 +41,8 @@ export function createFilmCard(filmResponse) {
     const title = filmResponse.title;
     const description = filmResponse.description;
     const extra_prop = filmResponse.creation_year;
-    return new ContentData(id, content_type, image_src, "", category, title, description, extra_prop)
+    const action = filmResponse.userListsInfo;
+    return new ContentData(id, content_type, image_src, "", category, title, description, extra_prop, action)
 }
 
 const durations = [
@@ -76,6 +77,7 @@ export default {
                 query.search
                 : "";
 
+            console.log (backendUrl);
             axios.get(backendUrl, {
                 params: {
                     user_id: UserStorage.getUser().id,

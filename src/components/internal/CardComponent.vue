@@ -35,7 +35,7 @@
               />
         </label>
         <label class="label-select">Списки
-          <SelectionContent :ObjectType="ObjectType" :ObjectId="contentData.id" class="card-select list-add"/>
+          <SelectionContent :ObjectType="ObjectType" :ObjectId="contentData.id" :ObjectAction="contentData.action" class="card-select list-add"/>
         </label>
       </div>
     </div>
@@ -49,7 +49,7 @@ import SelectionContent from "@/components/UI/SelectionContent.vue";
 const DEFAULT_IMG = "https://i.pinimg.com/originals/a6/15/46/a6154624251b16c421b23da5c9511000.jpg";
 
 export class ContentData {
-  constructor(id, type, img_src, alt_image, category, title, description, extra_prop) {
+  constructor(id, type, img_src, alt_image, category, title, description, extra_prop, action) {
     this.id = id;
     this.content_type = type;
     this.img_src = img_src;
@@ -58,6 +58,7 @@ export class ContentData {
     this.title = title;
     this.description = description;
     this.extra_prop = extra_prop ? extra_prop.toString() : "";
+    this.action = action;
   }
 }
 
