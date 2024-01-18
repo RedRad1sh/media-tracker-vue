@@ -59,7 +59,9 @@ export function createBookCard(bookResponse) {
     const title = bookResponse.title;
     const description = bookResponse.description;
     const extra_prop = bookResponse.authors;
-    return new ContentData(id, content_type, image_src, "", category, title, description, extra_prop)
+    const action = bookResponse.userListAction;
+    const rating = bookResponse.userMark;
+    return new ContentData(id, content_type, image_src, "", category, title, description, extra_prop, action, rating)
 }
 
 export default {
