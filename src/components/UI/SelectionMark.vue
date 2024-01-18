@@ -20,14 +20,27 @@ export default {
       type: String,
       required: true,
     },
+    ObjectMark: {
+      type: String,
+      required: true,
+    },
 
   },
 
   data() {
     return {
-      selectedValue: '-',
+      selectedValue: this.ObjectMark,
       numbers: Array.from({length: 10}, (_, index) => index + 1)
     };
+  },
+
+  watch: {
+    ObjectMark: {
+      handler(newValue, oldValue) {
+        this.selectedValue = this.ObjectMark;
+      },
+      immediate: true,
+    },
   },
 
   methods: {
