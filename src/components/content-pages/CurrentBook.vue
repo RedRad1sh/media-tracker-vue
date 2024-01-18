@@ -42,7 +42,8 @@
             <SelectionMark id="rate"
                            v-model="selectedRating"
                            :contentType="'Book'"
-                           :contentId=this.bookObj.const_content_id
+                           :contentId=bookObj.const_content_id
+                           :ObjectMark="bookObj.rating"
                            @updateReview="getBookById"
             />
           </div>
@@ -52,7 +53,7 @@
             </span>
             <SelectionContent :ObjectType="type"
                               :ObjectId="bookObj.const_content_id"
-                              :ObjectAction="bookObj.user_actoin"
+                              :ObjectAction="bookObj.user_action"
                               @selectChanged="getBookById"/>
           </div>
         </div>
@@ -144,8 +145,8 @@ export default {
       axios.get(backendUrl)
           .then(response => {
             this.bookObj = response.data.book;
-            this.bookObj.user_rating = response.data.rating;
-            this.bookObj.user_actoin = response.data.userList.action;
+            this.bookObj.rating = response.data.rating;
+            this.bookObj.user_action = response.data.userList.action;
             this.getReviews();
           })
           .catch(error => {
@@ -202,4 +203,3 @@ export default {
 <style lang="scss" scoped>
 @import "~@/assets/css/cur-obj-page.scss";
 </style>
-  

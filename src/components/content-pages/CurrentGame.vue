@@ -37,7 +37,8 @@
                 id="rate"
                 v-model="selectedRating"
                 :contentType="'Game'"
-                :contentId="this.gameObj.const_content_id"
+                :contentId="gameObj.const_content_id"
+                :ObjectMark="gameObj.rating"
                 @updateReview="getGameById"
             />
           </div>
@@ -47,7 +48,7 @@
               </span>
             <SelectionContent :ObjectType="type"
                               :ObjectId="gameObj.const_content_id"
-                              :ObjectAction="gameObj.user_actoin"
+                              :ObjectAction="gameObj.user_action"
                               @selectChanged="getGameById"/>
           </div>
         </div>
@@ -155,8 +156,8 @@ export default {
       axios.get(backendUrl)
           .then(response => {
             this.gameObj = response.data.game;
-            this.gameObj.user_rating = response.data.rating;
-            this.gameObj.user_actoin = response.data.userList.action;
+            this.gameObj.rating = response.data.rating;
+            this.gameObj.user_action = response.data.userList.action;
             this.gameObj.video = this.gameObj.video ? this.gameObj.video.replace('http', 'https') : ""
             this.getReviews();
           })

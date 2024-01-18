@@ -34,7 +34,7 @@
           <SelectionMark class="card-select rate-set"
               :contentType="ObjectType"
               :contentId="contentData.id"
-              :ObjectAction="contentData.rating"
+              :ObjectMark="contentData.rating"
               />
         </label>
         <label class="label-select">Списки
