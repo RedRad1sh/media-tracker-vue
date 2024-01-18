@@ -43,7 +43,9 @@ export function createGameCard(gameResponse) {
     const title = gameResponse.title;
     const description = gameResponse.short_description || gameResponse.description;
     const extra_prop = gameResponse.developers;
-    return new ContentData(id, content_type, image_src, alt_image, category, title, description, extra_prop)
+    const action = gameResponse.userListAction;
+    const rating = gameResponse.userMark;
+    return new ContentData(id, content_type, image_src, alt_image, category, title, description, extra_prop, action, rating)
 }
 
 export default {

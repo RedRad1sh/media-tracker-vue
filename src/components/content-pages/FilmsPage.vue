@@ -41,8 +41,9 @@ export function createFilmCard(filmResponse) {
     const title = filmResponse.title;
     const description = filmResponse.description;
     const extra_prop = filmResponse.creation_year;
-    const action = filmResponse.userListsInfo;
-    return new ContentData(id, content_type, image_src, "", category, title, description, extra_prop, action)
+    const action = filmResponse.userListAction;
+    const rating = filmResponse.userMark;
+    return new ContentData(id, content_type, image_src, "", category, title, description, extra_prop, action, rating)
 }
 
 const durations = [
