@@ -9,7 +9,9 @@
             @error="replaceByDefault"
         />
         <div class="card-tag">
-          <span class="card-genre Caption"><span>{{ contentData.category.split(',').slice(0,3).join(',') }}</span></span>
+          <span class="card-genre Caption"><span>{{
+              contentData.category.split(',').slice(0, 3).join(',')
+            }}</span></span>
         </div>
       </div>
     </a>
@@ -65,18 +67,18 @@ export class ContentData {
 }
 
 export default {
-    name: 'CardComponent',
-    components: {SelectionContent, SelectionMark},
-    props: {
-      ObjectType: {
-        type: String,
-        required: true,
-      },
-      contentData: {
-        type: ContentData,
-        required: true
-      }
+  name: 'CardComponent',
+  components: {SelectionContent, SelectionMark},
+  props: {
+    ObjectType: {
+      type: String,
+      required: true,
     },
+    contentData: {
+      type: ContentData,
+      required: true
+    }
+  },
   methods: {
     replaceByDefault(e) {
       e.target.src = DEFAULT_IMG
